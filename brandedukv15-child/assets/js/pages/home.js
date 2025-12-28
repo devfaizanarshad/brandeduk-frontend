@@ -83,6 +83,12 @@ async function fetchProducts(filters = {}, page = 1, limit = 28) {
             });
         }
         
+        // Handle productType parameter (for category filtering)
+        if (filters.productType) {
+            params.append('productType', filters.productType);
+            console.log("productType", filters.productType);
+        }
+        
         // Map frontend plural names to backend singular names
         const filterMap = {
             'genders': 'gender',
@@ -1070,6 +1076,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     initSearchbarHeader();
 });
 
+// Global variable to track selected category
+let selectedCategory = null;
+
 // ===== SEARCHBAR HEADER FUNCTIONALITY =====
 function initSearchbarHeader() {
     const searchbarInput = document.getElementById('searchbarHeaderInput');
@@ -1078,32 +1087,30 @@ function initSearchbarHeader() {
     const categoryTrigger = document.querySelector('.searchbar-header__categories-trigger');
     const categoryLabel = document.querySelector('.searchbar-header__categories-label');
     
-    // Category mapping - map category slugs to filter values
+    // Category mapping - map category slugs to productType values (matching backend productType parameter)
     const categoryMap = {
         'all': null,
-        't-shirts': null,
-        'hoodies': null,
-        'polos': null,
-        'sweatshirts': null,
-        'jackets': null,
-        'shirts': null,
-        'gilets': null,
-        'fleece': null,
-        'softshells': null,
-        'trousers': null,
-        'shorts': null,
-        'bags': null,
-        'caps': null,
-        'sweatpants': null,
-        'vests': null,
-        'blouses': null,
-        'safety-vests': null,
-        'beanies': null,
-        'knitted-jumpers': null,
-        'trackwear': null
+        't-shirts': { productType: 'T-Shirts' },
+        'hoodies': { productType: 'Hoodies' },
+        'polos': { productType: 'Polos' },
+        'sweatshirts': { productType: 'Sweatshirts' },
+        'jackets': { productType: 'Jackets' },
+        'shirts': { productType: 'Shirts' },
+        'gilets': { productType: 'Gilets & Body Warmers' },
+        'fleece': { productType: 'Fleece' },
+        'softshells': { productType: 'Softshells' },
+        'trousers': { productType: 'Trousers' },
+        'shorts': { productType: 'Shorts' },
+        'bags': { productType: 'Bags' },
+        'caps': { productType: 'Caps' },
+        'sweatpants': { productType: 'Sweatpants' },
+        'vests': { productType: 'Vests (t-shirt)' },
+        'blouses': { productType: 'Blouses' },
+        'safety-vests': { productType: 'Safety Vests' },
+        'beanies': { productType: 'Beanies' },
+        'knitted-jumpers': { productType: 'Knitted Jumpers' },
+        'trackwear': { productType: 'Trackwear' }
     };
-    
-    let selectedCategory = null;
     
     // Handle category selection
     if (categoryDropdown && categoryLabel) {
@@ -1136,11 +1143,11 @@ function initSearchbarHeader() {
                 }
                 
                 // Apply category filter
-                if (selectedCategory) {
-                    applyFilters({ categoryFilter: selectedCategory });
+                if (selectedCategory && selectedCategory.productType) {
+                    applyFilters({ productType: selectedCategory.productType });
                 } else {
                     // Reset filters if "All Categories" selected
-                    applyFilters();
+                    applyFilters({ productType: null });
                 }
             });
         });
@@ -1187,10 +1194,10 @@ function initSearchbarHeader() {
             }
             
             // Apply filters with category if selected
-            if (selectedCategory) {
-                applyFilters({ categoryFilter: selectedCategory });
+            if (selectedCategory && selectedCategory.productType) {
+                applyFilters({ productType: selectedCategory.productType });
             } else {
-                applyFilters();
+                applyFilters({ productType: null });
             }
         });
     }
@@ -1352,6 +1359,18 @@ function initFilters() {
             if (textSearch) {
                 textSearch.value = '';
             }
+            
+            // Reset category selection
+            const searchbarInput = document.getElementById('searchbarHeaderInput');
+            if (searchbarInput) {
+                searchbarInput.value = '';
+            }
+            
+            // Reset category label to "Categories"
+            const categoryLabel = document.querySelector('.searchbar-header__categories-label');
+            if (categoryLabel) {
+                categoryLabel.textContent = 'Categories';
+            }
 
             const sliderElement = document.getElementById('priceRangeSlider');
             const priceLabelElement = document.getElementById('priceRangeLabel');
@@ -1365,7 +1384,10 @@ function initFilters() {
             // Reset price filter flag when clearing filters
             priceFilterApplied = false;
 
-            applyFilters();
+            // Reset category selection in searchbar header
+            selectedCategory = null;
+
+            applyFilters({ productType: null });
         });
     }
 
@@ -1428,7 +1450,7 @@ let priceSliderDebounceTimer = null;
 const PRICE_SLIDER_DEBOUNCE_MS = 500; // Wait 500ms after user stops dragging
 
 async function applyFilters(options = {}) {
-    const { fromSlider = false, initialLoad = false, categoryFilter = null } = options;
+    const { fromSlider = false, initialLoad = false, categoryFilter = null, productType = null } = options;
     
     // Show loading state IMMEDIATELY when filter is applied
     renderProducts([], true);
@@ -1455,6 +1477,7 @@ async function applyFilters(options = {}) {
         tags: [],
         effects: [],
         flags: [], // Special flags: new-in, bradeal, offers, in-stock, recycled
+        productType: productType !== undefined ? productType : (selectedCategory && selectedCategory.productType ? selectedCategory.productType : null), // Product type for category filtering
         // Don't set priceMin/priceMax by default - only when user drags slider
         text: document.querySelector('.text-search-input')?.value || document.getElementById('searchbarHeaderInput')?.value || ''
     };
@@ -1464,7 +1487,9 @@ async function applyFilters(options = {}) {
         if (categoryFilter.flag) {
             filters.flags.push(categoryFilter.flag);
         }
-        // You can add more category filter logic here as needed
+        if (categoryFilter.productType) {
+            filters.productType = categoryFilter.productType;
+        }
     }
 
     // Collect special flags (quick filters)
