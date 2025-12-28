@@ -28,6 +28,19 @@ const PRICE_BREAKS_BY_CODE = {
 
 let quoteBasket = JSON.parse(localStorage.getItem('quoteBasket')) || [];
 
+// ===== DEBOUNCE FUNCTION =====
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
 // ===== PAGINATION STATE =====
 let currentPage = 1;
 let totalPages = 1;
@@ -1052,7 +1065,125 @@ document.addEventListener('DOMContentLoaded', async () => {
             window.location.href = `search-results.html${query ? `?q=${encodeURIComponent(query)}` : ''}`;
         });
     }
+    
+    // Initialize searchbar header functionality
+    initSearchbarHeader();
 });
+
+// ===== SEARCHBAR HEADER FUNCTIONALITY =====
+function initSearchbarHeader() {
+    const searchbarInput = document.getElementById('searchbarHeaderInput');
+    const searchbarForm = document.querySelector('.searchbar-header__search');
+    const categoryDropdown = document.querySelector('.searchbar-header__dropdown');
+    const categoryTrigger = document.querySelector('.searchbar-header__categories-trigger');
+    const categoryLabel = document.querySelector('.searchbar-header__categories-label');
+    
+    // Category mapping - map category slugs to filter values
+    const categoryMap = {
+        'all': null,
+        't-shirts': null, // Can be extended with specific filters
+        'polo-shirts': null,
+        'hoodies': null,
+        'jackets': null,
+        'hi-vis': null,
+        'trousers': null,
+        'fleeces': null,
+        'headwear': null,
+        'sustainable': { flag: 'recycled-organic' }
+    };
+    
+    let selectedCategory = null;
+    
+    // Handle category selection
+    if (categoryDropdown && categoryLabel) {
+        const categoryItems = categoryDropdown.querySelectorAll('.searchbar-header__dropdown-item');
+        categoryItems.forEach(item => {
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const categorySlug = item.getAttribute('data-category');
+                const categoryName = item.textContent.trim();
+                
+                if (categorySlug === 'all') {
+                    selectedCategory = null;
+                } else {
+                    selectedCategory = categoryMap[categorySlug] || null;
+                }
+                
+                // Update button label
+                categoryLabel.textContent = categoryName;
+                
+                // Close dropdown
+                const container = categoryDropdown.closest('.searchbar-header__categories');
+                if (container) {
+                    container.classList.remove('is-open');
+                    categoryDropdown.hidden = true;
+                    if (categoryTrigger) {
+                        categoryTrigger.setAttribute('aria-expanded', 'false');
+                    }
+                }
+                
+                // Apply category filter
+                if (selectedCategory) {
+                    applyFilters({ categoryFilter: selectedCategory });
+                } else {
+                    // Reset filters if "All Categories" selected
+                    applyFilters();
+                }
+            });
+        });
+    }
+    
+    // Handle search input with debouncing
+    if (searchbarInput) {
+        const debouncedSearch = debounce(() => {
+            const searchText = searchbarInput.value.trim();
+            // Update the text search input if it exists
+            const textSearchInput = document.querySelector('.text-search-input');
+            if (textSearchInput) {
+                textSearchInput.value = searchText;
+            }
+            applyFilters();
+        }, 600);
+        
+        searchbarInput.addEventListener('input', debouncedSearch);
+        
+        searchbarInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const searchText = searchbarInput.value.trim();
+                // Update the text search input if it exists
+                const textSearchInput = document.querySelector('.text-search-input');
+                if (textSearchInput) {
+                    textSearchInput.value = searchText;
+                }
+                applyFilters();
+            }
+        });
+    }
+    
+    // Handle form submission
+    if (searchbarForm) {
+        searchbarForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const searchText = searchbarInput?.value.trim() || '';
+            
+            // Update the text search input if it exists
+            const textSearchInput = document.querySelector('.text-search-input');
+            if (textSearchInput) {
+                textSearchInput.value = searchText;
+            }
+            
+            // Apply filters with category if selected
+            if (selectedCategory) {
+                applyFilters({ categoryFilter: selectedCategory });
+            } else {
+                applyFilters();
+            }
+        });
+    }
+}
 
 // ===== FILTER FUNCTIONALITY =====
 function initFilters() {
@@ -1269,10 +1400,13 @@ function initFilters() {
         });
     }
 
-    // Text search
+    // Text search with debouncing
     const textSearch = document.querySelector('.text-search-input');
     if (textSearch) {
-        textSearch.addEventListener('input', applyFilters);
+        const debouncedTextSearch = debounce(() => {
+            applyFilters();
+        }, 600);
+        textSearch.addEventListener('input', debouncedTextSearch);
     }
 }
 
@@ -1283,7 +1417,7 @@ let priceSliderDebounceTimer = null;
 const PRICE_SLIDER_DEBOUNCE_MS = 500; // Wait 500ms after user stops dragging
 
 async function applyFilters(options = {}) {
-    const { fromSlider = false, initialLoad = false } = options;
+    const { fromSlider = false, initialLoad = false, categoryFilter = null } = options;
     
     // Show loading state IMMEDIATELY when filter is applied
     renderProducts([], true);
@@ -1311,8 +1445,16 @@ async function applyFilters(options = {}) {
         effects: [],
         flags: [], // Special flags: new-in, bradeal, offers, in-stock, recycled
         // Don't set priceMin/priceMax by default - only when user drags slider
-        text: document.querySelector('.text-search-input')?.value || ''
+        text: document.querySelector('.text-search-input')?.value || document.getElementById('searchbarHeaderInput')?.value || ''
     };
+    
+    // If category filter is provided, apply it
+    if (categoryFilter) {
+        if (categoryFilter.flag) {
+            filters.flags.push(categoryFilter.flag);
+        }
+        // You can add more category filter logic here as needed
+    }
 
     // Collect special flags (quick filters)
     const flagNameMap = {
