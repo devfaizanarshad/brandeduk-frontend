@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Customise Design - BrandedUK</title>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="padding-bottom: 0;">
+    <!-- Customize Header -->
+    <header class="customize-header">
+        <button class="back-btn" onclick="history.back()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        <h1>Customise Design</h1>
+        <button class="close-btn" onclick="location.href='home-mobile.html'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Customize Content -->
+    <main class="customize-content">
+        <!-- Upload Logo Section -->
+        <section class="customize-section">
+            <h2 class="section-title">Upload Logo</h2>
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                </div>
+                <p class="upload-text">Tap to upload logo</p>
+            </div>
+            <div class="upload-progress" id="uploadProgress" style="display: none;">
+                <div class="upload-progress-bar" id="uploadProgressBar"></div>
+            </div>
+            <div class="upload-actions" id="uploadActions" style="display: none;">
+                <button class="upload-action-btn replace">Replace</button>
+                <button class="upload-action-btn remove">Remove</button>
+            </div>
+            <input type="file" id="fileInput" accept="image/*" style="display: none;">
+        </section>
+
+        <!-- Add Text Section -->
+        <section class="customize-section">
+            <h2 class="section-title">Add Text</h2>
+            <textarea class="text-input-area" placeholder="Enter your text here..."></textarea>
+            <select class="font-selector">
+                <option value="">Select Font</option>
+                <option value="arial">Arial</option>
+                <option value="helvetica">Helvetica</option>
+                <option value="times">Times New Roman</option>
+                <option value="georgia">Georgia</option>
+                <option value="verdana">Verdana</option>
+                <option value="impact">Impact</option>
+                <option value="comic">Comic Sans</option>
+            </select>
+            <div class="text-size-control">
+                <div class="size-slider-label">Text Size</div>
+                <input type="range" class="size-slider" min="8" max="72" value="24">
+            </div>
+            <div class="text-colors">
+                <button class="text-color-btn selected" style="background: #1f2937;"></button>
+                <button class="text-color-btn" style="background: #ffffff; border: 1px solid #e5e7eb;"></button>
+                <button class="text-color-btn" style="background: #991b1b;"></button>
+                <button class="text-color-btn" style="background: #ea580c;"></button>
+                <button class="text-color-btn" style="background: #16a34a;"></button>
+                <button class="text-color-btn" style="background: #2563eb;"></button>
+                <button class="text-color-btn" style="background: #4f46e5;"></button>
+                <button class="text-color-btn" style="background: #7c3aed;"></button>
+            </div>
+        </section>
+
+        <!-- Choose Clipart Section -->
+        <section class="customize-section">
+            <h2 class="section-title">Choose Clipart</h2>
+            <div class="clipart-search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" placeholder="Search clipart...">
+            </div>
+            <div class="clipart-tabs">
+                <button class="clipart-tab active" data-category="sports">Sports</button>
+                <button class="clipart-tab" data-category="shapes">Shapes</button>
+                <button class="clipart-tab" data-category="icons">Icons</button>
+            </div>
+            <div class="clipart-grid">
+                <div class="clipart-item">
+                    <svg viewBox="0 0 64 64" fill="#6b21a8" width="40" height="40">
+                        <ellipse cx="32" cy="32" rx="28" ry="16" transform="rotate(45 32 32)"/>
+                        <path d="M20 32C20 32 26 26 32 32C38 38 44 32 44 32" stroke="#fff" stroke-width="3" fill="none"/>
+                    </svg>
+                </div>
+                <div class="clipart-item">
+                    <svg viewBox="0 0 64 64" fill="#f97316" width="40" height="40">
+                        <circle cx="32" cy="32" r="26"/>
+                        <path d="M15 32 Q32 15 49 32 Q32 49 15 32" stroke="#1f2937" stroke-width="2" fill="none"/>
+                        <path d="M32 6 L32 58" stroke="#1f2937" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="clipart-item">
+                    <svg viewBox="0 0 64 64" fill="#fbbf24" width="40" height="40">
+                        <path d="M32 4L38 24H58L42 36L48 56L32 44L16 56L22 36L6 24H26L32 4Z"/>
+                    </svg>
+                </div>
+                <div class="clipart-item">
+                    <svg viewBox="0 0 64 64" fill="#6b7280" width="40" height="40">
+                        <rect x="12" y="28" width="8" height="24" rx="2"/>
+                        <rect x="28" y="28" width="8" height="24" rx="2"/>
+                        <rect x="44" y="28" width="8" height="24" rx="2"/>
+                        <rect x="8" y="24" width="48" height="6" rx="2"/>
+                    </svg>
+                </div>
+                <div class="clipart-item">
+                    <svg viewBox="0 0 64 64" fill="#6b7280" width="40" height="40">
+                        <circle cx="32" cy="32" r="24" stroke="#1f2937" stroke-width="4" fill="none"/>
+                        <path d="M32 12V32L44 44" stroke="#1f2937" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="clipart-item">
+                    <svg viewBox="0 0 64 64" fill="#dc2626" width="40" height="40">
+                        <path d="M20 56L8 32L20 8H44L56 32L44 56H20Z"/>
+                        <path d="M24 40L20 32L24 24H40L44 32L40 40H24Z" fill="#fff"/>
+                    </svg>
+                </div>
+                <div class="clipart-item">
+                    <svg viewBox="0 0 64 64" fill="#1f2937" width="40" height="40">
+                        <path d="M12 48L32 16L52 48H12Z"/>
+                        <circle cx="32" cy="56" r="6"/>
+                    </svg>
+                </div>
+                <div class="clipart-item">
+                    <svg viewBox="0 0 64 64" fill="#16a34a" width="40" height="40">
+                        <rect x="4" y="20" width="24" height="36" rx="2"/>
+                        <rect x="36" y="20" width="24" height="36" rx="2"/>
+                        <rect x="20" y="8" width="24" height="20" rx="2"/>
+                    </svg>
+                </div>
+                <div class="clipart-item">
+                    <svg viewBox="0 0 64 64" width="40" height="40">
+                        <ellipse cx="32" cy="32" rx="20" ry="12" fill="#8b4513"/>
+                        <path d="M20 24C20 24 26 32 32 32C38 32 44 24 44 24" stroke="#fff" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <div class="clipart-item">
+                    <svg viewBox="0 0 64 64" fill="#1f2937" width="40" height="40">
+                        <circle cx="32" cy="32" r="26"/>
+                        <path d="M20 20L44 44M44 20L20 44" stroke="#fff" stroke-width="4"/>
+                        <circle cx="32" cy="32" r="20" fill="none" stroke="#fff" stroke-width="4"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Apply Button -->
+    <div class="customize-action-bar">
+        <button class="apply-btn" onclick="applyCustomization()">Apply To Product</button>
+    </div>
+
+    <script src="js/mobile.js"></script>
+    <script>
+        // Upload functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadProgress = document.getElementById('uploadProgress');
+        const uploadProgressBar = document.getElementById('uploadProgressBar');
+        const uploadActions = document.getElementById('uploadActions');
+
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                // Show progress
+                uploadProgress.style.display = 'block';
+                uploadProgressBar.style.width = '0%';
+                
+                // Simulate upload
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 10;
+                    uploadProgressBar.style.width = progress + '%';
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            uploadProgress.style.display = 'none';
+                            uploadActions.style.display = 'flex';
+                            uploadArea.innerHTML = `
+                                <img src="${URL.createObjectURL(file)}" alt="Uploaded" style="max-width: 100%; max-height: 150px; border-radius: 8px;">
+                            `;
+                        }, 300);
+                    }
+                }, 100);
+            }
+        });
+
+        // Text color selection
+        document.querySelectorAll('.text-color-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.text-color-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+            });
+        });
+
+        // Clipart tabs
+        document.querySelectorAll('.clipart-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.clipart-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // Clipart selection
+        document.querySelectorAll('.clipart-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.clipart-item').forEach(i => i.classList.remove('selected'));
+                item.classList.add('selected');
+            });
+        });
+
+        function applyCustomization() {
+            // Save customization to session storage
+            const customization = {
+                text: document.querySelector('.text-input-area').value,
+                font: document.querySelector('.font-selector').value,
+                textSize: document.querySelector('.size-slider').value,
+                // Add more as needed
+            };
+            sessionStorage.setItem('customization', JSON.stringify(customization));
+            
+            showToast('Customization applied!');
+            setTimeout(() => {
+                history.back();
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

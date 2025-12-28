@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Basket - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        /* BREADCRUMB */
+        .breadcrumb {
+            background-color: white;
+            padding: 0.75rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.875rem;
+        }
+
+        .breadcrumb a {
+            color: #0033a0;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* PAGE TITLE */
+        .page-title {
+            padding: 2rem;
+        }
+
+        .page-title h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0033a0;
+        }
+
+        /* MAIN CONTAINER */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+        }
+
+        /* BASKET SECTION */
+        .basket-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* TABLE */
+        .basket-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .basket-table thead {
+            background-color: #f3f4f6;
+        }
+
+        .basket-table thead th {
+            padding: 1rem;
+            text-align: left;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #6b7280;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .basket-table tbody td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: middle;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .product-name {
+            color: #0033a0;
+            font-weight: 600;
+            font-size: 0.9375rem;
+        }
+
+        .product-code {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .qty-btn:hover {
+            background-color: #f3f4f6;
+        }
+
+        .qty-display {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .price-cell {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #0033a0;
+        }
+
+        .remove-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .remove-btn:hover {
+            background: #dc2626;
+        }
+
+        /* CUSTOMIZATION SECTION */
+        .customization-box {
+            padding: 1.5rem;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .customization-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .customization-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .btn-edit-logos, .btn-add-logos {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-edit-logos:hover, .btn-add-logos:hover {
+            background: #374151;
+        }
+
+        .no-customization {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+        }
+
+        /* LOGOS TABLE */
+        .logos-table {
+            width: 100%;
+            border: 2px solid #0033a0;
+            border-collapse: collapse;
+        }
+
+        .logos-table thead {
+            background-color: #0033a0;
+            color: white;
+        }
+
+        .logos-table thead th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9375rem;
+        }
+
+        .logos-table thead th:first-child {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .logos-table tbody td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .logo-preview-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo-preview-link {
+            color: #0033a0;
+            text-decoration: underline;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+
+        .location-cell {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hoodie-diagram {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            background: #f9fafb;
+            padding: 0.5rem;
+            position: relative;
+        }
+
+        .hoodie-diagram svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .position-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #0033a0;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 1px #0033a0;
+            left: 30%;
+            top: 35%;
+        }
+
+        /* ACTION BUTTONS */
+        .action-buttons {
+            padding: 1.5rem;
+            border-top: 2px solid #e5e7eb;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-continue {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-continue:hover {
+            background: #374151;
+        }
+
+        .btn-clear {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #374151;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-clear:hover {
+            background: #f3f4f6;
+        }
+
+        /* PROMO SECTION */
+        .promo-section {
+            padding: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .promo-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .promo-input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .promo-input {
+            flex: 1;
+            padding: 0.625rem;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+        .btn-apply {
+            padding: 0.625rem 1.5rem;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-apply:hover {
+            background: #374151;
+        }
+
+        /* BREAKDOWN SIDEBAR */
+        .breakdown-sidebar {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .breakdown-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0033a0;
+            margin-bottom: 1.5rem;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            font-size: 0.9375rem;
+            color: #374151;
+        }
+
+        .breakdown-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            margin-top: 1rem;
+            border-top: 2px solid #e5e7eb;
+            font-size: 1.125rem;
+            color: #0033a0;
+        }
+
+        .info-box {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            font-size: 0.875rem;
+            color: #1e40af;
+        }
+
+        .info-icon {
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+    <a href="home.html">Home</a> > <span>Your Shopping Basket</span>
+</div>
+
+<!-- PAGE TITLE -->
+<div class="page-title">
+    <h1>Your Shopping Basket</h1>
+</div>
+
+<!-- MAIN CONTAINER -->
+<div class="main-container">
+    <!-- LEFT SECTION -->
+    <div class="basket-section">
+        <!-- BASKET TABLE -->
+        <table class="basket-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Colour</th>
+                    <th>Size</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ITEM 1 -->
+                <tr>
+                    <td>
+                        <div class="product-info">
+                            <div class="product-name">Slammer oversized brushed sweatshirt (STSU856)</div>
+                            <div class="product-code">EE-SX107</div>
+                        </div>
+                    </td>
+                    <td>Heather Grey</td>
+                    <td>XS</td>
+                    <td>
+                        <div class="qty-controls">
+                            <button class="qty-btn">-</button>
+                            <span class="qty-display">4</span>
+                            <button class="qty-btn">+</button>
+                        </div>
+                    </td>
+                    <td class="price-cell">£12.98</td>
+                    <td>
+                        <button class="remove-btn">🗑</button>
+                    </td>
+                </tr>
+
+                <!-- ITEM 1 - NO CUSTOMIZATION -->
+                <tr>
+                    <td colspan="6">
+                        <div class="customization-box">
+                            <div class="customization-header">
+                                <h3>This item has no customisation</h3>
+                                <button class="btn-add-logos">Add Logos</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- ITEM 2 -->
+                <tr>
+                    <td>
+                        <div class="product-info">
+                            <div class="product-name">Slammer oversized brushed sweatshirt (STSU856)</div>
+                            <div class="product-code">EE-SX107</div>
+                        </div>
+                    </td>
+                    <td>French Navy</td>
+                    <td>XS</td>
+                    <td>
+                        <div class="qty-controls">
+                            <button class="qty-btn">-</button>
+                            <span class="qty-display">6</span>
+                            <button class="qty-btn">+</button>
+                        </div>
+                    </td>
+                    <td class="price-cell">£19.66</td>
+                    <td>
+                        <button class="remove-btn">🗑</button>
+                    </td>
+                </tr>
+
+                <!-- ITEM 2 - WITH CUSTOMIZATION -->
+                <tr>
+                    <td colspan="6">
+                        <div class="customization-box">
+                            <div class="customization-header">
+                                <h3>Logos applied to this item:</h3>
+                                <button class="btn-edit-logos">Edit Logos</button>
+                            </div>
+
+                            <table class="logos-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                            </svg>
+                                            Embroidered Logo
+                                        </th>
+                                        <th>Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="logo-preview-cell">
+                                                <a href="#" class="logo-preview-link">Click here to preview</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="location-cell">
+                                                <div class="hoodie-diagram">
+                                                    <svg viewBox="0 0 100 120" style="fill: none; stroke: #9ca3af; stroke-width: 2;">
+                                                        <path d="M20,30 Q15,35 15,45 L15,100 L35,100 L35,110 L65,110 L65,100 L85,100 L85,45 Q85,35 80,30" />
+                                                        <path d="M20,30 L30,20 L35,25 L50,15 L65,25 L70,20 L80,30" />
+                                                        <circle cx="25" cy="25" r="8" />
+                                                        <circle cx="75" cy="25" r="8" />
+                                                        <circle cx="50" cy="20" r="3" fill="#9ca3af" />
+                                                    </svg>
+                                                    <div class="position-dot"></div>
+                                                </div>
+                                                <span>Left Breast</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ACTION BUTTONS -->
+        <div class="action-buttons">
+            <button class="btn-continue">Continue Shopping</button>
+            <button class="btn-clear">Clear Basket</button>
+        </div>
+
+        <!-- PROMO SECTION -->
+        <div class="promo-section">
+            <label class="promo-label">ENTER YOUR PROMOTIONAL/DISCOUNT CODE</label>
+            <div class="promo-input-group">
+                <input type="text" class="promo-input" placeholder="">
+                <button class="btn-apply">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="breakdown-sidebar">
+        <h3 class="breakdown-title">Breakdown</h3>
+        
+        <div class="breakdown-item">
+            <span>Garment Costs:</span>
+            <span>£169.88</span>
+        </div>
+
+        <div class="breakdown-item">
+            <span>Application Costs:</span>
+            <span>£30.00</span>
+        </div>
+
+        <div class="breakdown-item">
+            <span>Logo Setup Costs:</span>
+            <span>£10.00</span>
+        </div>
+
+        <div class="breakdown-item">
+            <span>Delivery:</span>
+            <span>£0.00</span>
+        </div>
+
+        <div class="breakdown-item">
+            <span>VAT:</span>
+            <span>£41.98</span>
+        </div>
+
+        <div class="breakdown-total">
+            <strong>Total (inc. VAT)</strong>
+            <strong>£251.86</strong>
+        </div>
+
+        <div class="info-box">
+            <span class="info-icon">ℹ️</span>
+            <span>Please complete your customisations to proceed.</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

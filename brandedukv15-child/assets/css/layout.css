@@ -1,0 +1,6 @@
+/* layout.css
+ * Purpose: Global layout primitives (grid, container, header/footer scaffolding).
+ * Page-specific layout belongs in assets/css/pages/*.css.
+ */
+
+/* Intentionally minimal – migrate shared layout styles here as templates stabilize. */

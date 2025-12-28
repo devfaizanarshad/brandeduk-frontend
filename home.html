@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branded UK - Search &amp; Shop</title>
+    <link rel="icon" type="image/png" href="barra prodotti/assets/images/icons/favicon.png">
+    <link rel="stylesheet" href="brandedukv15-child/assets/css/components/header.css">
+    <link rel="stylesheet" href="brandedukv15-child/assets/css/pages/home.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-top">
+        <div class="header-container">
+            <div class="header-top-left">
+                <p class="header-top-message">WELCOME TO BRANDEDUK, YOUR WORKWEAR EXPERTS.</p>
+            </div>
+            <div class="header-top-right">
+                <a class="header-top-email" href="mailto:info@brandeduk.com">info@brandeduk.com</a>
+                <nav class="header-top-links" aria-label="utility navigation">
+                    <a href="#">Blog</a>
+                    <a href="#">Contact</a>
+                    <a href="#">My Account</a>
+                    <a href="#">Sign In</a>
+                    <span class="header-top-divider" aria-hidden="true">/</span>
+                    <a href="#">Register</a>
+                    <div class="header-top-vat-control" role="group" aria-label="Toggle VAT pricing">
+                        <button class="header-top-vat-toggle" type="button" aria-pressed="false" aria-label="Toggle VAT pricing">
+                            <span class="header-top-vat-toggle__label header-top-vat-toggle__label--exc" data-vat-exc>exc vat</span>
+                            <span class="header-top-vat-toggle__thumb" aria-hidden="true"></span>
+                            <span class="header-top-vat-toggle__label header-top-vat-toggle__label--inc" data-vat-inc>inc vat</span>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="searchbar-header">
+        <div class="searchbar-header__surface">
+            <div class="searchbar-header__inner">
+                <a class="searchbar-header__brand" href="home.html" aria-label="brandedUK home">
+                    <span class="searchbar-header__brand-badge" aria-hidden="true">bd</span>
+                    <span class="searchbar-header__brand-text">branded<span class="searchbar-header__brand-text-highlight">UK</span></span>
+                </a>
+
+                <form class="searchbar-header__search" role="search" method="get" action="search-results.html">
+                    <div class="searchbar-header__categories">
+                        <button class="searchbar-header__categories-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+                            <span class="searchbar-header__categories-label">Categories</span>
+                            <span class="searchbar-header__categories-arrow" aria-hidden="true">&#9662;</span>
+                        </button>
+                        <ul class="searchbar-header__dropdown" role="listbox" aria-label="Product categories" hidden>
+                            <li class="searchbar-header__dropdown-item">All Categories</li>
+                            <li class="searchbar-header__dropdown-item">T-Shirts</li>
+                            <li class="searchbar-header__dropdown-item">Polo Shirts</li>
+                            <li class="searchbar-header__dropdown-item">Hoodies &amp; Sweatshirts</li>
+                            <li class="searchbar-header__dropdown-item">Jackets &amp; Softshell</li>
+                            <li class="searchbar-header__dropdown-item">Hi-Vis Clothing</li>
+                            <li class="searchbar-header__dropdown-item">Work Trousers</li>
+                            <li class="searchbar-header__dropdown-item">Fleeces</li>
+                            <li class="searchbar-header__dropdown-item">Headwear &amp; Accessories</li>
+                            <li class="searchbar-header__dropdown-item searchbar-header__dropdown-item--sustainable">Sustainable / Recycled &amp; Organic</li>
+                        </ul>
+                    </div>
+
+                    <span class="searchbar-header__divider" aria-hidden="true"></span>
+
+                    <div class="searchbar-header__input-wrap">
+                        <label class="visually-hidden" for="searchbarHeaderInput">Search products</label>
+                        <input
+                            id="searchbarHeaderInput"
+                            class="searchbar-header__input"
+                            type="search"
+                            name="s"
+                            placeholder="Search..."
+                            autocomplete="off"
+                        >
+                        <button class="searchbar-header__submit" type="submit" aria-label="Search">
+                            <svg class="searchbar-header__icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="11" cy="11" r="7"></circle>
+                                <line x1="16.5" y1="16.5" x2="22" y2="22"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="searchbar-header__actions">
+                    <a class="searchbar-header__action" href="tel:02089742722" aria-label="Call us">
+                        <span class="searchbar-header__action-ring is-animating">
+                            <svg class="searchbar-header__action-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.5 0 1 .4 1 1V20c0 .5-.5 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.5 0 1 .4 1 1 0 1.2.2 2.5.6 3.6.1.4 0 .7-.2 1l-2.3 2.2z"></path>
+                            </svg>
+                        </span>
+                    </a>
+
+                    <a class="searchbar-header__action" href="https://wa.me/447447348564" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
+                        <span class="searchbar-header__action-ring is-animating">
+                            <svg class="searchbar-header__action-icon searchbar-header__action-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 2C6.48 2 2 6.33 2 11.82c0 1.98.56 3.85 1.6 5.47L2 22l4.89-1.53C8.41 21.4 10.18 21.8 12 21.8c5.52 0 10-4.33 10-9.98C22 6.33 17.52 2 12 2zm0 17.45c-1.65 0-3.27-.45-4.68-1.3l-.34-.2-2.9.91.94-2.8-.22-.36a8.02 8.02 0 0 1-1.23-4.26c0-4.37 3.58-7.92 8.02-7.92 4.41 0 7.98 3.55 7.98 7.92 0 4.37-3.57 8.01-7.97 8.01zm4.55-5.58c-.25-.12-1.48-.73-1.71-.81-.23-.08-.4-.12-.57.12-.17.25-.66.81-.81.98-.15.17-.29.19-.54.07-.25-.12-1.04-.41-1.98-1.3-.73-.66-1.22-1.47-1.37-1.72-.15-.25-.02-.38.11-.5.11-.1.25-.27.38-.4.12-.13.17-.23.25-.39.08-.17.04-.31-.02-.43-.06-.12-.57-1.37-.78-1.88-.21-.5-.42-.43-.57-.44-.15-.01-.32-.02-.49-.02-.17 0-.45.06-.68.31-.23.25-.9.88-.9 2.14s.92 2.49 1.05 2.66c.13.17 1.81 2.87 4.38 3.97.61.26 1.08.41 1.45.52.61.19 1.16.16 1.6.1.49-.07 1.49-.61 1.7-1.2.21-.59.21-1.1.15-1.2-.06-.1-.22-.16-.47-.28z"></path>
+                            </svg>
+                        </span>
+                    </a>
+
+                    <a class="searchbar-header__action searchbar-header__cart" href="customize-positions.html" aria-label="View basket">
+                        <span class="searchbar-header__action-ring is-animating">
+                            <svg class="searchbar-header__action-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                            </svg>
+                        </span>
+                        <span class="searchbar-header__cart-badge" id="cartBadge" style="display:none;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-bottom sticky-header">
+        <div class="header-container">
+            <div class="category-dropdown has-border" data-visible="false">
+                <button type="button" class="category-toggle" aria-haspopup="true" aria-expanded="false" title="Browse Categories">
+                    <span class="category-toggle-icon" aria-hidden="true"></span>
+                    <span class="category-toggle-label">Browse Categories</span>
+                    <span class="category-toggle-caret" aria-hidden="true"></span>
+                </button>
+                <div class="dropdown-box" role="region" aria-label="Browse categories">
+                    <ul class="menu vertical-menu category-menu">
+                        <li class="has-children">
+                            <a href="#">
+                                <img class="category-icon" src="brandedukv15-child/assets/images/ui/icons/categories/icon-shirt-71%201.png" alt="" aria-hidden="true">
+                                <span class="category-text">T-Shirts</span>
+                                <span class="category-caret" aria-hidden="true"></span>
+                            </a>
+                            <ul class="megamenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="#">Crew Neck</a></li>
+                                        <li><a href="#">Heavyweight / Workwear</a></li>
+                                        <li><a href="#">Kids T-shirts</a></li>
+                                        <li><a href="#">Lightweight</a></li>
+                                        <li><a href="#">Long Sleeve T-shirts</a></li>
+                                        <li><a href="#">Performance / Sports</a></li>
+                                        <li><a href="#">Short Sleeve T-shirts</a></li>
+                                        <li><a href="#">Tank Tops</a></li>
+                                        <li><a href="#">T-shirts for Embroidery</a></li>
+                                        <li><a href="#">T-shirts for Print</a></li>
+                                        <li><a href="#">V-Neck</a></li>
+                                        <li><a href="#">Women's T-shirts</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">
+                                <img class="category-icon" src="brandedukv15-child/assets/images/ui/icons/categories/Polo.png" alt="" aria-hidden="true">
+                                <span class="category-text">Polo Shirts</span>
+                                <span class="category-caret" aria-hidden="true"></span>
+                            </a>
+                            <ul class="megamenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="#">Classic Cotton Polos</a></li>
+                                        <li><a href="#">Kids Polos</a></li>
+                                        <li><a href="#">Long Sleeve Polos</a></li>
+                                        <li><a href="#">Performance Polos</a></li>
+                                        <li><a href="#">Poly Cotton Polos</a></li>
+                                        <li><a href="#">Polos for Embroidery</a></li>
+                                        <li><a href="#">Short Sleeve Polos</a></li>
+                                        <li><a href="#">Slim Fit Polos</a></li>
+                                        <li><a href="#">Women's Polos</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">
+                                <img class="category-icon" src="brandedukv15-child/assets/images/ui/icons/categories/icon-hoodies-71%201.png" alt="" aria-hidden="true">
+                                <span class="category-text">Hoodies &amp; Sweatshirts</span>
+                                <span class="category-caret" aria-hidden="true"></span>
+                            </a>
+                            <ul class="megamenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="#">Heavyweight Hoodies</a></li>
+                                        <li><a href="#">Kids Hoodies</a></li>
+                                        <li><a href="#">Lightweight Hoodies</a></li>
+                                        <li><a href="#">Premium / Workwear Hoodies</a></li>
+                                        <li><a href="#">Pullover Hoodies</a></li>
+                                        <li><a href="#">Sweatshirts (Crew Neck)</a></li>
+                                        <li><a href="#">Women's Hoodies</a></li>
+                                        <li><a href="#">Zip Hoodies</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">
+                                <img class="category-icon" src="brandedukv15-child/assets/images/ui/icons/categories/Jacket.png" alt="" aria-hidden="true">
+                                <span class="category-text">Jackets &amp; Softshell</span>
+                                <span class="category-caret" aria-hidden="true"></span>
+                            </a>
+                            <ul class="megamenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="#">Bodywarmers / Gilets</a></li>
+                                        <li><a href="#">Bomber Jackets</a></li>
+                                        <li><a href="#">Fleece Jackets</a></li>
+                                        <li><a href="#">High-performance Jackets</a></li>
+                                        <li><a href="#">Softshell Jackets</a></li>
+                                        <li><a href="#">Waterproof Jackets</a></li>
+                                        <li><a href="#">Windbreakers</a></li>
+                                        <li><a href="#">Women's Jackets</a></li>
+                                        <li><a href="#">Workwear Jackets</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">
+                                <img class="category-icon" src="brandedukv15-child/assets/images/ui/icons/categories/Hi%20Vis.png" alt="" aria-hidden="true">
+                                <span class="category-text">Hi-Vis Clothing</span>
+                                <span class="category-caret" aria-hidden="true"></span>
+                            </a>
+                            <ul class="megamenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="#">EN ISO 20471 Certified</a></li>
+                                        <li><a href="#">Hi-vis Hoodies</a></li>
+                                        <li><a href="#">Hi-vis Jackets</a></li>
+                                        <li><a href="#">Hi-vis Polos</a></li>
+                                        <li><a href="#">Hi-vis T-shirts</a></li>
+                                        <li><a href="#">Hi-vis Trousers</a></li>
+                                        <li><a href="#">Hi-vis Vests</a></li>
+                                        <li><a href="#">RIS-3279 Rail</a></li>
+                                        <li><a href="#">Waterproof Hi-Vis</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">
+                                <img class="category-icon" src="brandedukv15-child/assets/images/ui/icons/categories/Trousers.png" alt="" aria-hidden="true">
+                                <span class="category-text">Work Trousers</span>
+                                <span class="category-caret" aria-hidden="true"></span>
+                            </a>
+                            <ul class="megamenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="#">Cargo Pants</a></li>
+                                        <li><a href="#">Ripstop Trousers</a></li>
+                                        <li><a href="#">Stretch Work Trousers</a></li>
+                                        <li><a href="#">Waterproof / Over-trousers</a></li>
+                                        <li><a href="#">Work Shorts</a></li>
+                                        <li><a href="#">Work Trousers</a></li>
+                                        <li><a href="#">Women's Work Trousers</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">
+                                <img class="category-icon" src="brandedukv15-child/assets/images/ui/icons/categories/Apron.png" alt="" aria-hidden="true">
+                                <span class="category-text">Work &amp; Uniforms</span>
+                                <span class="category-caret" aria-hidden="true"></span>
+                            </a>
+                            <ul class="megamenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="#">Work Trousers</a></li>
+                                        <li><a href="#">Workwear Jackets</a></li>
+                                        <li><a href="#">Workwear Hoodies</a></li>
+                                        <li><a href="#">Work Accessories</a></li>
+                                        <li><a href="#">Aprons</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">
+                                <img class="category-icon" src="brandedukv15-child/assets/images/ui/icons/categories/Fleece.png" alt="" aria-hidden="true">
+                                <span class="category-text">Fleeces</span>
+                                <span class="category-caret" aria-hidden="true"></span>
+                            </a>
+                            <ul class="megamenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="#">Full Zip Fleece</a></li>
+                                        <li><a href="#">Half Zip Fleece</a></li>
+                                        <li><a href="#">Heavy Fleece</a></li>
+                                        <li><a href="#">Kids Fleece</a></li>
+                                        <li><a href="#">Microfleece Jackets</a></li>
+                                        <li><a href="#">Women's Fleece</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">
+                                <img class="category-icon" src="brandedukv15-child/assets/images/ui/icons/categories/Cap.png" alt="" aria-hidden="true">
+                                <span class="category-text">Headwear / Accessories</span>
+                                <span class="category-caret" aria-hidden="true"></span>
+                            </a>
+                            <ul class="megamenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="#">Beanies</a></li>
+                                        <li><a href="#">Bucket Hats</a></li>
+                                        <li><a href="#">Caps</a></li>
+                                        <li><a href="#">Gloves &amp; Scarves</a></li>
+                                        <li><a href="#">Hi-Vis Headwear</a></li>
+                                        <li><a href="#">Kids Headwear</a></li>
+                                        <li><a href="#">Work Accessories</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">
+                                <img class="category-icon" src="brandedukv15-child/assets/images/ui/icons/categories/Recycle.png" alt="" aria-hidden="true">
+                                <span class="category-text">Sustainable / Recycled &amp; Organic</span>
+                                <span class="category-caret" aria-hidden="true"></span>
+                            </a>
+                            <ul class="megamenu brand-grid">
+                                <li class="brand-heading">0 - 9</li>
+                                <li><a href="#">2786</a></li>
+                                <li class="brand-heading">A</li>
+                                <li><a href="#">Adidas</a></li>
+                                <li><a href="#">Asquith &amp; Fox</a></li>
+                                <li><a href="#">AWDis Just Cool</a></li>
+                                <li><a href="#">AWDis Just Hoods</a></li>
+                                <li class="brand-heading">B</li>
+                                <li><a href="#">B&amp;C Collection</a></li>
+                                <li><a href="#">Bagbase</a></li>
+                                <li><a href="#">Beechfield</a></li>
+                                <li><a href="#">Build Your Brand</a></li>
+                                <li class="brand-heading">C</li>
+                                <li><a href="#">Callaway</a></li>
+                                <li><a href="#">Craghoppers</a></li>
+                                <li class="brand-heading">F</li>
+                                <li><a href="#">Finden &amp; Hales</a></li>
+                                <li><a href="#">Flexfit by Yupoong</a></li>
+                                <li><a href="#">Front Row</a></li>
+                                <li class="brand-heading">H</li>
+                                <li><a href="#">Henbury</a></li>
+                                <li><a href="#">Home &amp; Living</a></li>
+                                <li class="brand-heading">K</li>
+                                <li><a href="#">Kariban</a></li>
+                                <li><a href="#">KiMood</a></li>
+                                <li class="brand-heading">L</li>
+                                <li><a href="#">Larkwood</a></li>
+                                <li class="brand-heading">M</li>
+                                <li><a href="#">Madeira</a></li>
+                                <li><a href="#">Mumbles</a></li>
+                                <li class="brand-heading">N</li>
+                                <li><a href="#">New Morning Studios</a></li>
+                                <li><a href="#">Nike</a></li>
+                                <li><a href="#">Nimbus</a></li>
+                                <li><a href="#">Nutshell</a></li>
+                                <li class="brand-heading">P</li>
+                                <li><a href="#">Portwest</a></li>
+                                <li><a href="#">Premier</a></li>
+                                <li><a href="#">Pro RTX</a></li>
+                                <li class="brand-heading">Q</li>
+                                <li><a href="#">Quadra</a></li>
+                                <li class="brand-heading">R</li>
+                                <li><a href="#">RalaFlex</a></li>
+                                <li><a href="#">Regatta Junior</a></li>
+                                <li><a href="#">Regatta Professional</a></li>
+                                <li><a href="#">Result</a></li>
+                                <li><a href="#">Russell Athletic&reg;</a></li>
+                                <li class="brand-heading">S</li>
+                                <li><a href="#">Scruffs</a></li>
+                                <li><a href="#">SF</a></li>
+                                <li class="brand-heading">T</li>
+                                <li><a href="#">Stormtech</a></li>
+                                <li><a href="#">Tee Jays</a></li>
+                                <li><a href="#">Tombo</a></li>
+                                <li><a href="#">TriDri</a></li>
+                                <li class="brand-heading">W</li>
+                                <li><a href="#">Westford Mill</a></li>
+                                <li><a href="#">Wombat</a></li>
+                                <li class="brand-heading">Y</li>
+                                <li><a href="#">Yoko</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="view-all-link">
+                                <span class="category-text">View All Categories</span>
+                                <span class="category-caret" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <nav class="main-nav" aria-label="primary navigation">
+                <ul class="menu">
+                    <li class="has-megamenu">
+                        <a href="#" aria-haspopup="true">
+                            All Products
+                            <span class="nav-caret" aria-hidden="true"></span>
+                        </a>
+                        <ul class="nav-megamenu brand-grid">
+                            <li class="brand-heading">A</li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Anti Static / ESD</a></li>
+                            <li><a href="#">Aprons</a></li>
+                            <li><a href="#">Arc Flash</a></li>
+                            <li><a href="#">Autumn Workwear</a></li>
+                            <li class="brand-heading">B</li>
+                            <li><a href="#">Bags</a></li>
+                            <li><a href="#">Beanies</a></li>
+                            <li><a href="#">Bib &amp; Brace Overalls</a></li>
+                            <li><a href="#">Blouses</a></li>
+                            <li><a href="#">Bodywarmers &amp; Gilets</a></li>
+                            <li class="brand-heading">C</li>
+                            <li><a href="#">Caps</a></li>
+                            <li><a href="#">Chainsaw and Forestry</a></li>
+                            <li><a href="#">Chefswear</a></li>
+                            <li><a href="#">Chem Splash</a></li>
+                            <li><a href="#">Coats &amp; Jackets</a></li>
+                            <li><a href="#">Coldstore</a></li>
+                            <li><a href="#">Construction</a></li>
+                            <li><a href="#">Coveralls</a></li>
+                            <li><a href="#">Covid Test Kit</a></li>
+                            <li class="brand-heading">D</li>
+                            <li><a href="#">Disposable</a></li>
+                            <li><a href="#">Dresses</a></li>
+                            <li><a href="#">DTF Supplies</a></li>
+                            <li class="brand-heading">F</li>
+                            <li><a href="#">Face Masks &amp; Covers</a></li>
+                            <li><a href="#">Flame Retardant</a></li>
+                            <li><a href="#">Fleece Jackets</a></li>
+                            <li><a href="#">Footwear</a></li>
+                            <li class="brand-heading">G</li>
+                            <li><a href="#">Gilets</a></li>
+                            <li><a href="#">Golf</a></li>
+                            <li><a href="#">Gloves PPE</a></li>
+                            <li><a href="#">Gloves Winter</a></li>
+                            <li class="brand-heading">H</li>
+                            <li><a href="#">Headwear</a></li>
+                            <li><a href="#">Healthcare</a></li>
+                            <li><a href="#">Helmets</a></li>
+                            <li><a href="#">Hi-Vis</a></li>
+                            <li><a href="#">Hoodies</a></li>
+                            <li><a href="#">Hospitality</a></li>
+                            <li class="brand-heading">J</li>
+                            <li><a href="#">Jackets</a></li>
+                            <li><a href="#">Joggers</a></li>
+                            <li class="brand-heading">K</li>
+                            <li><a href="#">Knitwear</a></li>
+                            <li class="brand-heading">L</li>
+                            <li><a href="#">Lab / Medical Coats</a></li>
+                            <li><a href="#">Lateral Flow Tests</a></li>
+                            <li><a href="#">Lounge &amp; Underwear</a></li>
+                            <li class="brand-heading">M</li>
+                            <li><a href="#">Maternity</a></li>
+                            <li class="brand-heading">O</li>
+                            <li><a href="#">Offshore Clothing</a></li>
+                            <li><a href="#">Overalls</a></li>
+                            <li class="brand-heading">P</li>
+                            <li><a href="#">Painter &amp; Decorator Clothing</a></li>
+                            <li><a href="#">Plus Size</a></li>
+                            <li><a href="#">Polo Shirts</a></li>
+                            <li><a href="#">PPE</a></li>
+                            <li class="brand-heading">R</li>
+                            <li><a href="#">Rail Spec</a></li>
+                            <li class="brand-heading">S</li>
+                            <li><a href="#">Scarves</a></li>
+                            <li><a href="#">Schoolwear</a></li>
+                            <li><a href="#">Scrubs</a></li>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">Shirts</a></li>
+                            <li><a href="#">Shorts</a></li>
+                            <li><a href="#">Skirts</a></li>
+                            <li><a href="#">Socks</a></li>
+                            <li><a href="#">Softshell Jackets</a></li>
+                            <li><a href="#">Sports &amp; Teamwear</a></li>
+                            <li><a href="#">Spring Workwear</a></li>
+                            <li><a href="#">Suits &amp; Tailoring</a></li>
+                            <li><a href="#">Summer Workwear</a></li>
+                            <li><a href="#">Sustainable</a></li>
+                            <li><a href="#">Sweatshirts</a></li>
+                            <li class="brand-heading">T</li>
+                            <li><a href="#">Tabards</a></li>
+                            <li><a href="#">Thermals &amp; Base Layers</a></li>
+                            <li><a href="#">Ties</a></li>
+                            <li><a href="#">Tote Bags</a></li>
+                            <li><a href="#">Towelling</a></li>
+                            <li><a href="#">Trades</a></li>
+                            <li><a href="#">Trousers</a></li>
+                            <li><a href="#">T-Shirts</a></li>
+                            <li><a href="#">Tunics</a></li>
+                            <li class="brand-heading">U</li>
+                            <li><a href="#">Umbrellas</a></li>
+                            <li class="brand-heading">W</li>
+                            <li><a href="#">Waistcoats</a></li>
+                            <li><a href="#">Welding Workwear</a></li>
+                            <li><a href="#">Winter Workwear</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">BrandedUK</a></li>
+                    <li class="has-megamenu promotions-menu">
+                        <a href="#" aria-haspopup="true">
+                            Promotions
+                            <span class="nav-caret" aria-hidden="true"></span>
+                        </a>
+                        <div class="promo-dropdown" role="region" aria-label="Promotional bundles">
+                            <div class="promo-dropdown-inner">
+                                <figure class="promo-card promo-theme-1">
+                                    <div class="promo-card-thumb" aria-hidden="true"></div>
+                                    <figcaption class="promo-card-title">Bundle 1</figcaption>
+                                    <span class="promo-card-tag">Starter</span>
+                                </figure>
+                                <figure class="promo-card promo-theme-2">
+                                    <div class="promo-card-thumb" aria-hidden="true"></div>
+                                    <figcaption class="promo-card-title">Bundle 2</figcaption>
+                                    <span class="promo-card-tag">Teams</span>
+                                </figure>
+                                <figure class="promo-card promo-theme-3">
+                                    <div class="promo-card-thumb" aria-hidden="true"></div>
+                                    <figcaption class="promo-card-title">Bundle 3</figcaption>
+                                    <span class="promo-card-tag">Eco</span>
+                                </figure>
+                                <figure class="promo-card promo-theme-4">
+                                    <div class="promo-card-thumb" aria-hidden="true"></div>
+                                    <figcaption class="promo-card-title">Bundle 4</figcaption>
+                                    <span class="promo-card-tag">Season</span>
+                                </figure>
+                                <figure class="promo-card promo-theme-5">
+                                    <div class="promo-card-thumb" aria-hidden="true"></div>
+                                    <figcaption class="promo-card-title">Bundle 5</figcaption>
+                                    <span class="promo-card-tag">Pro</span>
+                                </figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">More</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="page-layout">
+    <!-- Filter Sidebar -->
+    <aside class="filter-sidebar">
+        <!-- Search Filters -->
+        <div class="search-filters">
+            <section class="filter-toolbar" aria-label="Filter controls">
+                <div class="filter-toolbar-header">
+                    <h3 class="filter-toolbar-title">Filter By</h3>
+                    <button type="button" class="filter-clear-action">Clear All</button>
+                </div>
+
+                <div class="filter-toggle-list" role="group" aria-label="Quick filters">
+                    <label class="filter-toggle is-active" data-theme="new-in">
+                        <input type="checkbox" name="quick-filter" value="new-in" checked>
+                        <span class="filter-toggle-label">New In</span>
+                        <span class="filter-toggle-switch" aria-hidden="true"><span class="filter-toggle-thumb"></span></span>
+                    </label>
+                    <label class="filter-toggle is-active" data-theme="bradeal">
+                        <input type="checkbox" name="quick-filter" value="bradeal" checked>
+                        <span class="filter-toggle-label">Bradeal</span>
+                        <span class="filter-toggle-switch" aria-hidden="true"><span class="filter-toggle-thumb"></span></span>
+                    </label>
+                    <label class="filter-toggle is-active" data-theme="offers">
+                        <input type="checkbox" name="quick-filter" value="offers" checked>
+                        <span class="filter-toggle-label">Offers</span>
+                        <span class="filter-toggle-switch" aria-hidden="true"><span class="filter-toggle-thumb"></span></span>
+                    </label>
+                    <label class="filter-toggle" data-theme="in-stock">
+                        <input type="checkbox" name="quick-filter" value="in-stock" data-target="availability-in-stock">
+                        <span class="filter-toggle-label">In Stock</span>
+                        <span class="filter-toggle-switch" aria-hidden="true"><span class="filter-toggle-thumb"></span></span>
+                    </label>
+                    <label class="filter-toggle" data-theme="recycled">
+                        <input type="checkbox" name="quick-filter" value="recycled" data-target="category-sustainable">
+                        <span class="filter-toggle-label">Recycled / Organic</span>
+                        <span class="filter-toggle-switch" aria-hidden="true"><span class="filter-toggle-thumb"></span></span>
+                    </label>
+                    <label class="filter-toggle" data-theme="plus-sizes">
+                        <input type="checkbox" name="quick-filter" value="plus-sizes" data-target="size-plus">
+                        <span class="filter-toggle-label">Plus Sizes</span>
+                        <span class="filter-toggle-switch" aria-hidden="true"><span class="filter-toggle-thumb"></span></span>
+                    </label>
+                </div>
+
+                <div class="filter-text-search">
+                    <label class="filter-text-label" for="sidebarTextSearch">Search products</label>
+                    <input type="search" id="sidebarTextSearch" class="filter-text-input text-search-input" placeholder="Search within results">
+                </div>
+            </section>
+
+            <section class="filter-accordion" aria-label="Filter list">
+                <article class="filter-section is-expanded" data-filter="price-range">
+                    <button type="button" class="filter-section-toggle" aria-expanded="true">
+                        <span class="filter-section-label">Price Range</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Price range">
+                        <div class="filter-price-display" id="priceRangeLabel">£0 - £200</div>
+                        <div class="filter-price-slider">
+                            <input type="range" min="0" max="200" value="200" class="filter-range" id="priceRangeSlider" aria-label="Maximum price">
+                        </div>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="gender">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Gender</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Gender options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="gender-female" name="gender" value="female">
+                            <span>Female (192)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="gender-male" name="gender" value="male">
+                            <span>Male (195)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="gender-unisex" name="gender" value="unisex">
+                            <span>Unisex (118)</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="age-group">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Age Group</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Age group options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="age-adult" name="age-group" value="adult">
+                            <span>Adult (453)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="age-infant" name="age-group" value="infant">
+                            <span>Infant (7)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="age-kids" name="age-group" value="kids">
+                            <span>Kids (50)</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="sleeve">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Sleeve</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Sleeve options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="sleeve-long-sleeve-2" name="sleeve" value="long-sleeve-2">
+                            <span>Long Sleeve</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sleeve-short-sleeve-2" name="sleeve" value="short-sleeve-2">
+                            <span>Short Sleeve</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sleeve-sleeveless" name="sleeve" value="sleeveless">
+                            <span>Sleeveless</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sleeve-raglan-sleeve" name="sleeve" value="raglan-sleeve">
+                            <span>Raglan Sleeve</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sleeve-set-in-sleeve" name="sleeve" value="set-in-sleeve">
+                            <span>Set-In Sleeve</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sleeve-roll-sleeve" name="sleeve" value="roll-sleeve">
+                            <span>Roll-Sleeve</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="neckline">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Neckline</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Neckline options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="neckline-crew-neck-2" name="neckline" value="crew-neck-2">
+                            <span>Crew Neck</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="neckline-v-neck-2" name="neckline" value="v-neck-2">
+                            <span>V-Neck</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="neckline-mandarin" name="neckline" value="mandarin">
+                            <span>Mandarin</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="neckline-wide-neck" name="neckline" value="wide-neck">
+                            <span>Wide Neck</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="neckline-roll-neck" name="neckline" value="roll-neck">
+                            <span>Roll Neck</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="neckline-button-down-collar" name="neckline" value="button-down-collar">
+                            <span>Button-Down Collar</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="neckline-keyhole" name="neckline" value="keyhole">
+                            <span>Keyhole</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="accreditations">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Accreditations</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Accreditation options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-vegan-tested" name="accreditations" value="vegan-tested">
+                            <span>Vegan Tested</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-oeko-tex" name="accreditations" value="oeko-tex">
+                            <span>Oeko-Tex</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-global-compact" name="accreditations" value="global-compact">
+                            <span>Global Compact</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-vegan-tested" name="accreditations" value="vegan-tested">
+                            <span>Vegan Tested</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-oeko-tex" name="accreditations" value="oeko-tex">
+                            <span>Oeko-Tex</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-global-compact" name="accreditations" value="global-compact">
+                            <span>Global Compact</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-sedex" name="accreditations" value="sedex">
+                            <span>SEDEX</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-un-global-compact" name="accreditations" value="un-global-compact">
+                            <span>UN Global Compact</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-polylana" name="accreditations" value="polylana">
+                            <span>Polylana®</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-ocs-blended-licence" name="accreditations" value="ocs-blended-licence">
+                            <span>OCS Blended (Licence)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-ocs-100-licence" name="accreditations" value="ocs-100-licence">
+                            <span>OCS 100 (Licence)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-oeko-tex-step" name="accreditations" value="oeko-tex-step">
+                            <span>Oeko-Tex STeP</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-rcs-blended-licence" name="accreditations" value="rcs-blended-licence">
+                            <span>RCS Blended (Licence)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-global-recycled-standard" name="accreditations" value="global-recycled-standard">
+                            <span>Global Recycled Standard</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-sa8000" name="accreditations" value="sa8000">
+                            <span>SA8000</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-amfori-bsci" name="accreditations" value="amfori-bsci">
+                            <span>Amfori BSCI</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-recycled" name="accreditations" value="recycled">
+                            <span>Recycled</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-oeko-tex-garment-licence" name="accreditations" value="oeko-tex-garment-licence">
+                            <span>Oeko-Tex Garment (Licence)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-ethical-trading-initiative" name="accreditations" value="ethical-trading-initiative">
+                            <span>Ethical Trading Initiative</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-oeko-tex-home-recycled-licence" name="accreditations" value="oeko-tex-home-recycled-licence">
+                            <span>Oeko-Tex Home Recycled (Licence)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-b-corp" name="accreditations" value="b-corp">
+                            <span>B Corp</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-ethical-trading-initiative-eti" name="accreditations" value="ethical-trading-initiative-eti">
+                            <span>Ethical Trading Initiative (ETI)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-organic-1-content-standard" name="accreditations" value="organic-1-content-standard">
+                            <span>Organic 1 Content Standard</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-better-cotton" name="accreditations" value="better-cotton">
+                            <span>Better Cotton</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-oeko-tex-garment-recycled-licence" name="accreditations" value="oeko-tex-garment-recycled-licence">
+                            <span>Oeko-Tex Garment Recycled (Licence)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-usctp" name="accreditations" value="usctp">
+                            <span>USCTP</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-reach" name="accreditations" value="reach">
+                            <span>Reach</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-fair-labour-association" name="accreditations" value="fair-labour-association">
+                            <span>Fair Labour Association</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-peta-approved-vegan" name="accreditations" value="peta-approved-vegan">
+                            <span>Peta Approved Vegan</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-reach-uppercase" name="accreditations" value="reach-1">
+                            <span>REACH</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-rsc-accord" name="accreditations" value="rsc-accord">
+                            <span>RSC Accord</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-sustainable-apparel-coalition" name="accreditations" value="sustainable-apparel-coalition">
+                            <span>Sustainable Apparel Coalition</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-bci-better-cotton-initiative" name="accreditations" value="bci-better-cotton-initiative">
+                            <span>BCI (Better cotton initiative)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-gots-licence" name="accreditations" value="gots-licence">
+                            <span>GOTS (Licence)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-fairtrade" name="accreditations" value="fairtrade-">
+                            <span>Fairtrade </span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-fair-labour-association-fla-with-space" name="accreditations" value="fair-labour-association-fla-">
+                            <span>Fair Labour Association (FLA) </span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-organic" name="accreditations" value="organic">
+                            <span>Organic</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-organic-content-blended-standard" name="accreditations" value="organic-content-blended-standard">
+                            <span>Organic Content Blended Standard</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-fama" name="accreditations" value="fama">
+                            <span>FAMA</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-fair-labour-association-fla" name="accreditations" value="fair-labour-association-fla">
+                            <span>Fair Labour Association (FLA)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-organic-100-content-standard" name="accreditations" value="organic-100-content-standard">
+                            <span>Organic 100 Content Standard</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-sedex-alt" name="accreditations" value="sedex-1">
+                            <span>Sedex</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-oeko-tex-home-licence" name="accreditations" value="oeko-tex-home-licence">
+                            <span>Oeko-Tex Home (Licence)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-grs-licence" name="accreditations" value="grs-licence">
+                            <span>GRS (Licence)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-certified-recycled" name="accreditations" value="certified-recycled">
+                            <span>Certified Recycled</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-fair-wear-foundation" name="accreditations" value="fair-wear-foundation">
+                            <span>Fair Wear Foundation</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-certified-down" name="accreditations" value="certified-down">
+                            <span>Certified Down</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-oeko-tex-standard-100" name="accreditations" value="oeko-tex-standard-100">
+                            <span>Oeko-Tex Standard 100</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-wrap" name="accreditations" value="wrap">
+                            <span>WRAP</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-bluesign" name="accreditations" value="bluesign">
+                            <span>Bluesign®</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="accreditation-certified-organic" name="accreditations" value="certified-organic">
+                            <span>Certified Organic</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="primary-colour">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Primary Colour</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Primary colour options">
+                        <div class="filter-colour-swatches" role="list">
+                            <button type="button" class="filter-colour-swatch swatch-black" data-colour="black">
+                                <span class="visually-hidden">Black</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-blue" data-colour="blue">
+                                <span class="visually-hidden">Blue</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-grey" data-colour="grey">
+                                <span class="visually-hidden">Grey</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-green" data-colour="green">
+                                <span class="visually-hidden">Green</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-white" data-colour="white">
+                                <span class="visually-hidden">White</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-red" data-colour="red">
+                                <span class="visually-hidden">Red</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-pink" data-colour="pink">
+                                <span class="visually-hidden">Pink</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-yellow" data-colour="yellow">
+                                <span class="visually-hidden">Yellow</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-neutral" data-colour="neutral">
+                                <span class="visually-hidden">Neutral</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-purple" data-colour="purple">
+                                <span class="visually-hidden">Purple</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-orange" data-colour="orange">
+                                <span class="visually-hidden">Orange</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-brown" data-colour="brown">
+                                <span class="visually-hidden">Brown</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-pattern" data-colour="pattern">
+                                <span class="visually-hidden">Pattern</span>
+                            </button>
+                            <button type="button" class="filter-colour-swatch swatch-other" data-colour="other">
+                                <span class="visually-hidden">Other</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="colour-shade">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Colour Shade</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Colour shade options">
+                        <div class="filter-field">
+                            <label class="visually-hidden" for="colourShadeSearch">Search colour shade</label>
+                            <input type="search" id="colourShadeSearch" class="filter-text-input" placeholder="Search colour shade">
+                        </div>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-black-black" name="colour-shade" value="black - black">
+                            <span>Black - Black</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-blue-navy" name="colour-shade" value="blue - navy">
+                            <span>Blue - Navy</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-white-white" name="colour-shade" value="white - white">
+                            <span>White - White</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-grey-dark-grey" name="colour-shade" value="grey - dark grey">
+                            <span>Grey - Dark Grey</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-grey-heather" name="colour-shade" value="grey - heather">
+                            <span>Grey - Heather</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-blue-light-blue" name="colour-shade" value="blue - light blue">
+                            <span>Blue - Light Blue</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-blue-royal" name="colour-shade" value="blue - royal">
+                            <span>Blue - Royal</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-red-mid-red" name="colour-shade" value="red - mid red">
+                            <span>Red - Mid Red</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-blue-mid-blue" name="colour-shade" value="blue - mid blue">
+                            <span>Blue - Mid Blue</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-neutral-natural" name="colour-shade" value="neutral - natural">
+                            <span>Neutral - Natural</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-grey-charcoal" name="colour-shade" value="grey - charcoal">
+                            <span>Grey - Charcoal</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-grey-light-grey" name="colour-shade" value="grey - light grey">
+                            <span>Grey - Light Grey</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-green-dark-green" name="colour-shade" value="green - dark green">
+                            <span>Green - Dark Green</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-pink-light-pink" name="colour-shade" value="pink - light pink">
+                            <span>Pink - Light Pink</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-orange-mid-orange" name="colour-shade" value="orange - mid orange">
+                            <span>Orange - Mid Orange</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-green-mid-green" name="colour-shade" value="green - mid green">
+                            <span>Green - Mid Green</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-red-burgundy" name="colour-shade" value="red - burgundy">
+                            <span>Red - Burgundy</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-green-light-green" name="colour-shade" value="green - light green">
+                            <span>Green - Light Green</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-green-bottle" name="colour-shade" value="green - bottle">
+                            <span>Green - Bottle</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-yellow-neons-fluro-yellow" name="colour-shade" value="yellow - neons/fluro yellow">
+                            <span>Yellow - Neons/Fluro Yellow</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-green-olive" name="colour-shade" value="green - olive">
+                            <span>Green - Olive</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-grey-mid-grey" name="colour-shade" value="grey - mid grey">
+                            <span>Grey - Mid Grey</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-blue-dark-blue" name="colour-shade" value="blue - dark blue">
+                            <span>Blue - Dark Blue</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-purple-dark-purple" name="colour-shade" value="purple - dark purple">
+                            <span>Purple - Dark Purple</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-pink-mid-pink" name="colour-shade" value="pink - mid pink">
+                            <span>Pink - Mid Pink</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-purple-light-purple" name="colour-shade" value="purple - light purple">
+                            <span>Purple - Light Purple</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-yellow-mid-yellow" name="colour-shade" value="yellow - mid yellow">
+                            <span>Yellow - Mid Yellow</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-green-khaki" name="colour-shade" value="green - khaki">
+                            <span>Green - Khaki</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-brown-light-brown" name="colour-shade" value="brown - light brown">
+                            <span>Brown - Light Brown</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-purple-mid-purple" name="colour-shade" value="purple - mid purple">
+                            <span>Purple - Mid Purple</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-orange-neons-fluro-orange" name="colour-shade" value="orange - neons/fluro orange">
+                            <span>Orange - Neons/Fluro Orange</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-brown-dark-brown" name="colour-shade" value="brown - dark brown">
+                            <span>Brown - Dark Brown</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-red-dark-red" name="colour-shade" value="red - dark red">
+                            <span>Red - Dark Red</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-white-off-white" name="colour-shade" value="white - off white">
+                            <span>White - Off White</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-red-classic-red" name="colour-shade" value="red - classic red">
+                            <span>Red - Classic Red</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-pink-dark-pink" name="colour-shade" value="pink - dark pink">
+                            <span>Pink - Dark Pink</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-pattern-check" name="colour-shade" value="pattern - check">
+                            <span>Pattern - Check</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-blue-heather" name="colour-shade" value="blue - heather">
+                            <span>Blue - Heather</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-brown-mid-brown" name="colour-shade" value="brown - mid brown">
+                            <span>Brown - Mid Brown</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-yellow-light-yellow" name="colour-shade" value="yellow - light yellow">
+                            <span>Yellow - Light Yellow</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-pattern-stripes" name="colour-shade" value="pattern - stripes">
+                            <span>Pattern - Stripes</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-grey-silver" name="colour-shade" value="grey - silver">
+                            <span>Grey - Silver</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-brown-khaki" name="colour-shade" value="brown - khaki">
+                            <span>Brown - Khaki</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-black-heather" name="colour-shade" value="black - heather">
+                            <span>Black - Heather</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-orange-light-orange" name="colour-shade" value="orange - light orange">
+                            <span>Orange - Light Orange</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-green-neons-fluro-green" name="colour-shade" value="green - neons/fluro green">
+                            <span>Green - Neons/Fluro Green</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-pattern-tie-dye" name="colour-shade" value="pattern - tie-dye">
+                            <span>Pattern - Tie-Dye</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-yellow-gold" name="colour-shade" value="yellow - gold">
+                            <span>Yellow - Gold</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-yellow-dark-yellow" name="colour-shade" value="yellow - dark yellow">
+                            <span>Yellow - Dark Yellow</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-pattern-camouflage" name="colour-shade" value="pattern - camouflage">
+                            <span>Pattern - Camouflage</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-red-light-red" name="colour-shade" value="red - light red">
+                            <span>Red - Light Red</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-pattern-multicolour" name="colour-shade" value="pattern - multicolour">
+                            <span>Pattern - Multicolour</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-green-heather" name="colour-shade" value="green - heather">
+                            <span>Green - Heather</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-pink-neons-fluro-pink" name="colour-shade" value="pink - neons/fluro pink">
+                            <span>Pink - Neons/Fluro Pink</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-neutral-heather" name="colour-shade" value="neutral - heather">
+                            <span>Neutral - Heather</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-orange-dark-orange" name="colour-shade" value="orange - dark orange">
+                            <span>Orange - Dark Orange</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-pink-heather" name="colour-shade" value="pink - heather">
+                            <span>Pink - Heather</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-red-heather" name="colour-shade" value="red - heather">
+                            <span>Red - Heather</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-red-neons-fluro-red" name="colour-shade" value="red - neons/fluro red">
+                            <span>Red - Neons/Fluro Red</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-purple-heather" name="colour-shade" value="purple - heather">
+                            <span>Purple - Heather</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-purple-neons-fluro-purple" name="colour-shade" value="purple - neons/fluro purple">
+                            <span>Purple - Neons/Fluro Purple</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-white-neons-fluro-white" name="colour-shade" value="white - neons/fluro white">
+                            <span>White - Neons/Fluro White</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-other-clear" name="colour-shade" value="other - clear">
+                            <span>Other - Clear</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-yellow-heather" name="colour-shade" value="yellow - heather">
+                            <span>Yellow - Heather</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-brown-heather" name="colour-shade" value="brown - heather">
+                            <span>Brown - Heather</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="shade-orange-heather" name="colour-shade" value="orange - heather">
+                            <span>Orange - Heather</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="cmyk">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">CMYK</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="CMYK options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="cmyk-c0m0y0k0" name="cmyk" value="c0m0y0k0" disabled>
+                            <span>C0 M0 Y0 K0 (12)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="cmyk-c0m78y100k2" name="cmyk" value="c0m78y100k2" disabled>
+                            <span>C0 M78 Y100 K2 (8)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="cmyk-c44m11y0k0" name="cmyk" value="c44m11y0k0" disabled>
+                            <span>C44 M11 Y0 K0 (5)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="cmyk-c95m79y9k2" name="cmyk" value="c95m79y9k2" disabled>
+                            <span>C95 M79 Y9 K2 (3)</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="pantone">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Pantone</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Pantone options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="pantone-123c" name="pantone" value="123c" disabled>
+                            <span>Pantone 123C (12)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="pantone-186c" name="pantone" value="186c" disabled>
+                            <span>Pantone 186C (9)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="pantone-300c" name="pantone" value="300c" disabled>
+                            <span>Pantone 300C (15)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="pantone-cool-gray" name="pantone" value="cool-gray-7c" disabled>
+                            <span>Pantone Cool Gray 7C (11)</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="style">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Style</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Style options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-classic" name="style" value="classic">
+                            <span>Classic</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-crew-neck-1" name="style" value="crew-neck-1">
+                            <span>Crew Neck</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-hooded-1" name="style" value="hooded-1">
+                            <span>Hooded</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-long-sleeve-1" name="style" value="long-sleeve-1">
+                            <span>Long Sleeve</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-oversized" name="style" value="oversized">
+                            <span>Oversized</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-pocket" name="style" value="pocket">
+                            <span>Pocket</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-pockets" name="style" value="pockets">
+                            <span>Pockets</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-regular" name="style" value="regular">
+                            <span>Regular</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-relaxed-1" name="style" value="relaxed-1">
+                            <span>Relaxed</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-short-sleeve" name="style" value="short-sleeve">
+                            <span>Short Sleeve</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-slim-1" name="style" value="slim-1">
+                            <span>Slim</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-v-neck" name="style" value="v-neck">
+                            <span>V-Neck</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-zipped" name="style" value="zipped">
+                            <span>Zipped</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="style-fitted" name="style" value="fitted">
+                            <span>Fitted</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="features">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Features</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Feature options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="feature-anti-bacterial" name="features" value="anti-bacterial">
+                            <span>Anti-bacterial (6)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="feature-breathable" name="features" value="breathable">
+                            <span>Breathable (102)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="feature-eco" name="features" value="eco">
+                            <span>Eco-friendly (48)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="feature-heavyweight" name="features" value="heavyweight">
+                            <span>Heavyweight (32)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="feature-tear-away" name="features" value="tear-away">
+                            <span>Tear-away Label (85)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="feature-uv" name="features" value="uv-protection">
+                            <span>UV Protection (5)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="feature-water-resistant" name="features" value="water-resistant">
+                            <span>Water Resistant (14)</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="size">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Size</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    
+                    <div class="filter-section-body" role="group" aria-label="Size options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-s" name="size" value="s">
+                            <span>S</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-m" name="size" value="m">
+                            <span>M</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-l" name="size" value="l">
+                            <span>L</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-xl" name="size" value="xl">
+                            <span>XL</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-2xl" name="size" value="2xl">
+                            <span>2XL</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-3xl" name="size" value="3xl">
+                            <span>3XL</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-xs" name="size" value="xs">
+                            <span>XS</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-one-size" name="size" value="one-size">
+                            <span>One Size</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-4xl" name="size" value="4xl">
+                            <span>4XL</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-5xl" name="size" value="5xl">
+                            <span>5XL</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-xxs" name="size" value="xxs">
+                            <span>XXS</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-78-years" name="size" value="78-years-1">
+                            <span>7/8 Years</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-56-years" name="size" value="56-years-1">
+                            <span>5/6 Years</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-34-years" name="size" value="34-years-1">
+                            <span>3/4 Years</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="size-911-years" name="size" value="911-years-1">
+                            <span>9/11 Years</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="fabric">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Fabric</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                
+                    <div class="filter-section-body" role="group" aria-label="Fabric options">
+                
+                        <!-- Recycled -->
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-recycled-100" name="fabric" value="recycled-100">
+                            <span>Recycled (100%)</span>
+                        </label>
+                
+                        <!-- Organic -->
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-organic-100" name="fabric" value="organic-100">
+                            <span>Organic (100%)</span>
+                        </label>
+                
+                        <!-- Polyester -->
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-polyester-100" name="fabric" value="polyester-100">
+                            <span>Polyester (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-polyester-blend" name="fabric" value="polyester-blend">
+                            <span>Polyester Blend</span>
+                        </label>
+                
+                        <!-- Nylon -->
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-nylon-100" name="fabric" value="nylon-100">
+                            <span>Nylon (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-nylon-blend" name="fabric" value="nylon-blend">
+                            <span>Nylon Blend</span>
+                        </label>
+                
+                        <!-- Cotton -->
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-cotton-100" name="fabric" value="cotton-100">
+                            <span>Cotton (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-cotton-blend" name="fabric" value="cotton-blend">
+                            <span>Cotton Blend</span>
+                        </label>
+                
+                        <!-- Special fabrics -->
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-ringspun-100" name="fabric" value="ringspun-100">
+                            <span>Ringspun (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-combed-100" name="fabric" value="combed-100">
+                            <span>Combed (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-heavyweight-100" name="fabric" value="heavyweight-100">
+                            <span>Heavyweight (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-merino-100" name="fabric" value="merino-100">
+                            <span>Merino (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-bamboo-100" name="fabric" value="bamboo-100">
+                            <span>Bamboo (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-viscose-100" name="fabric" value="viscose-100">
+                            <span>Viscose (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-acrylic-100" name="fabric" value="acrylic-100">
+                            <span>Acrylic (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-wool-cashwool" name="fabric" value="cashwool-100">
+                            <span>Cashwool (100%)</span>
+                        </label>
+                
+                        <!-- Technical -->
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-ripstop-100" name="fabric" value="ripstop-100">
+                            <span>Ripstop (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-waterproof-100" name="fabric" value="waterproof-100">
+                            <span>Waterproof (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-microfiber-100" name="fabric" value="microfiber-100">
+                            <span>Microfiber (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-woven-100" name="fabric" value="woven-100">
+                            <span>Woven (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-knitted-100" name="fabric" value="knitted-100">
+                            <span>Knitted (100%)</span>
+                        </label>
+                
+                        <!-- Synthetic / Industrial -->
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-pvc-100" name="fabric" value="pvc-100">
+                            <span>PVC (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-vinyl-100" name="fabric" value="vinyl-100">
+                            <span>Vinyl (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-rubber-100" name="fabric" value="rubber-100">
+                            <span>Rubber (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-leather-100" name="fabric" value="leather-100">
+                            <span>Leather (100%)</span>
+                        </label>
+                
+                        <!-- Other -->
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-jute-100" name="fabric" value="jute-100">
+                            <span>Jute (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-eva-100" name="fabric" value="eva-100">
+                            <span>EVA (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-oxford-100" name="fabric" value="oxford-100">
+                            <span>Oxford (100%)</span>
+                        </label>
+                
+                        <label class="filter-option">
+                            <input type="checkbox" id="fabric-waffle-100" name="fabric" value="waffle-100">
+                            <span>Waffle (100%)</span>
+                        </label>
+                
+                    </div>
+                </article>
+                
+
+                <article class="filter-section" data-filter="weight">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Weight (GSM)</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Fabric weight options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="weight-0-50gsm" name="weight" value="0-50gsm">
+                            <span>0 - 50gsm</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="weight-051-100gsm" name="weight" value="051-100gsm">
+                            <span>051 - 100gsm (3)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="weight-101-150gsm" name="weight" value="101-150gsm">
+                            <span>101 - 150gsm (203)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="weight-151-200gsm" name="weight" value="151-200gsm">
+                            <span>151 - 200gsm (232)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="weight-201-250gsm" name="weight" value="201-250gsm">
+                            <span>201 - 250gsm (52)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="weight-251-300gsm" name="weight" value="251-300gsm">
+                            <span>251 - 300gsm (17)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="weight-over-300gsm" name="weight" value="over-300gsm">
+                            <span>Over 300gsm (3)</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="fit">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Fit</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Fit options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="fit-classic" name="fit" value="classic">
+                            <span>Classic Fit (240)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="fit-comfort" name="fit" value="comfort">
+                            <span>Comfort (4)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="fit-crop" name="fit" value="crop">
+                            <span>Crop (14)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="fit-fashion" name="fit" value="fashion">
+                            <span>Fashion Fit (15)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="fit-feminine" name="fit" value="feminine">
+                            <span>Feminine Fit (44)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="fit-fitted" name="fit" value="fitted">
+                            <span>Fitted (6)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="fit-longline" name="fit" value="longline">
+                            <span>Longline (3)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="fit-oversized" name="fit" value="oversized">
+                            <span>Oversized (35)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="fit-relaxed" name="fit" value="relaxed">
+                            <span>Relaxed Fit (58)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="fit-semi" name="fit" value="semi-fitted">
+                            <span>Semi-Fitted (2)</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="related-sector">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Related Sector</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Related sector options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="sector-sport" name="related-sector" value="sport">
+                            <span>Sport</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sector-corporate" name="related-sector" value="corporate">
+                            <span>Corporate</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sector-hospitality" name="related-sector" value="hospitality">
+                            <span>Hospitality</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sector-travel" name="related-sector" value="travel">
+                            <span>Travel</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sector-fashion" name="related-sector" value="fashion">
+                            <span>Fashion</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sector-athleisure" name="related-sector" value="athleisure">
+                            <span>Athleisure</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sector-home" name="related-sector" value="home">
+                            <span>Home</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sector-safety" name="related-sector" value="safety">
+                            <span>Safety</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sector-school" name="related-sector" value="school">
+                            <span>School</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sector-outdoor" name="related-sector" value="outdoor">
+                            <span>Outdoor</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="related-sport">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Related Sport</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Related sport options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="sport-golf" name="related-sport" value="golf">
+                            <span>Golf</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sport-gym" name="related-sport" value="gym">
+                            <span>Gym</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sport-swimming" name="related-sport" value="swimming">
+                            <span>Swimming</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="sport-rugby" name="related-sport" value="rugby">
+                            <span>Rugby</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="tag">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Tag</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Tag options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="tag-adhesives" name="tag" value="adhesives">
+                            <span>Adhesives</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="tag-cut-away-inner-label" name="tag" value="cut-away-inner-label">
+                            <span>Cut-away inner label</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="tag-sewn-tag" name="tag" value="sewn-tag">
+                            <span>Sewn Tag</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="tag-tagless" name="tag" value="tagless">
+                            <span>Tagless</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="tag-tear-away" name="tag" value="tear-away">
+                            <span>Tear-away</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="tag-tear-out" name="tag" value="tear-out">
+                            <span>Tear-out</span>
+                        </label>
+                    </div>
+                </article>
+
+                <article class="filter-section" data-filter="effect">
+                    <button type="button" class="filter-section-toggle" aria-expanded="false">
+                        <span class="filter-section-label">Effect</span>
+                        <span class="filter-section-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="filter-section-body" role="group" aria-label="Effect options">
+                        <label class="filter-option">
+                            <input type="checkbox" id="effect-melange" name="effect" value="melange">
+                            <span>Melange</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="effect-heather" name="effect" value="heather">
+                            <span>Heather</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="effect-marble" name="effect" value="marble">
+                            <span>Marble</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="effect-tie-dye" name="effect" value="tie-dye">
+                            <span>Tie-Dye</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="effect-triblend" name="effect" value="triblend">
+                            <span>TriBlend</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="effect-washed" name="effect" value="washed">
+                            <span>Washed</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" id="effect-acid-wash" name="effect" value="acid-wash">
+                            <span>Acid Wash</span>
+                        </label>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </aside>
+
+    <!-- Products Grid -->
+    <section class="container">
+        <div class="products-grid" id="productsGrid">
+            <!-- Products loaded by JS -->
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination-container" id="paginationContainer" style="display: none;">
+            <nav class="pagination" aria-label="Product pagination">
+                <button class="pagination-btn pagination-prev" id="paginationPrev" aria-label="Previous page" disabled>
+                    <span>←</span> Previous
+                </button>
+                
+                <div class="pagination-numbers" id="paginationNumbers">
+                    <!-- Page numbers will be inserted here -->
+                </div>
+                
+                <button class="pagination-btn pagination-next" id="paginationNext" aria-label="Next page">
+                    Next <span>→</span>
+                </button>
+            </nav>
+            
+            <div class="pagination-info">
+                <span id="paginationInfo">Showing 1-28 of 0 products</span>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        
+        <div class="modal-body">
+            <div class="modal-left">
+                <img id="modalImage" src="" alt="Product">
+            </div>
+
+            <div class="modal-right">
+                <h2 id="modalTitle"></h2>
+                <p id="modalCode" class="code"></p>
+                <p id="modalPrice" class="price"></p>
+
+                <div class="section">
+                    <h3>Color</h3>
+                    <div class="color-grid" id="colorGrid"></div>
+                </div>
+
+                <div class="section">
+                    <label>Quantity: <input type="number" id="modalQty" value="1" min="1"></label>
+                </div>
+
+                <div class="section">
+                    <label><input type="checkbox" id="modalEmbroidery"> Embroidery</label>
+                    <label><input type="checkbox" id="modalPrint"> Print</label>
+                </div>
+
+                <button class="btn-primary" onclick="addToQuote()">ADD TO QUOTE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Branded UK</p>
+</footer>
+
+<script src="brandedukv15-child/assets/js/core.js"></script>
+<script src="brandedukv15-child/assets/js/header.js"></script>
+<script src="brandedukv15-child/assets/js/vat-toggle.js"></script>
+<script src="brandedukv15-child/assets/js/pages/home.js"></script>
+</body>
+</html>

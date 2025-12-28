@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pro Work Polo - BrandedUK</title>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="padding-bottom: 140px;">
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="back-btn-header" onclick="history.back()" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: none; border: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        <a href="home-mobile.html" class="mobile-logo">
+            <span class="logo-text">Branded</span><span class="logo-uk">UK</span>
+        </a>
+        <div class="header-actions">
+            <a href="basket-mobile.html" class="action-btn cart-btn" aria-label="Cart">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </a>
+            <a href="https://wa.me/447123456789" class="action-btn whatsapp-btn" aria-label="WhatsApp">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Product Gallery -->
+    <div class="product-gallery">
+        <img class="product-main-image" id="mainImage" src="https://via.placeholder.com/500x500/1e293b/fff?text=Pro+Work+Polo" alt="Pro Work Polo">
+        <div class="product-thumbnails">
+            <img class="thumb-img active" src="https://via.placeholder.com/100x100/1e293b/fff?text=Front" alt="Front view" onclick="changeImage(this)">
+            <img class="thumb-img" src="https://via.placeholder.com/100x100/1e293b/fff?text=Back" alt="Back view" onclick="changeImage(this)">
+            <img class="thumb-img" src="https://via.placeholder.com/100x100/1e293b/fff?text=Side" alt="Side view" onclick="changeImage(this)">
+            <img class="thumb-img" src="https://via.placeholder.com/100x100/1e293b/fff?text=Detail" alt="Detail view" onclick="changeImage(this)">
+        </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-info-mobile">
+        <h1 class="product-title-mobile">Pro Work Polo</h1>
+        <div class="product-brand-mobile">ProWork | Embroidered</div>
+        <div class="product-price-mobile">From £9.95 <span>ex VAT</span></div>
+
+        <!-- Colors -->
+        <div class="product-colors-mobile">
+            <div class="colors-label">Colour: <strong id="selectedColorName">Navy</strong></div>
+            <div class="colors-grid">
+                <button class="color-swatch selected" style="background: #1e293b;" data-color="Navy" onclick="selectColor(this)"></button>
+                <button class="color-swatch" style="background: #334155;" data-color="Charcoal" onclick="selectColor(this)"></button>
+                <button class="color-swatch" style="background: #1e40af;" data-color="Royal Blue" onclick="selectColor(this)"></button>
+                <button class="color-swatch" style="background: #dc2626;" data-color="Red" onclick="selectColor(this)"></button>
+                <button class="color-swatch" style="background: #16a34a;" data-color="Green" onclick="selectColor(this)"></button>
+                <button class="color-swatch" style="background: #ffffff; border: 1px solid #e5e7eb;" data-color="White" onclick="selectColor(this)"></button>
+                <button class="color-swatch" style="background: #fbbf24;" data-color="Yellow" onclick="selectColor(this)"></button>
+                <button class="color-swatch" style="background: #7c3aed;" data-color="Purple" onclick="selectColor(this)"></button>
+            </div>
+        </div>
+
+        <!-- Sizes with Quantity -->
+        <div class="product-sizes-mobile">
+            <div class="sizes-label">Select Sizes & Quantities</div>
+            <div class="size-qty-grid">
+                <div class="size-qty-row">
+                    <span class="size-name">XS</span>
+                    <div class="qty-mini-control">
+                        <button class="qty-mini-btn" onclick="changeQty('xs', -1)">−</button>
+                        <input type="number" id="qty-xs" class="qty-mini-input" value="0" min="0">
+                        <button class="qty-mini-btn" onclick="changeQty('xs', 1)">+</button>
+                    </div>
+                </div>
+                <div class="size-qty-row">
+                    <span class="size-name">S</span>
+                    <div class="qty-mini-control">
+                        <button class="qty-mini-btn" onclick="changeQty('s', -1)">−</button>
+                        <input type="number" id="qty-s" class="qty-mini-input" value="0" min="0">
+                        <button class="qty-mini-btn" onclick="changeQty('s', 1)">+</button>
+                    </div>
+                </div>
+                <div class="size-qty-row">
+                    <span class="size-name">M</span>
+                    <div class="qty-mini-control">
+                        <button class="qty-mini-btn" onclick="changeQty('m', -1)">−</button>
+                        <input type="number" id="qty-m" class="qty-mini-input" value="0" min="0">
+                        <button class="qty-mini-btn" onclick="changeQty('m', 1)">+</button>
+                    </div>
+                </div>
+                <div class="size-qty-row">
+                    <span class="size-name">L</span>
+                    <div class="qty-mini-control">
+                        <button class="qty-mini-btn" onclick="changeQty('l', -1)">−</button>
+                        <input type="number" id="qty-l" class="qty-mini-input" value="0" min="0">
+                        <button class="qty-mini-btn" onclick="changeQty('l', 1)">+</button>
+                    </div>
+                </div>
+                <div class="size-qty-row">
+                    <span class="size-name">XL</span>
+                    <div class="qty-mini-control">
+                        <button class="qty-mini-btn" onclick="changeQty('xl', -1)">−</button>
+                        <input type="number" id="qty-xl" class="qty-mini-input" value="0" min="0">
+                        <button class="qty-mini-btn" onclick="changeQty('xl', 1)">+</button>
+                    </div>
+                </div>
+                <div class="size-qty-row">
+                    <span class="size-name">2XL</span>
+                    <div class="qty-mini-control">
+                        <button class="qty-mini-btn" onclick="changeQty('2xl', -1)">−</button>
+                        <input type="number" id="qty-2xl" class="qty-mini-input" value="0" min="0">
+                        <button class="qty-mini-btn" onclick="changeQty('2xl', 1)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Summary -->
+        <div class="product-summary">
+            <div class="summary-row">
+                <span>Total Quantity:</span>
+                <strong id="totalQty">0</strong>
+            </div>
+            <div class="summary-row">
+                <span>Estimated Total:</span>
+                <strong id="totalPrice">£0.00</strong>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="product-description">
+            <h3>Description</h3>
+            <p>Premium quality work polo shirt, perfect for embroidery or printing. Made from durable poly-cotton blend for comfort and longevity. Features reinforced seams and a classic fit suitable for all-day wear.</p>
+            <ul>
+                <li>65% Polyester, 35% Cotton</li>
+                <li>Weight: 200gsm</li>
+                <li>Reinforced shoulder seams</li>
+                <li>Three-button placket</li>
+                <li>Side vents for comfort</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Fixed Action Bar -->
+    <div class="product-action-bar">
+        <button class="add-to-basket-btn" onclick="addProductToBasket()">Add to Basket</button>
+        <button class="customize-btn" onclick="location.href='customize-mobile.html'">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+            Customise
+        </button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="home-mobile.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+        </a>
+        <a href="categories-mobile.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Categories</span>
+        </a>
+        <a href="#" class="nav-item" id="searchNavBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <span>Search</span>
+        </a>
+        <a href="basket-mobile.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <span>Quote</span>
+        </a>
+        <a href="account-mobile.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <style>
+        .size-qty-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .size-qty-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: #f5f7fb;
+            border-radius: 8px;
+        }
+        .size-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1f2937;
+            min-width: 40px;
+        }
+        .qty-mini-control {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .qty-mini-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f7fb;
+            border: none;
+            font-size: 18px;
+            color: #1f2937;
+            cursor: pointer;
+        }
+        .qty-mini-btn:active {
+            background: #e5e7eb;
+        }
+        .qty-mini-input {
+            width: 50px;
+            height: 36px;
+            border: none;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+            -moz-appearance: textfield;
+        }
+        .qty-mini-input::-webkit-outer-spin-button,
+        .qty-mini-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .product-summary {
+            margin-top: 20px;
+            padding: 16px;
+            background: linear-gradient(135deg, #f0e6ff 0%, #e0f2fe 100%);
+            border-radius: 12px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+        }
+        .summary-row span {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        .summary-row strong {
+            font-size: 16px;
+            color: #1f2937;
+        }
+        .summary-row:last-child strong {
+            font-size: 20px;
+            color: #0d9488;
+        }
+        .product-description {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .product-description h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+        .product-description p {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .product-description ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        .product-description li {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+    </style>
+
+    <script src="js/mobile.js"></script>
+    <script>
+        const PRICE_PER_ITEM = 9.95;
+
+        function changeImage(thumb) {
+            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+            document.getElementById('mainImage').src = thumb.src.replace('100x100', '500x500');
+        }
+
+        function selectColor(swatch) {
+            document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+            swatch.classList.add('selected');
+            document.getElementById('selectedColorName').textContent = swatch.dataset.color;
+        }
+
+        function changeQty(size, delta) {
+            const input = document.getElementById('qty-' + size);
+            let val = parseInt(input.value) || 0;
+            val = Math.max(0, val + delta);
+            input.value = val;
+            updateTotals();
+        }
+
+        function updateTotals() {
+            const sizes = ['xs', 's', 'm', 'l', 'xl', '2xl'];
+            let totalQty = 0;
+            
+            sizes.forEach(size => {
+                const input = document.getElementById('qty-' + size);
+                totalQty += parseInt(input.value) || 0;
+            });
+
+            document.getElementById('totalQty').textContent = totalQty;
+            document.getElementById('totalPrice').textContent = '£' + (totalQty * PRICE_PER_ITEM).toFixed(2);
+        }
+
+        // Listen for input changes
+        document.querySelectorAll('.qty-mini-input').forEach(input => {
+            input.addEventListener('change', updateTotals);
+            input.addEventListener('input', updateTotals);
+        });
+
+        function addProductToBasket() {
+            const sizes = ['xs', 's', 'm', 'l', 'xl', '2xl'];
+            const quantities = {};
+            let hasQuantity = false;
+
+            sizes.forEach(size => {
+                const qty = parseInt(document.getElementById('qty-' + size).value) || 0;
+                if (qty > 0) {
+                    quantities[size.toUpperCase()] = qty;
+                    hasQuantity = true;
+                }
+            });
+
+            if (!hasQuantity) {
+                showToast('Please select at least one size and quantity');
+                return;
+            }
+
+            const selectedColor = document.querySelector('.color-swatch.selected');
+            const product = {
+                id: 'polo-001',
+                code: 'PRO-POLO-001',
+                name: 'Pro Work Polo',
+                color: selectedColor ? selectedColor.dataset.color : 'Navy',
+                colorHex: selectedColor ? selectedColor.style.background : '#1e293b',
+                quantities: quantities,
+                pricePerItem: PRICE_PER_ITEM,
+                image: 'https://via.placeholder.com/100x100/1e293b/fff?text=Polo'
+            };
+
+            // Add to basket
+            let basket = JSON.parse(localStorage.getItem('quoteBasket') || '[]');
+            basket.push(product);
+            localStorage.setItem('quoteBasket', JSON.stringify(basket));
+
+            updateCartCount();
+            showToast('Added to basket!');
+        }
+
+        // Initial update
+        updateTotals();
+    </script>
+</body>
+</html>

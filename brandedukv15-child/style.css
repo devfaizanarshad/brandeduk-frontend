@@ -1,0 +1,38 @@
+/*
+Theme Name: BrandedUK v15 (Child)
+Theme URI: https://brandeduk.com
+Description: Child theme for BrandedUK v15 - Workwear & Custom Apparel
+Author: BrandedUK
+Author URI: https://brandeduk.com
+
+IMPORTANT: Set `Template:` to the *parent theme folder name* (wp-content/themes/<parent>/).
+Template: teecheap
+
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: brandedukv15
+*/
+
+/* ==========================================================================
+   IMPORTS
+   ========================================================================== */
+
+@import url('assets/css/base.css');
+@import url('assets/css/layout.css');
+@import url('assets/css/components/menu.css');
+@import url('assets/css/components/dropdown.css');
+@import url('assets/css/components/buttons.css');
+@import url('assets/css/components/cards.css');
+@import url('assets/css/pages/home.css');
+@import url('assets/css/pages/product.css');
+@import url('assets/css/pages/shop.css');
+@import url('assets/css/pages/basket.css');
+@import url('assets/css/pages/quote-form.css');
+@import url('assets/css/pages/customization.css');
+@import url('assets/css/pages/customize-positions.css');
+@import url('assets/css/pages/customize-detail.css');
+
+/* ==========================================================================
+   CHILD THEME OVERRIDES (minimal - keep logic in imported files)
+   ========================================================================== */

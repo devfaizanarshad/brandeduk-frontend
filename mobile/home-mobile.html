@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BrandedUK - Custom Workwear</title>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="hamburger-btn" id="menuToggle" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a href="home-mobile.html" class="mobile-logo">
+            <span class="logo-text">Branded</span><span class="logo-uk">UK</span>
+        </a>
+        <div class="header-actions">
+            <a href="basket-mobile.html" class="action-btn cart-btn" aria-label="Cart">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </a>
+            <a href="https://wa.me/447123456789" class="action-btn whatsapp-btn" aria-label="WhatsApp">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+            </a>
+            <a href="tel:+441onalonal" class="action-btn phone-btn" aria-label="Call us">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="mobile-search">
+        <div class="search-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" placeholder="Search 9,000+ products..." id="searchInput">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="mobile-main">
+        <!-- Categories List -->
+        <section class="categories-section">
+            <div class="category-item" data-category="tshirts">
+                <div class="category-icon">
+                    <svg viewBox="0 0 64 64" fill="currentColor">
+                        <path d="M52 12L44 4H20L12 12L4 20L12 28V56C12 58.2 13.8 60 16 60H48C50.2 60 52 58.2 52 56V28L60 20L52 12ZM32 8C35.3 8 38 10.7 38 14C38 17.3 35.3 20 32 20C28.7 20 26 17.3 26 14C26 10.7 28.7 8 32 8ZM48 56H16V26H48V56Z"/>
+                    </svg>
+                </div>
+                <span class="category-name">T-Shirts</span>
+                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="category-item" data-category="polo">
+                <div class="category-icon">
+                    <svg viewBox="0 0 64 64" fill="currentColor">
+                        <path d="M52 12L44 4H20L12 12L4 20L12 28V56C12 58.2 13.8 60 16 60H48C50.2 60 52 58.2 52 56V28L60 20L52 12ZM32 4L36 12H28L32 4ZM32 24C28.7 24 26 21.3 26 18H38C38 21.3 35.3 24 32 24ZM48 56H16V26H48V56Z"/>
+                    </svg>
+                </div>
+                <span class="category-name">Polo Shirts</span>
+                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="category-item" data-category="hoodies">
+                <div class="category-icon">
+                    <svg viewBox="0 0 64 64" fill="currentColor">
+                        <path d="M48 8H16L8 16V24L16 32V56C16 58.2 17.8 60 20 60H44C46.2 60 48 58.2 48 56V32L56 24V16L48 8ZM32 16C34.2 16 36 17.8 36 20V28H28V20C28 17.8 29.8 16 32 16ZM44 56H20V30H44V56Z"/>
+                    </svg>
+                </div>
+                <span class="category-name">Hoodies & Sweatshirts</span>
+                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="category-item" data-category="jackets">
+                <div class="category-icon">
+                    <svg viewBox="0 0 64 64" fill="currentColor">
+                        <path d="M52 12L44 4H20L12 12L4 24V52C4 54.2 5.8 56 8 56H12V28L20 20V56H44V20L52 28V56H56C58.2 56 60 54.2 60 52V24L52 12ZM32 8C35.3 8 38 10.7 38 14C38 17.3 35.3 20 32 20C28.7 20 26 17.3 26 14C26 10.7 28.7 8 32 8Z"/>
+                    </svg>
+                </div>
+                <span class="category-name">Jackets & Softshell</span>
+                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="category-item" data-category="hivis">
+                <div class="category-icon">
+                    <svg viewBox="0 0 64 64" fill="currentColor">
+                        <path d="M52 16L44 8H20L12 16L4 24V56H16V32H24V56H40V32H48V56H60V24L52 16ZM32 24C28.7 24 26 21.3 26 18C26 14.7 28.7 12 32 12C35.3 12 38 14.7 38 18C38 21.3 35.3 24 32 24ZM8 36H16V40H8V36ZM48 40H56V36H48V40ZM8 44H16V48H8V44ZM48 48H56V44H48V48Z"/>
+                    </svg>
+                </div>
+                <span class="category-name">Hi-Vis Clothing</span>
+                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="category-item" data-category="trousers">
+                <div class="category-icon">
+                    <svg viewBox="0 0 64 64" fill="currentColor">
+                        <path d="M48 4H16V12H20L24 60H30L32 20L34 60H40L44 12H48V4ZM24 8H40V10H24V8Z"/>
+                    </svg>
+                </div>
+                <span class="category-name">Work Trousers</span>
+                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="category-item" data-category="fleeces">
+                <div class="category-icon">
+                    <svg viewBox="0 0 64 64" fill="currentColor">
+                        <path d="M48 8H16L8 16V24L16 32V56C16 58.2 17.8 60 20 60H44C46.2 60 48 58.2 48 56V32L56 24V16L48 8ZM24 32V56H20V32H24ZM44 56H28V32H44V56ZM32 24C28.7 24 26 21.3 26 18C26 14.7 28.7 12 32 12C35.3 12 38 14.7 38 18C38 21.3 35.3 24 32 24Z"/>
+                    </svg>
+                </div>
+                <span class="category-name">Fleeces</span>
+                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="category-item" data-category="headwear">
+                <div class="category-icon">
+                    <svg viewBox="0 0 64 64" fill="currentColor">
+                        <path d="M56 32C56 32 52 28 32 28C12 28 8 32 8 32V40C8 40 12 36 32 36C52 36 56 40 56 40V32ZM32 24C44 24 52 20 52 20L48 12C48 12 40 16 32 16C24 16 16 12 16 12L12 20C12 20 20 24 32 24Z"/>
+                    </svg>
+                </div>
+                <span class="category-name">Headwear & Accessories</span>
+                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="category-item" data-category="sustainable">
+                <div class="category-icon eco">
+                    <svg viewBox="0 0 64 64" fill="currentColor">
+                        <path d="M32 4C32 4 8 20 8 40C8 52 18.7 60 32 60C32 60 32 44 32 32C32 20 44 12 56 8C56 8 48 4 32 4Z"/>
+                    </svg>
+                </div>
+                <span class="category-name">Sustainable / Recycled & Organic</span>
+                <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="quick-links">
+            <a href="shop-mobile.html?filter=bestsellers" class="quick-link">
+                <div class="quick-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <span>Best Sellers</span>
+            </a>
+            <a href="shop-mobile.html?filter=hoodies" class="quick-link">
+                <div class="quick-icon">
+                    <svg viewBox="0 0 64 64" fill="currentColor">
+                        <path d="M48 8H16L8 16V24L16 32V56C16 58.2 17.8 60 20 60H44C46.2 60 48 58.2 48 56V32L56 24V16L48 8ZM32 16C34.2 16 36 17.8 36 20V28H28V20C28 17.8 29.8 16 32 16Z"/>
+                    </svg>
+                </div>
+                <span>Cheap Hoodies</span>
+            </a>
+            <a href="shop-mobile.html?filter=embroidery" class="quick-link">
+                <div class="quick-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 19c-4-3-7-6-7-10a7 7 0 0114 0c0 4-3 7-7 10z"/>
+                        <path d="M12 3v16M8 7c2 2 6 2 8 0"/>
+                    </svg>
+                </div>
+                <span>Embroidery</span>
+            </a>
+            <a href="shop-mobile.html?filter=schools" class="quick-link">
+                <div class="quick-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+                    </svg>
+                </div>
+                <span>Schools</span>
+            </a>
+        </section>
+
+        <!-- Promo Banners -->
+        <section class="promo-banners">
+            <div class="promo-card upload-promo">
+                <div class="promo-content">
+                    <h3>Add your logo to any garment</h3>
+                    <p>Embroidery from £2.95</p>
+                    <button class="promo-btn" onclick="location.href='customize-mobile.html'">Upload Logo</button>
+                </div>
+            </div>
+            <div class="promo-card quote-promo">
+                <div class="promo-content">
+                    <h3>Need pricing?</h3>
+                    <p>Get an instant quote in 60 seconds</p>
+                </div>
+                <button class="promo-btn-outline" onclick="location.href='quote-mobile.html'">Start Quote</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Slide-out Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <nav class="slide-menu" id="slideMenu">
+        <div class="menu-header">
+            <span class="menu-title">Menu</span>
+            <button class="close-menu" id="closeMenu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="menu-content">
+            <a href="home-mobile.html" class="menu-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                </svg>
+                Home
+            </a>
+            <a href="shop-mobile.html" class="menu-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                All Products
+            </a>
+            <a href="basket-mobile.html" class="menu-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                Quote Basket
+            </a>
+            <div class="menu-divider"></div>
+            <a href="tel:+441onal" class="menu-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                Call Us
+            </a>
+            <a href="https://wa.me/447123456789" class="menu-item whatsapp">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                WhatsApp
+            </a>
+        </div>
+    </nav>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="home-mobile.html" class="nav-item active">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+        </a>
+        <a href="categories-mobile.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Categories</span>
+        </a>
+        <a href="#" class="nav-item" id="searchNavBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <span>Search</span>
+        </a>
+        <a href="basket-mobile.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>Quote</span>
+        </a>
+        <a href="account-mobile.html" class="nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <script src="js/mobile.js"></script>
+</body>
+</html>

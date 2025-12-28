@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Basket - Pre-populate Data</title>
+</head>
+<body>
+    <h1>Test: Pre-populate Basket Data</h1>
+    <p>Click the button to populate sessionStorage with test data, then open quote-basket.html</p>
+    
+    <button onclick="populateTestData()" style="padding: 1rem 2rem; background: #0033a0; color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; margin: 1rem 0;">
+        Populate Test Data
+    </button>
+    
+    <button onclick="window.location.href='quote-basket.html'" style="padding: 1rem 2rem; background: #14b8a6; color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; margin: 1rem 0;">
+        Open Quote Basket
+    </button>
+    
+    <button onclick="clearData()" style="padding: 1rem 2rem; background: #ef4444; color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; margin: 1rem 0;">
+        Clear SessionStorage
+    </button>
+    
+    <div id="status" style="margin-top: 2rem; padding: 1rem; background: #f3f4f6; border-radius: 6px;"></div>
+    
+    <script>
+        function populateTestData() {
+            // Product data
+            const productData = {
+                name: "Gildan Softstyle midweight fleece adult hoodie",
+                code: "GD067",
+                color: "Aquatic",
+                image: "https://i.postimg.cc/fbC2Zn4L/GD067-Aquatic-FT.jpg",
+                quantity: 2,
+                size: "M",
+                price: "17.58",
+                sizes: {
+                    S: 0,
+                    M: 2,
+                    L: 0,
+                    XL: 0,
+                    "2XL": 0,
+                    "3XL": 0,
+                    "4XL": 0,
+                    "5XL": 0
+                }
+            };
+            
+            // Selected positions
+            const selectedPositions = [
+                {
+                    name: "Left Breast",
+                    priceEmb: 5.00,
+                    pricePrint: 3.50
+                }
+            ];
+            
+            // Position customizations
+            const positionCustomizations = [
+                {
+                    positionName: "Left Breast",
+                    name: "Company Logo",
+                    method: "embroidery",
+                    type: "logo",
+                    logo: {
+                        name: "test-logo.png",
+                        data: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ccircle cx='100' cy='100' r='80' fill='%23ff6b6b'/%3E%3Ctext x='100' y='115' font-size='40' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3ELOGO%3C/text%3E%3C/svg%3E",
+                        type: "image/svg+xml"
+                    }
+                }
+            ];
+            
+            // Save to sessionStorage
+            sessionStorage.setItem('customizingProduct', JSON.stringify(productData));
+            sessionStorage.setItem('selectedPositions', JSON.stringify(selectedPositions));
+            sessionStorage.setItem('positionCustomizations', JSON.stringify(positionCustomizations));
+            
+            document.getElementById('status').innerHTML = `
+                <h3 style="color: #059669; margin-bottom: 1rem;">✅ Test Data Populated Successfully!</h3>
+                <pre style="background: white; padding: 1rem; border-radius: 4px; overflow: auto;">
+Product: ${productData.name}
+Code: ${productData.code}
+Color: ${productData.color}
+Quantity: ${productData.quantity} x ${productData.size}
+Price: £${productData.price}
+
+Positions: ${selectedPositions.map(p => p.name).join(', ')}
+Customization: ${positionCustomizations[0].name} (${positionCustomizations[0].method})
+                </pre>
+                <p style="margin-top: 1rem; color: #6b7280;">Now click "Open Quote Basket" to see the result!</p>
+            `;
+        }
+        
+        function clearData() {
+            sessionStorage.clear();
+            document.getElementById('status').innerHTML = `
+                <h3 style="color: #dc2626;">🗑️ SessionStorage Cleared</h3>
+            `;
+        }
+        
+        // Show current status on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const productData = sessionStorage.getItem('customizingProduct');
+            if (productData) {
+                document.getElementById('status').innerHTML = `
+                    <h3 style="color: #0033a0;">📦 Current SessionStorage Data</h3>
+                    <p>Data found in sessionStorage. Click "Open Quote Basket" to view it.</p>
+                `;
+            } else {
+                document.getElementById('status').innerHTML = `
+                    <h3 style="color: #6b7280;">📭 No Data in SessionStorage</h3>
+                    <p>Click "Populate Test Data" to add test data.</p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

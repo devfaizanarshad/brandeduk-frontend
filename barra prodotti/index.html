@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Wolmart Header Export</title>
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon.png">
+    <script>
+        WebFontConfig = {
+            google: { families: ['Poppins:400,500,600,700,800'] }
+        };
+        (function (d) {
+            var wf = d.createElement('script'), s = d.scripts[0];
+            wf.src = 'assets/js/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
+    <link rel="preload" href="assets/vendor/fontawesome-free/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="assets/vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="assets/vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="assets/fonts/wolmart.woff?png09e" as="font" type="font/woff" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/magnific-popup/magnific-popup.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/demo1.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
+    <style>
+        .header-bottom .category-dropdown .dropdown-box {
+            width: auto;
+        }
+        .category-menu li > a i {
+            margin-right: 0;
+            flex-shrink: 0;
+        }
+        .header-bottom .category-dropdown .category-menu .megamenu {
+            min-width: 0;
+            width: max-content;
+            width: fit-content;
+            max-width: 42rem;
+            padding: 1.6rem 1.6rem 1.6rem 2rem;
+        }
+        .header-bottom .category-dropdown .category-menu .megamenu > li {
+            padding: 0;
+        }
+        .header-search input.form-control {
+            border-color: #7f2aa5;
+        }
+        .header-search .btn-search {
+            border-color: #7f2aa5;
+            color: #7f2aa5;
+        }
+        .header-search .select-box select {
+            background-color: #ffffff;
+        }
+        .header-search .select-box select:focus,
+        .header-search .select-box select:hover,
+        .header-search .select-box select:active {
+            background-color: #ffffff;
+        }
+        .header-search .select-box select option {
+            color: #2c1a35;
+            background-color: #ffffff;
+        }
+        .header-search .select-box select option[selected],
+        .header-search .select-box select option:checked,
+        .header-search .select-box select option:hover {
+            background-color: rgba(127, 42, 165, 0.12) !important;
+            color: #2c1a35;
+        }
+        .category-dropdown.show .category-toggle,
+        .category-dropdown.show .category-toggle:focus,
+        .category-dropdown.show .category-toggle:hover,
+        .header-bottom .category-dropdown[data-visible="true"] > .category-toggle {
+            background-color: #4b1b5c !important;
+            color: #ffffff;
+        }
+        .category-dropdown.show .category-toggle i,
+        .category-dropdown.show .category-toggle span,
+        .header-bottom .category-dropdown[data-visible="true"] > .category-toggle i,
+        .header-bottom .category-dropdown[data-visible="true"] > .category-toggle span {
+            color: #ffffff;
+        }
+        .header-bottom .category-dropdown[data-visible="true"] > .category-toggle::after {
+            color: #ffffff;
+        }
+        .category-menu li > a {
+            background-color: #ffffff;
+            padding: 1.1rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            line-height: 1.3;
+        }
+        .category-menu li > a .category-text {
+            flex: 1;
+            min-width: 0;
+        }
+        .category-menu li > a .w-icon-angle-right {
+            margin-left: auto;
+        }
+        .category-menu li:hover > a:not(.menu-title) {
+            background-color: rgba(127, 42, 165, 0.12);
+        }
+        .category-menu .megamenu {
+            background-color: #ffffff;
+        }
+        .header-search .btn-search:hover,
+        .header-search .btn-search:active,
+        .header-search .btn-search:focus {
+            color: #7f2aa5;
+        }
+    </style>
+</head>
+<body class="home">
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="header-top">
+                <div class="container">
+                    <div class="header-left">
+                        <p class="welcome-msg">WELCOME TO BRANDEDUK, YOUR WORKWEAR EXPERT</p>
+                    </div>
+                    <div class="header-right">
+                        <div class="dropdown">
+                            <a href="#currency">USD</a>
+                            <div class="dropdown-box">
+                                <a href="#USD">USD</a>
+                                <a href="#EUR">EUR</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <a href="#language"><img src="assets/images/flags/eng.png" alt="ENG Flag" width="14" height="8" class="dropdown-image" /> ENG</a>
+                            <div class="dropdown-box">
+                                <a href="#ENG">
+                                    <img src="assets/images/flags/eng.png" alt="ENG Flag" width="14" height="8" class="dropdown-image" />
+                                    ENG
+                                </a>
+                                <a href="#FRA">
+                                    <img src="assets/images/flags/fra.png" alt="FRA Flag" width="14" height="8" class="dropdown-image" />
+                                    FRA
+                                </a>
+                            </div>
+                        </div>
+                        <span class="divider d-lg-show"></span>
+                        <a href="blog.html" class="d-lg-show">Blog</a>
+                        <a href="contact-us.html" class="d-lg-show">Contact Us</a>
+                        <a href="my-account.html" class="d-lg-show">My Account</a>
+                        <a href="assets/ajax/login.html" class="d-lg-show login sign-in"><i class="w-icon-account"></i>Sign In</a>
+                        <span class="delimiter d-lg-show">/</span>
+                        <a href="assets/ajax/login.html" class="ml-0 d-lg-show login register">Register</a>
+                    </div>
+                </div>
+            </div>
+            <div class="header-middle">
+                <div class="container">
+                    <div class="header-left mr-md-4">
+                        <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle"></a>
+                        <a href="demo1.html" class="logo ml-lg-0">
+                            <img src="assets/images/logo-brandeduk.png" alt="BrandedUK logo" width="180" height="66" />
+                        </a>
+                        <form method="get" action="#" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
+                            <div class="select-box">
+                                <select id="category" name="category">
+                                    <option value="">All Categories</option>
+                                    <option value="t-shirts">T-shirts</option>
+                                    <option value="polo-shirts">Polo Shirts</option>
+                                    <option value="hoodies-sweatshirts">Hoodies &amp; Sweatshirts</option>
+                                    <option value="jackets-softshell">Jackets &amp; Softshell</option>
+                                    <option value="hi-vis-clothing">Hi-Vis Clothing</option>
+                                    <option value="work-trousers">Work Trousers</option>
+                                    <option value="fleeces">Fleeces</option>
+                                    <option value="headwear-accessories">Headwear / Accessories</option>
+                                    <option value="sustainable-recycled-organic">Sustainable / Recycled &amp; Organic</option>
+                                </select>
+                            </div>
+                            <input type="text" class="form-control" name="search" id="search" placeholder="Search in..." required />
+                            <button class="btn btn-search" type="submit"><i class="w-icon-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="header-right ml-4">
+                        <div class="header-call d-xs-show d-lg-flex align-items-center">
+                            <a href="tel:#" class="w-icon-call"></a>
+                            <div class="call-info d-lg-show">
+                                <h4 class="chat font-weight-normal font-size-md text-normal ls-normal text-light mb-0">
+                                    <a href="mailto:#" class="text-capitalize">Live Chat</a> or :
+                                </h4>
+                                <a href="tel:+442089742722" class="phone-number font-weight-bolder ls-50">0208 974 2722</a>
+                            </div>
+                        </div>
+                        <a class="wishlist label-down link d-xs-show" href="wishlist.html">
+                            <i class="w-icon-heart"></i>
+                            <span class="wishlist-label d-lg-show">Wishlist</span>
+                        </a>
+                        <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
+                            <div class="cart-overlay"></div>
+                            <a href="#" class="cart-toggle label-down link">
+                                <i class="w-icon-cart">
+                                    <span class="cart-count">2</span>
+                                </i>
+                                <span class="cart-label">Cart</span>
+                            </a>
+                            <div class="dropdown-box">
+                                <div class="cart-header">
+                                    <span>Shopping Cart</span>
+                                    <a href="#" class="btn-close">Close<i class="w-icon-long-arrow-right"></i></a>
+                                </div>
+                                <div class="products">
+                                    <div class="product product-cart">
+                                        <div class="product-detail">
+                                            <a href="product-default.html" class="product-name">Beige knitted elas<br>tic runner shoes</a>
+                                            <div class="price-box">
+                                                <span class="product-quantity">1</span>
+                                                <span class="product-price">$25.68</span>
+                                            </div>
+                                        </div>
+                                        <figure class="product-media">
+                                            <a href="product-default.html">
+                                                <img src="assets/images/cart/product-1.jpg" alt="product" height="84" width="94" />
+                                            </a>
+                                        </figure>
+                                        <button class="btn btn-link btn-close" aria-label="button">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                    <div class="product product-cart">
+                                        <div class="product-detail">
+                                            <a href="product-default.html" class="product-name">Blue utility pina<br>fore denim dress</a>
+                                            <div class="price-box">
+                                                <span class="product-quantity">1</span>
+                                                <span class="product-price">$32.99</span>
+                                            </div>
+                                        </div>
+                                        <figure class="product-media">
+                                            <a href="product-default.html">
+                                                <img src="assets/images/cart/product-2.jpg" alt="product" width="84" height="94" />
+                                            </a>
+                                        </figure>
+                                        <button class="btn btn-link btn-close" aria-label="button">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="cart-total">
+                                    <label>Subtotal:</label>
+                                    <span class="price">$58.67</span>
+                                </div>
+                                <div class="cart-action">
+                                    <a href="cart.html" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
+                                    <a href="checkout.html" class="btn btn-primary btn-rounded">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom sticky-content fix-top sticky-header has-dropdown">
+                <div class="container">
+                    <div class="inner-wrap">
+                        <div class="header-left">
+                            <div class="dropdown category-dropdown has-border" data-visible="false">
+                                <a href="#" class="category-toggle text-dark" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Browse Categories">
+                                    <i class="w-icon-category"></i>
+                                    <span>Browse Categories</span>
+                                </a>
+                                <div class="dropdown-box">
+                                    <ul class="menu vertical-menu category-menu">
+                                        <li>
+                                            <a href="shop-fullwidth-banner.html">
+                                                <i class="w-icon-tshirt2"></i>
+                                                <span class="category-text">T-shirts</span>
+                                            </a>
+                                            <ul class="megamenu">
+                                                <li>
+                                                    <ul>
+                                                        <li><a href="shop-fullwidth-banner.html">Short Sleeve T-shirts</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Long Sleeve T-shirts</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Tank Tops</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Crew Neck</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">V-Neck</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Heavyweight / Workwear</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Lightweight</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Performance / Sports</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Women's T-shirts</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Kids T-shirts</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">T-shirts for Embroidery</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">T-shirts for Print</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="shop-fullwidth-banner.html">
+                                                <i class="w-icon-tshirt2"></i>
+                                                <span class="category-text">Polo Shirts</span>
+                                            </a>
+                        	                <ul class="megamenu">
+                                                <li>
+                                                    <ul>
+                                                        <li><a href="shop-fullwidth-banner.html">Short Sleeve Polos</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Long Sleeve Polos</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Classic Cotton Polos</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Poly Cotton Polos</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Performance Polos</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Slim Fit Polos</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Women's Polos</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Kids Polos</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Polos for Embroidery</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="shop-fullwidth-banner.html">
+                                                <i class="w-icon-tshirt2"></i>
+                                                <span class="category-text">Hoodies &amp; Sweatshirts</span>
+                                            </a>
+                                            <ul class="megamenu">
+                                                <li>
+                                                    <ul>
+                                                        <li><a href="shop-fullwidth-banner.html">Pullover Hoodies</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Zip Hoodies</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Heavyweight Hoodies</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Lightweight Hoodies</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Sweatshirts (Crew Neck)</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Premium / Workwear Hoodies</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Women's Hoodies</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Kids Hoodies</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="shop-fullwidth-banner.html">
+                                                <i class="w-icon-tshirt2"></i>
+                                                <span class="category-text">Jackets &amp; Softshell</span>
+                                            </a>
+                                            <ul class="megamenu">
+                                                <li>
+                                                    <ul>
+                                                        <li><a href="shop-fullwidth-banner.html">Softshell Jackets</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Fleece Jackets</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Waterproof Jackets</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Workwear Jackets</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Bomber Jackets</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Windbreakers</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Bodywarmers / Gilets</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">High-performance Jackets</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Women's Jackets</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="shop-fullwidth-banner.html">
+                                                <i class="w-icon-tshirt2"></i>
+                                                <span class="category-text">Hi-Vis Clothing</span>
+                                            </a>
+                                            <ul class="megamenu">
+                                                <li>
+                                                    <ul>
+                                                        <li><a href="shop-fullwidth-banner.html">Hi-vis Vests</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Hi-vis T-shirts</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Hi-vis Polos</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Hi-vis Hoodies</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Hi-vis Jackets</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Hi-vis Trousers</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">EN ISO 20471 Certified</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">RIS-3279 Rail</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Waterproof Hi-Vis</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="shop-fullwidth-banner.html">
+                                                <i class="w-icon-tshirt2"></i>
+                                                <span class="category-text">Work Trousers</span>
+                                            </a>
+                                            <ul class="megamenu">
+                                                <li>
+                                                    <ul>
+                                                        <li><a href="shop-fullwidth-banner.html">Work Trousers</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Cargo Pants</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Stretch Work Trousers</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Ripstop Trousers</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Waterproof / Over-trousers</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Work Shorts</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Women's Work Trousers</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="shop-fullwidth-banner.html">
+                                                <i class="w-icon-tshirt2"></i>
+                                                <span class="category-text">Fleeces</span>
+                                            </a>
+                                            <ul class="megamenu">
+                                                <li>
+                                                    <ul>
+                                                        <li><a href="shop-fullwidth-banner.html">Microfleece Jackets</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Heavy Fleece</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Full Zip Fleece</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Half Zip Fleece</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Women's Fleece</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Kids Fleece</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="shop-fullwidth-banner.html">
+                                                <i class="w-icon-tshirt2"></i>
+                                                <span class="category-text">Headwear / Accessories</span>
+                                            </a>
+                                            <ul class="megamenu">
+                                                <li>
+                                                    <ul>
+                                                        <li><a href="shop-fullwidth-banner.html">Beanies</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Baseball Caps</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Trucker Hats</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Bucket Hats</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Visors</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Bags</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Towels</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Belts</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Gloves &amp; Scarves</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Work Accessories</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">PPE Accessories</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Kids Accessories</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="shop-fullwidth-banner.html">
+                                                <i class="w-icon-tshirt2"></i>
+                                                <span class="category-text">Sustainable / Recycled &amp; Organic</span>
+                                            </a>
+                                            <ul class="megamenu">
+                                                <li>
+                                                    <ul>
+                                                        <li><a href="shop-fullwidth-banner.html">Anthem</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Ecologie by AWDis</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">New Morning Studios</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">ONNA by Premier</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Regatta Professional Recycled</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Spiro Recycled</a></li>
+                                                        <li><a href="shop-fullwidth-banner.html">Stanley/Stella</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="shop-banner-sidebar.html" class="font-weight-bold text-primary text-uppercase ls-25">
+                                                <span class="category-text">View All Categories</span>
+                                                <i class="w-icon-angle-right"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <nav class="main-nav">
+                                <ul class="menu active-underline">
+                                    <li class="active">
+                                        <a href="#">All Products</a>
+                                        <ul class="megamenu">
+                                            <li>
+                                                <h4 class="menu-title">T-shirts</h4>
+                                                <hr class="divider">
+                                                <ul>
+                                                    <li><a href="#">Short Sleeve T-shirts</a></li>
+                                                    <li><a href="#">Long Sleeve T-shirts</a></li>
+                                                    <li><a href="#">Tank Tops</a></li>
+                                                    <li><a href="#">Crew Neck</a></li>
+                                                    <li><a href="#">V-Neck</a></li>
+                                                    <li><a href="#">Heavyweight / Workwear</a></li>
+                                                    <li><a href="#">Lightweight</a></li>
+                                                    <li><a href="#">Performance / Sports</a></li>
+                                                    <li><a href="#">Women's T-shirts</a></li>
+                                                    <li><a href="#">Kids T-shirts</a></li>
+                                                    <li><a href="#">T-shirts for Embroidery</a></li>
+                                                    <li><a href="#">T-shirts for Print</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <h4 class="menu-title">Polo Shirts</h4>
+                                                <hr class="divider">
+                                                <ul>
+                                                    <li><a href="#">Short Sleeve Polos</a></li>
+                                                    <li><a href="#">Long Sleeve Polos</a></li>
+                                                    <li><a href="#">Classic Cotton Polos</a></li>
+                                                    <li><a href="#">Poly Cotton Polos</a></li>
+                                                    <li><a href="#">Performance Polos</a></li>
+                                                    <li><a href="#">Slim Fit Polos</a></li>
+                                                    <li><a href="#">Women's Polos</a></li>
+                                                    <li><a href="#">Kids Polos</a></li>
+                                                    <li><a href="#">Polos for Embroidery</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <h4 class="menu-title">Hoodies &amp; Sweatshirts</h4>
+                                                <hr class="divider">
+                                                <ul>
+                                                    <li><a href="#">Pullover Hoodies</a></li>
+                                                    <li><a href="#">Zip Hoodies</a></li>
+                                                    <li><a href="#">Heavyweight Hoodies</a></li>
+                                                    <li><a href="#">Lightweight Hoodies</a></li>
+                                                    <li><a href="#">Sweatshirts (Crew Neck)</a></li>
+                                                    <li><a href="#">Premium / Workwear Hoodies</a></li>
+                                                    <li><a href="#">Women's Hoodies</a></li>
+                                                    <li><a href="#">Kids Hoodies</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <h4 class="menu-title">Jackets &amp; Softshell</h4>
+                                                <hr class="divider">
+                                                <ul>
+                                                    <li><a href="#">Softshell Jackets</a></li>
+                                                    <li><a href="#">Fleece Jackets</a></li>
+                                                    <li><a href="#">Waterproof Jackets</a></li>
+                                                    <li><a href="#">Workwear Jackets</a></li>
+                                                    <li><a href="#">Bomber Jackets</a></li>
+                                                    <li><a href="#">Windbreakers</a></li>
+                                                    <li><a href="#">Bodywarmers / Gilets</a></li>
+                                                    <li><a href="#">High-performance Jackets</a></li>
+                                                    <li><a href="#">Women's Jackets</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <h4 class="menu-title">Hi-Vis Clothing</h4>
+                                                <hr class="divider">
+                                                <ul>
+                                                    <li><a href="#">Hi-vis Vests</a></li>
+                                                    <li><a href="#">Hi-vis T-shirts</a></li>
+                                                    <li><a href="#">Hi-vis Polos</a></li>
+                                                    <li><a href="#">Hi-vis Hoodies</a></li>
+                                                    <li><a href="#">Hi-vis Jackets</a></li>
+                                                    <li><a href="#">Hi-vis Trousers</a></li>
+                                                    <li><a href="#">EN ISO 20471 Certified</a></li>
+                                                    <li><a href="#">RIS-3279 Rail</a></li>
+                                                    <li><a href="#">Waterproof Hi-Vis</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <h4 class="menu-title">Work Trousers</h4>
+                                                <hr class="divider">
+                                                <ul>
+                                                    <li><a href="#">Work Trousers</a></li>
+                                                    <li><a href="#">Cargo Pants</a></li>
+                                                    <li><a href="#">Stretch Work Trousers</a></li>
+                                                    <li><a href="#">Ripstop Trousers</a></li>
+                                                    <li><a href="#">Waterproof / Over-trousers</a></li>
+                                                    <li><a href="#">Work Shorts</a></li>
+                                                    <li><a href="#">Women's Work Trousers</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <h4 class="menu-title">Fleeces</h4>
+                                                <hr class="divider">
+                                                <ul>
+                                                    <li><a href="#">Microfleece Jackets</a></li>
+                                                    <li><a href="#">Heavy Fleece</a></li>
+                                                    <li><a href="#">Full Zip Fleece</a></li>
+                                                    <li><a href="#">Half Zip Fleece</a></li>
+                                                    <li><a href="#">Women's Fleece</a></li>
+                                                    <li><a href="#">Kids Fleece</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <h4 class="menu-title">Headwear / Accessories</h4>
+                                                <hr class="divider">
+                                                <ul>
+                                                    <li><a href="#">Beanies</a></li>
+                                                    <li><a href="#">Baseball Caps</a></li>
+                                                    <li><a href="#">Trucker Hats</a></li>
+                                                    <li><a href="#">Bucket Hats</a></li>
+                                                    <li><a href="#">Visors</a></li>
+                                                    <li><a href="#">Bags</a></li>
+                                                    <li><a href="#">Towels</a></li>
+                                                    <li><a href="#">Belts</a></li>
+                                                    <li><a href="#">Gloves &amp; Scarves</a></li>
+                                                    <li><a href="#">Work Accessories</a></li>
+                                                    <li><a href="#">PPE Accessories</a></li>
+                                                    <li><a href="#">Kids Accessories</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <h4 class="menu-title">Sustainable / Recycled &amp; Organic</h4>
+                                                <hr class="divider">
+                                                <ul>
+                                                    <li><a href="#">Anthem</a></li>
+                                                    <li><a href="#">Ecologie by AWDis</a></li>
+                                                    <li><a href="#">New Morning Studios</a></li>
+                                                    <li><a href="#">ONNA by Premier</a></li>
+                                                    <li><a href="#">Regatta Professional Recycled</a></li>
+                                                    <li><a href="#">Spiro Recycled</a></li>
+                                                    <li><a href="#">Stanley/Stella</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">BrandedUK</a></li>
+                                    <li><a href="#">Bundles &amp; Packs</a></li>
+                                    <li><a href="#">Accessories</a></li>
+                                    <li><a href="#">More</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">About</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="header-right">
+                            <a href="#" class="d-xl-show"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
+                            <a href="#"><i class="w-icon-sale"></i>Daily Deals</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/jquery.plugin/jquery.plugin.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/zoom/jquery.zoom.js"></script>
+    <script src="assets/vendor/jquery.countdown/jquery.countdown.min.js"></script>
+    <script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="assets/vendor/skrollr/skrollr.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.min.js"></script>
+    <script>
+        (function () {
+            if (window.Wolmart && typeof window.Wolmart.setCookie === 'function') {
+                window.Wolmart.setCookie('hideNewsletterPopup', 'true', 365);
+            } else {
+                document.cookie = 'hideNewsletterPopup=true; path=/; max-age=' + (60 * 60 * 24 * 365);
+            }
+            var dropdown = document.querySelector('.header-bottom .category-dropdown');
+            if (!dropdown) {
+                return;
+            }
+            var toggle = dropdown.querySelector('.category-toggle');
+            var box = dropdown.querySelector('.dropdown-box');
+            if (!toggle || !box) {
+                return;
+            }
+            var $dropdown = window.jQuery ? window.jQuery(dropdown) : null;
+            if ($dropdown && $dropdown.off) {
+                $dropdown.off('mouseover');
+                $dropdown.off('mouseleave');
+            }
+            function closeDropdown() {
+                dropdown.classList.remove('show');
+                dropdown.setAttribute('data-visible', 'false');
+                toggle.setAttribute('aria-expanded', 'false');
+                box.style.display = 'none';
+            }
+            function openDropdown() {
+                dropdown.classList.add('show');
+                dropdown.setAttribute('data-visible', 'true');
+                toggle.setAttribute('aria-expanded', 'true');
+                box.style.display = 'block';
+            }
+            var supportsHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+            if (supportsHover) {
+                dropdown.addEventListener('mouseenter', openDropdown);
+                dropdown.addEventListener('mouseleave', closeDropdown);
+                toggle.addEventListener('focus', openDropdown);
+                toggle.addEventListener('blur', function (event) {
+                    if (!event.relatedTarget || !dropdown.contains(event.relatedTarget)) {
+                        closeDropdown();
+                    }
+                });
+            } else {
+                toggle.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    if (dropdown.classList.contains('show')) {
+                        closeDropdown();
+                    } else {
+                        openDropdown();
+                    }
+                });
+            }
+            document.addEventListener('click', function (event) {
+                if (!dropdown.contains(event.target)) {
+                    closeDropdown();
+                }
+            });
+            closeDropdown();
+        })();
+    </script>
+</body>
+</html>
