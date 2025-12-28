@@ -1081,15 +1081,26 @@ function initSearchbarHeader() {
     // Category mapping - map category slugs to filter values
     const categoryMap = {
         'all': null,
-        't-shirts': null, // Can be extended with specific filters
-        'polo-shirts': null,
+        't-shirts': null,
         'hoodies': null,
+        'polos': null,
+        'sweatshirts': null,
         'jackets': null,
-        'hi-vis': null,
+        'shirts': null,
+        'gilets': null,
+        'fleece': null,
+        'softshells': null,
         'trousers': null,
-        'fleeces': null,
-        'headwear': null,
-        'sustainable': { flag: 'recycled-organic' }
+        'shorts': null,
+        'bags': null,
+        'caps': null,
+        'sweatpants': null,
+        'vests': null,
+        'blouses': null,
+        'safety-vests': null,
+        'beanies': null,
+        'knitted-jumpers': null,
+        'trackwear': null
     };
     
     let selectedCategory = null;
