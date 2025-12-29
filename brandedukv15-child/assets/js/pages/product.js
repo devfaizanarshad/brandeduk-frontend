@@ -188,6 +188,48 @@ async function loadProductData() {
     return true;
 }
 
+// Initialize tier pricing from API data
+function initTierPricing() {
+    const tierPricingContainer = document.getElementById('tierPricingContainer');
+    if (!tierPricingContainer || !DISCOUNTS || DISCOUNTS.length === 0) {
+        return;
+    }
+    
+    // Clear existing tier items
+    tierPricingContainer.innerHTML = '';
+    
+    // Create tier items from DISCOUNTS array
+    DISCOUNTS.forEach((tier, index) => {
+        const tierItem = document.createElement('div');
+        tierItem.className = 'tier-item';
+        tierItem.setAttribute('data-min', tier.min);
+        tierItem.setAttribute('data-max', tier.max);
+        tierItem.setAttribute('data-base-price', tier.price);
+        
+        // Format quantity range
+        let qtyText = '';
+        if (tier.max >= 99999) {
+            qtyText = `${tier.min}+`;
+        } else {
+            qtyText = `${tier.min}-${tier.max}`;
+        }
+        
+        // Calculate save percentage (compared to first tier/base price)
+        const firstTierPrice = DISCOUNTS[0].price;
+        const savePercent = firstTierPrice > 0 && tier.price < firstTierPrice 
+            ? Math.round(((firstTierPrice - tier.price) / firstTierPrice) * 100) 
+            : 0;
+        
+        tierItem.innerHTML = `
+            <span class="tier-qty">${qtyText}</span>
+            <span class="tier-price">£${tier.price.toFixed(2)}</span>
+            ${savePercent > 0 ? `<span class="tier-save">-${savePercent}%</span>` : ''}
+        `;
+        
+        tierPricingContainer.appendChild(tierItem);
+    });
+}
+
 // Initialize product data and then update page
 document.addEventListener('DOMContentLoaded', async function() {
     const loaded = await loadProductData();
@@ -246,11 +288,16 @@ document.addEventListener('DOMContentLoaded', async function() {
         
         // Update description if available
         if (PRODUCT_DATA && PRODUCT_DATA.description) {
-            const descEl = document.querySelector('.description-box, [data-description]');
+            const descEl = document.querySelector('.description-box');
             if (descEl) {
-                // Check if it's a paragraph or div
-                const descText = descEl.querySelector('p') || descEl;
-                descText.textContent = PRODUCT_DATA.description;
+                // Find or create paragraph element
+                let descText = descEl.querySelector('p');
+                if (!descText) {
+                    descText = document.createElement('p');
+                    descEl.appendChild(descText);
+                }
+                // Use innerHTML to preserve any HTML formatting from API
+                descText.innerHTML = PRODUCT_DATA.description;
             }
         }
         
@@ -293,6 +340,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (PRODUCT_DATA && PRODUCT_DATA.sizes) {
             initSizes(PRODUCT_DATA.sizes);
         }
+        
+        // Initialize tier pricing from API data
+        initTierPricing();
     }
     
     updateAllPricing();
