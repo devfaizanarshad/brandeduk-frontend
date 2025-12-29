@@ -979,6 +979,50 @@ function initColors(productColors) {
         colors.push([name, url]);
     });
     
+    // Check for color filter from home page
+    const filterColorName = sessionStorage.getItem('filterColorName');
+    const savedColorName = sessionStorage.getItem('selectedColorName');
+    const basket = JSON.parse(localStorage.getItem('quoteBasket') || '[]');
+    
+    // Priority: 1. Saved color with basket items, 2. Filter color, 3. Saved color
+    let colorToSelect = null;
+    let colorToSelectUrl = null;
+    
+    if (savedColorName) {
+        const hasItemsForColor = basket.some(item => item.color === savedColorName);
+        if (hasItemsForColor) {
+            // Priority 1: Saved color with basket items
+            const savedColor = colors.find(([name]) => name === savedColorName);
+            if (savedColor) {
+                colorToSelect = savedColorName;
+                colorToSelectUrl = savedColor[1];
+            }
+        }
+    }
+    
+    // If no saved color with basket items, check filter color
+    if (!colorToSelect && filterColorName) {
+        // Try to find matching color (case-insensitive, partial match)
+        const matchingColor = colors.find(([name]) => {
+            const nameLower = name.toLowerCase();
+            const filterLower = filterColorName.toLowerCase();
+            return nameLower === filterLower || nameLower.includes(filterLower) || filterLower.includes(nameLower);
+        });
+        if (matchingColor) {
+            colorToSelect = matchingColor[0];
+            colorToSelectUrl = matchingColor[1];
+        }
+    }
+    
+    // If still no color, use saved color (without basket items requirement)
+    if (!colorToSelect && savedColorName) {
+        const savedColor = colors.find(([name]) => name === savedColorName);
+        if (savedColor) {
+            colorToSelect = savedColorName;
+            colorToSelectUrl = savedColor[1];
+        }
+    }
+    
     // Build color grid
     colors.forEach(([name, url], i) => {
         const div = document.createElement("div");
@@ -987,18 +1031,29 @@ function initColors(productColors) {
         div.setAttribute('data-color-name', name);
         div.setAttribute('title', name);
 
-        // Only restore selection if there are items in basket for this color
-        const savedColorName = sessionStorage.getItem('selectedColorName');
-        const basket = JSON.parse(localStorage.getItem('quoteBasket') || '[]');
-        const hasItemsForColor = basket.some(item => item.color === name);
-        
-        if (savedColorName && savedColorName === name && hasItemsForColor) {
+        // Select color if it matches the color to select
+        if (colorToSelect && colorToSelect === name) {
             div.classList.add("active");
             selectedColorName = name;
             selectedColorURL = url;
             if (mainImage) mainImage.src = url;
+            
+            // Update thumbnail gallery to show this color's image (use setTimeout to ensure gallery is initialized)
+            setTimeout(() => {
+                if (typeof window.setGalleryActiveBySrc === 'function') {
+                    window.setGalleryActiveBySrc(url);
+                }
+            }, 100);
+            
+            // Update step progress and clear filter if color was auto-selected from filter
+            if (filterColorName && filterColorName === colorToSelect) {
+                setTimeout(() => {
+                    updateStepProgress(1);
+                    // Clear filter color after using it
+                    sessionStorage.removeItem('filterColorName');
+                }, 150);
+            }
         }
-        // No default selection if no saved color or no items
 
         div.onclick = () => {
             // Check if there are unsaved items

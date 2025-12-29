@@ -812,12 +812,26 @@ function goToProduct(code, evt = null, selectedColor = null) {
         sessionStorage.setItem('selectedProduct', code);
         sessionStorage.setItem('selectedProductData', JSON.stringify(product));
         
-        // Save selected color if any
+        // Check if there's an active color filter
+        const currentFilters = getCurrentFilters();
+        const colorFilter = currentFilters.primaryColours && currentFilters.primaryColours.length > 0 
+            ? currentFilters.primaryColours[0] 
+            : null;
+        
+        // Save selected color if any (from clicked color dot takes priority)
         const eventSource = evt?.currentTarget || evt?.target || event?.target;
         const activeColorDot = eventSource?.closest('.product-card')?.querySelector('.color-dot.active');
         if (activeColorDot) {
             sessionStorage.setItem('selectedColorName', activeColorDot.dataset.color);
             sessionStorage.setItem('selectedColorUrl', activeColorDot.dataset.main);
+            // Clear filter color since user explicitly selected a color
+            sessionStorage.removeItem('filterColorName');
+        } else if (colorFilter) {
+            // Save color filter for auto-selection on product detail page
+            sessionStorage.setItem('filterColorName', colorFilter);
+        } else {
+            // Clear any previous filter color if no filter is active
+            sessionStorage.removeItem('filterColorName');
         }
     }
     window.location.href = 'product-detail.html';
