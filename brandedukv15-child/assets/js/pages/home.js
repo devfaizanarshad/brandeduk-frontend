@@ -418,18 +418,52 @@ function renderProducts(productsToRender = PRODUCTS_DB, showLoading = false) {
             `<span class="badge ${c}">EMBROIDERY</span>`
         ).join('');
 
-        // Use different color for each card (cycle through available colors)
-        const colorIndex = index % product.colors.length;
-        const colorData = product.colors[colorIndex];
-        const displayColor = typeof colorData === 'object' 
-            ? {
-                name: colorData.name,
-                main: colorData.main || colorData.url || product.image,
-                thumb: colorData.thumb || colorData.url || product.image
-              }
-            : {name: colorData, main: product.image, thumb: product.image};
+        // Check if there's an active color filter
+        const currentFilters = getCurrentFilters();
+        const colorFilter = currentFilters.primaryColours && currentFilters.primaryColours.length > 0 
+            ? currentFilters.primaryColours[0].toLowerCase() 
+            : null;
         
-        const colors = product.colors.map(c => {
+        // Find matching color variant if filter is active
+        let displayColor = null;
+        let selectedColorIndex = -1;
+        
+        if (colorFilter) {
+            // Try to find matching color variant
+            const matchingColorIndex = product.colors.findIndex(c => {
+                const colorName = typeof c === 'object' ? (c.name || '').toLowerCase() : c.toLowerCase();
+                return colorName === colorFilter || 
+                       colorName.includes(colorFilter) || 
+                       colorFilter.includes(colorName);
+            });
+            
+            if (matchingColorIndex !== -1) {
+                selectedColorIndex = matchingColorIndex;
+                const colorData = product.colors[matchingColorIndex];
+                displayColor = typeof colorData === 'object' 
+                    ? {
+                        name: colorData.name,
+                        main: colorData.main || colorData.url || product.image,
+                        thumb: colorData.thumb || colorData.url || product.image
+                      }
+                    : {name: colorData, main: product.image, thumb: product.image};
+            }
+        }
+        
+        // If no filter match or no filter, use default cycling behavior
+        if (!displayColor) {
+            const colorIndex = index % product.colors.length;
+            const colorData = product.colors[colorIndex];
+            displayColor = typeof colorData === 'object' 
+                ? {
+                    name: colorData.name,
+                    main: colorData.main || colorData.url || product.image,
+                    thumb: colorData.thumb || colorData.url || product.image
+                  }
+                : {name: colorData, main: product.image, thumb: product.image};
+        }
+        
+        const colors = product.colors.map((c, idx) => {
             const color = typeof c === 'object' 
                 ? {
                     name: c.name,
@@ -437,7 +471,8 @@ function renderProducts(productsToRender = PRODUCTS_DB, showLoading = false) {
                     thumb: c.thumb || c.url || product.image
                   }
                 : {name: c, main: product.image, thumb: product.image};
-            return `<button type="button" class="color-dot" data-color="${color.name}" data-main="${color.main}" style="background-image: url('${color.thumb}')" title="${color.name}"></button>`;
+            const isActive = (colorFilter && selectedColorIndex === idx) ? 'active' : '';
+            return `<button type="button" class="color-dot ${isActive}" data-color="${color.name}" data-main="${color.main}" data-color-index="${idx}" style="background-image: url('${color.thumb}')" title="${color.name}"></button>`;
         }).join('');
 
         const { min: minPrice, max: maxPrice } = getProductPriceRange(product);
@@ -470,7 +505,15 @@ function renderProducts(productsToRender = PRODUCTS_DB, showLoading = false) {
         // Store selected color for this card
         let selectedColorForCard = null;
         
-        card.querySelectorAll('.color-dot').forEach(dot => {
+        // If a color filter is active and we found a matching color, set it as selected
+        if (colorFilter && selectedColorIndex !== -1) {
+            selectedColorForCard = {
+                name: displayColor.name,
+                url: displayColor.main
+            };
+        }
+        
+        card.querySelectorAll('.color-dot').forEach((dot, dotIndex) => {
             dot.addEventListener('mouseenter', (event) => {
                 // Only change on hover if no color is selected
                 if (!selectedColorForCard) {
