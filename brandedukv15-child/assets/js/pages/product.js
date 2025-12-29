@@ -190,10 +190,6 @@ async function loadProductData() {
 
 // Initialize product data and then update page
 document.addEventListener('DOMContentLoaded', async function() {
-    // Hide loading state and show content when data is loaded
-    const loadingState = document.getElementById('productLoadingState');
-    const productContent = document.getElementById('productContent');
-    
     const loaded = await loadProductData();
     if (loaded) {
         // Update page title
@@ -297,27 +293,10 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (PRODUCT_DATA && PRODUCT_DATA.sizes) {
             initSizes(PRODUCT_DATA.sizes);
         }
-        
-        // Update pricing and basket
-        updateAllPricing();
-        updateBasketTotalBox();
-        
-        // Hide loading state and show product content AFTER all updates are complete
-        // Use requestAnimationFrame to ensure DOM updates are rendered
-        requestAnimationFrame(() => {
-            if (loadingState) {
-                loadingState.style.display = 'none';
-            }
-            if (productContent) {
-                productContent.style.display = 'block';
-            }
-        });
-    } else {
-        // If product failed to load, show error message
-        if (loadingState) {
-            loadingState.innerHTML = '<p style="color: #d32f2f; font-size: 16px;">Product not found. Please go back and select a product.</p>';
-        }
     }
+    
+    updateAllPricing();
+    updateBasketTotalBox(); // Load basket total box
 });
 
 // Update the Basket Total Box showing all basket items
