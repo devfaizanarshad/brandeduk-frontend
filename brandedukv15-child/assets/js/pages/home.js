@@ -452,15 +452,15 @@ function renderProducts(productsToRender = PRODUCTS_DB, showLoading = false) {
         
         // If no filter match or no filter, use default cycling behavior
         if (!displayColor) {
-            const colorIndex = index % product.colors.length;
-            const colorData = product.colors[colorIndex];
+        const colorIndex = index % product.colors.length;
+        const colorData = product.colors[colorIndex];
             displayColor = typeof colorData === 'object' 
-                ? {
-                    name: colorData.name,
-                    main: colorData.main || colorData.url || product.image,
-                    thumb: colorData.thumb || colorData.url || product.image
-                  }
-                : {name: colorData, main: product.image, thumb: product.image};
+            ? {
+                name: colorData.name,
+                main: colorData.main || colorData.url || product.image,
+                thumb: colorData.thumb || colorData.url || product.image
+              }
+            : {name: colorData, main: product.image, thumb: product.image};
         }
         
         const colors = product.colors.map((c, idx) => {
@@ -688,6 +688,7 @@ async function goToPage(page) {
 
 function getCurrentFilters() {
     // Reuse the filter collection logic from applyFilters
+    // This function should return the same structure as applyFilters for consistency
     const filters = {
         genders: [],
         ageGroups: [],
@@ -709,9 +710,10 @@ function getCurrentFilters() {
         tags: [],
         effects: [],
         flags: [], // Special flags: new-in, bradeal, offers, in-stock, recycled
+        productType: selectedCategory && selectedCategory.productType ? selectedCategory.productType : null,
         priceMin: 0,
         priceMax: undefined,
-        text: document.querySelector('.text-search-input')?.value || ''
+        text: document.querySelector('.text-search-input')?.value?.trim() || document.getElementById('searchbarHeaderInput')?.value?.trim() || ''
     };
     
     // Collect special flags (quick filters)
@@ -1200,12 +1202,9 @@ function initSearchbarHeader() {
                 }
                 
                 // Apply category filter
-                if (selectedCategory && selectedCategory.productType) {
-                    applyFilters({ productType: selectedCategory.productType });
-                } else {
-                    // Reset filters if "All Categories" selected
-                    applyFilters({ productType: null });
-                }
+                // Note: Don't pass productType explicitly - let applyFilters use selectedCategory state
+                // This ensures all other filters are preserved
+                applyFilters();
             });
         });
     }
@@ -1250,12 +1249,9 @@ function initSearchbarHeader() {
                 textSearchInput.value = searchText;
             }
             
-            // Apply filters with category if selected
-            if (selectedCategory && selectedCategory.productType) {
-                applyFilters({ productType: selectedCategory.productType });
-            } else {
-                applyFilters({ productType: null });
-            }
+            // Apply filters - preserve all current filters including category
+            // Don't pass productType explicitly - let applyFilters use selectedCategory state
+            applyFilters();
         });
     }
 }
@@ -1443,7 +1439,14 @@ function initFilters() {
 
             // Reset category selection in searchbar header
             selectedCategory = null;
+            
+            // Reset color swatches
+            document.querySelectorAll('.filter-colour-swatch.is-active').forEach(btn => {
+                btn.classList.remove('is-active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
 
+            // Clear all filters and reset to show all products
             applyFilters({ productType: null });
         });
     }
@@ -1507,12 +1510,12 @@ let priceSliderDebounceTimer = null;
 const PRICE_SLIDER_DEBOUNCE_MS = 500; // Wait 500ms after user stops dragging
 
 async function applyFilters(options = {}) {
-    const { fromSlider = false, initialLoad = false, categoryFilter = null, productType = null } = options;
+    const { fromSlider = false, initialLoad = false, categoryFilter = null, productType = undefined } = options;
     
     // Show loading state IMMEDIATELY when filter is applied
     renderProducts([], true);
 
-    // Get all selected filters
+    // Get all selected filters - ALWAYS collect ALL current filter states
     const filters = {
         genders: [],
         ageGroups: [],
@@ -1534,17 +1537,25 @@ async function applyFilters(options = {}) {
         tags: [],
         effects: [],
         flags: [], // Special flags: new-in, bradeal, offers, in-stock, recycled
-        productType: productType !== undefined ? productType : (selectedCategory && selectedCategory.productType ? selectedCategory.productType : null), // Product type for category filtering
-        // Don't set priceMin/priceMax by default - only when user drags slider
-        text: document.querySelector('.text-search-input')?.value || document.getElementById('searchbarHeaderInput')?.value || ''
+        // Handle productType: if explicitly passed (including null), use it; otherwise preserve selectedCategory
+        productType: productType !== undefined 
+            ? productType 
+            : (selectedCategory && selectedCategory.productType ? selectedCategory.productType : null),
+        // Always collect search text from both possible input fields
+        // This ensures search is preserved when other filters change
+        text: (() => {
+            const textSearchInput = document.querySelector('.text-search-input');
+            const searchbarInput = document.getElementById('searchbarHeaderInput');
+            return (textSearchInput?.value?.trim() || searchbarInput?.value?.trim() || '').trim();
+        })()
     };
     
-    // If category filter is provided, apply it
+    // If category filter is provided, apply it (this overrides the productType logic above)
     if (categoryFilter) {
         if (categoryFilter.flag) {
             filters.flags.push(categoryFilter.flag);
         }
-        if (categoryFilter.productType) {
+        if (categoryFilter.productType !== undefined) {
             filters.productType = categoryFilter.productType;
         }
     }
@@ -1671,6 +1682,7 @@ async function applyFilters(options = {}) {
     });
     
     // Get price range from slider (only if user has actually interacted with it)
+    // IMPORTANT: Price filter should be cumulative with other filters
     const slider = document.getElementById('priceRangeSlider');
     const label = document.getElementById('priceRangeLabel');
     if (fromSlider || priceFilterApplied) {
@@ -1682,8 +1694,11 @@ async function applyFilters(options = {}) {
     }
     // Otherwise, don't include price filters - let API return all products
 
-    // Fetch products from API with filters
+    // Log all filters being applied for debugging
     console.log('applyFilters called with filters:', filters);
+    console.log('Selected category state:', selectedCategory);
+    console.log('Search text:', filters.text);
+    console.log('Product type:', filters.productType);
     
     // Reset to page 1 when filters change
     currentPage = 1;
