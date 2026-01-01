@@ -294,15 +294,22 @@ function getProductPriceRange(product) {
     };
 }
 
-// ===== HELPER: DETECT COLOR IN SEARCH TEXT =====
+// ===== HELPER: DETECT COLOR IN SEARCH TEXT (OPTIMIZED) =====
+// Cache for color detection to avoid repeated processing
+let colorDetectionCache = { text: '', color: null };
+
 function detectColorInSearchText(searchText) {
     if (!searchText || typeof searchText !== 'string') {
         return null;
     }
     
+    // Use cache to avoid re-processing same search text
     const searchLower = searchText.toLowerCase().trim();
+    if (colorDetectionCache.text === searchLower) {
+        return colorDetectionCache.color;
+    }
     
-    // Common color names to detect in search
+    // Common color names to detect in search (prioritize most common first)
     const colorKeywords = [
         'black', 'white', 'red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink',
         'brown', 'grey', 'gray', 'navy', 'beige', 'tan', 'cream', 'ivory', 'silver',
@@ -312,16 +319,29 @@ function detectColorInSearchText(searchText) {
         'ruby', 'crimson', 'scarlet', 'azure', 'cerulean', 'magenta', 'fuchsia'
     ];
     
-    // Check if any color keyword appears in the search text
+    // Use faster string matching instead of regex for each color
+    // Check for word boundaries manually for better performance
+    let detectedColor = null;
     for (const color of colorKeywords) {
-        // Use word boundary matching to avoid false positives (e.g., "red" in "bred")
-        const regex = new RegExp(`\\b${color}\\b`, 'i');
-        if (regex.test(searchLower)) {
-            return color;
+        const colorLen = color.length;
+        const searchIndex = searchLower.indexOf(color);
+        
+        // Check if color appears as a whole word (not part of another word)
+        if (searchIndex !== -1) {
+            const before = searchIndex === 0 ? ' ' : searchLower[searchIndex - 1];
+            const after = searchLower[searchIndex + colorLen];
+            const isWordBoundary = (!before || !/[a-z]/.test(before)) && (!after || !/[a-z]/.test(after));
+            
+            if (isWordBoundary) {
+                detectedColor = color;
+                break; // Found a match, stop searching
+            }
         }
     }
     
-    return null;
+    // Cache the result
+    colorDetectionCache = { text: searchLower, color: detectedColor };
+    return detectedColor;
 }
 
 // ===== RENDER PRODUCTS =====
@@ -436,6 +456,20 @@ function renderProducts(productsToRender = PRODUCTS_DB, showLoading = false) {
     
     console.log('Rendering', productsToRender.length, 'products');
 
+    // OPTIMIZATION: Detect color ONCE before the loop (not for each product)
+    const currentFilters = getCurrentFilters();
+    let colorFilter = currentFilters.primaryColours && currentFilters.primaryColours.length > 0 
+        ? currentFilters.primaryColours[0].toLowerCase() 
+        : null;
+    
+    // If no color filter but search text exists, try to detect color in search (ONCE)
+    if (!colorFilter && currentFilters.text) {
+        const detectedColor = detectColorInSearchText(currentFilters.text);
+        if (detectedColor) {
+            colorFilter = detectedColor.toLowerCase();
+        }
+    }
+
     productsToRender.forEach((product, index) => {
         const card = document.createElement('div');
         card.className = 'product-card';
@@ -448,20 +482,7 @@ function renderProducts(productsToRender = PRODUCTS_DB, showLoading = false) {
             `<span class="badge ${c}">EMBROIDERY</span>`
         ).join('');
 
-        // Check if there's an active color filter OR color in search text
-        const currentFilters = getCurrentFilters();
-        let colorFilter = currentFilters.primaryColours && currentFilters.primaryColours.length > 0 
-            ? currentFilters.primaryColours[0].toLowerCase() 
-            : null;
-        
-        // If no color filter but search text exists, try to detect color in search
-        if (!colorFilter && currentFilters.text) {
-            const detectedColor = detectColorInSearchText(currentFilters.text);
-            if (detectedColor) {
-                colorFilter = detectedColor.toLowerCase();
-                console.log('Color detected in search:', detectedColor);
-            }
-        }
+        // Use the pre-detected colorFilter (already calculated above)
         
         // Find matching color variant if filter is active or color detected in search
         let displayColor = null;
