@@ -170,6 +170,17 @@ async function fetchProducts(filters = {}, page = 1, limit = 28) {
         PRODUCTS_DB = data.items || [];
         CURRENT_PRODUCTS = data.items || [];
         
+        // Store filter aggregations for dynamic count updates
+        if (data.filters) {
+            try {
+                updateFilterCounts(data.filters);
+                console.log('✅ Filter counts updated');
+            } catch (error) {
+                console.error('Error updating filter counts:', error);
+                // Don't break the flow if filter count update fails
+            }
+        }
+        
         return data;
     } catch (error) {
         console.error('Error fetching products:', error);
@@ -747,6 +758,290 @@ async function goToPage(page) {
     } else {
         renderProducts([], false);
         renderPagination();
+    }
+}
+
+// ===== UPDATE FILTER COUNTS (OPTIMIZED) =====
+function updateFilterCounts(filterAggregations) {
+    if (!filterAggregations || typeof filterAggregations !== 'object') {
+        console.warn('Invalid filter aggregations data');
+        return;
+    }
+    
+    console.log('Updating filter counts:', filterAggregations);
+    
+    // Batch DOM updates for performance - collect all updates first, then apply
+    const updates = [];
+    
+    // Helper to extract label text from span (removes count)
+    function getLabelText(span) {
+        if (!span) return '';
+        const text = span.textContent.trim();
+        const match = text.match(/^(.+?)\s*\(\d+\)\s*$/);
+        return match ? match[1].trim() : text.replace(/\s*\(\d+\)\s*$/, '').trim();
+    }
+    
+    // Helper to safely update filter count
+    function addUpdate(checkboxSelector, count, labelMap = null) {
+        const checkbox = typeof checkboxSelector === 'string' 
+            ? document.querySelector(checkboxSelector)
+            : checkboxSelector;
+            
+        if (!checkbox) return; // Filter option doesn't exist in HTML, skip
+        
+        const span = checkbox.nextElementSibling;
+        if (!span || span.tagName !== 'SPAN') return;
+        
+        const label = labelMap && labelMap[checkbox.value] 
+            ? labelMap[checkbox.value]
+            : getLabelText(span) || checkbox.value;
+        
+        updates.push({ element: span, text: `${label} (${count})` });
+    }
+    
+    // Update Gender counts
+    if (filterAggregations.gender) {
+        const genderLabelMap = {
+            'female': 'Female',
+            'male': 'Male',
+            'unisex': 'Unisex',
+            'Unisex': 'Unisex' // Handle both cases
+        };
+        
+        Object.keys(filterAggregations.gender).forEach(genderValue => {
+            const count = filterAggregations.gender[genderValue];
+            if (count === 0) return; // Skip zero counts to avoid clutter
+            
+            // Try exact match first, then lowercase
+            let checkbox = document.querySelector(`input[name="gender"][value="${genderValue}"]`);
+            if (!checkbox) {
+                checkbox = document.querySelector(`input[name="gender"][value="${genderValue.toLowerCase()}"]`);
+            }
+            
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = genderLabelMap[genderValue] || genderLabelMap[genderValue.toLowerCase()] || genderValue;
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Update Age Group counts
+    if (filterAggregations.ageGroup) {
+        const ageGroupLabelMap = {
+            'adult': 'Adult',
+            'kids': 'Kids',
+            'infant': 'Infant'
+        };
+        
+        Object.keys(filterAggregations.ageGroup).forEach(ageValue => {
+            const checkbox = document.querySelector(`input[name="age-group"][value="${ageValue}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = ageGroupLabelMap[ageValue] || ageValue;
+                    const count = filterAggregations.ageGroup[ageValue];
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Update Sleeve counts
+    if (filterAggregations.sleeve) {
+        Object.keys(filterAggregations.sleeve).forEach(sleeveValue => {
+            const checkbox = document.querySelector(`input[name="sleeve"][value="${sleeveValue}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = getLabelText(span);
+                    const count = filterAggregations.sleeve[sleeveValue];
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Update Neckline counts
+    if (filterAggregations.neckline) {
+        Object.keys(filterAggregations.neckline).forEach(necklineValue => {
+            const checkbox = document.querySelector(`input[name="neckline"][value="${necklineValue}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = getLabelText(span);
+                    const count = filterAggregations.neckline[necklineValue];
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Update Fabric counts
+    if (filterAggregations.fabric) {
+        Object.keys(filterAggregations.fabric).forEach(fabricValue => {
+            const checkbox = document.querySelector(`input[name="fabric"][value="${fabricValue}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = getLabelText(span);
+                    const count = filterAggregations.fabric[fabricValue];
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Update Size counts (only if count exists, sizes might not have counts in HTML)
+    if (filterAggregations.size) {
+        Object.keys(filterAggregations.size).forEach(sizeValue => {
+            const checkbox = document.querySelector(`input[name="size"][value="${sizeValue}"]`) ||
+                           document.querySelector(`input[name="size"][value="${sizeValue.toLowerCase()}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const count = filterAggregations.size[sizeValue];
+                    // Only update if span already has a count format, otherwise just add count
+                    const currentText = span.textContent.trim();
+                    if (currentText.includes('(')) {
+                        const label = getLabelText(span);
+                        updates.push({ element: span, text: `${label} (${count})` });
+                    } else {
+                        updates.push({ element: span, text: `${currentText} (${count})` });
+                    }
+                }
+            }
+        });
+    }
+    
+    // Update Primary Colour counts (for color swatches, we might need different handling)
+    // Note: Primary colours use color swatches, not checkboxes, so we'll skip this for now
+    // unless there are checkbox-based color filters
+    
+    // Update Tag counts
+    if (filterAggregations.tag) {
+        Object.keys(filterAggregations.tag).forEach(tagValue => {
+            const checkbox = document.querySelector(`input[name="tag"][value="${tagValue}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = getLabelText(span);
+                    const count = filterAggregations.tag[tagValue];
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Update Effect counts
+    if (filterAggregations.effect) {
+        Object.keys(filterAggregations.effect).forEach(effectValue => {
+            const checkbox = document.querySelector(`input[name="effect"][value="${effectValue}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = getLabelText(span);
+                    const count = filterAggregations.effect[effectValue];
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Update Weight counts
+    if (filterAggregations.weight) {
+        Object.keys(filterAggregations.weight).forEach(weightValue => {
+            const checkbox = document.querySelector(`input[name="weight"][value="${weightValue}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = getLabelText(span);
+                    const count = filterAggregations.weight[weightValue];
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Update Fit counts
+    if (filterAggregations.fit) {
+        Object.keys(filterAggregations.fit).forEach(fitValue => {
+            const checkbox = document.querySelector(`input[name="fit"][value="${fitValue}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = getLabelText(span);
+                    const count = filterAggregations.fit[fitValue];
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Update Sector counts
+    if (filterAggregations.sector) {
+        Object.keys(filterAggregations.sector).forEach(sectorValue => {
+            const checkbox = document.querySelector(`input[name="related-sector"][value="${sectorValue}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = getLabelText(span);
+                    const count = filterAggregations.sector[sectorValue];
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Update Sport counts
+    if (filterAggregations.sport) {
+        Object.keys(filterAggregations.sport).forEach(sportValue => {
+            const checkbox = document.querySelector(`input[name="related-sport"][value="${sportValue}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = getLabelText(span);
+                    const count = filterAggregations.sport[sportValue];
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Update Features counts
+    if (filterAggregations.feature) {
+        Object.keys(filterAggregations.feature).forEach(featureValue => {
+            const checkbox = document.querySelector(`input[name="features"][value="${featureValue}"]`);
+            if (checkbox) {
+                const span = checkbox.nextElementSibling;
+                if (span && span.tagName === 'SPAN') {
+                    const label = getLabelText(span);
+                    const count = filterAggregations.feature[featureValue];
+                    updates.push({ element: span, text: `${label} (${count})` });
+                }
+            }
+        });
+    }
+    
+    // Batch apply all updates in a single DOM operation for performance
+    // Use requestAnimationFrame to avoid blocking the main thread
+    if (updates.length > 0) {
+        // Debounce rapid updates to avoid excessive DOM manipulation
+        if (updateFilterCounts.timeout) {
+            clearTimeout(updateFilterCounts.timeout);
+        }
+        
+        updateFilterCounts.timeout = setTimeout(() => {
+            requestAnimationFrame(() => {
+                updates.forEach(({ element, text }) => {
+                    if (element && element.parentNode) {
+                        element.textContent = text;
+                    }
+                });
+            });
+        }, 50); // Small delay to batch rapid updates
     }
 }
 
