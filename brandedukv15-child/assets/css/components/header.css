@@ -243,7 +243,8 @@
 .searchbar-header__inner {
     display: flex;
     align-items: center;
-    gap: 48px;
+    justify-content: space-between;
+    gap: 32px;
 }
 
 .searchbar-header__brand {
@@ -251,6 +252,7 @@
     align-items: center;
     gap: 14px;
     text-decoration: none;
+    flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
 .searchbar-header__brand-badge {
@@ -286,11 +288,13 @@
 }
 
 .searchbar-header__search {
-    margin-left: auto;
+    flex: 1;
     display: flex;
     align-items: center;
-    width: 720px;
+    max-width: 580px; /* Medium length instead of fixed 720px */
+    min-width: 400px; /* Minimum width for usability */
     height: 54px;
+    margin: 0 auto; /* Center the search bar */
     border-radius: 30px;
     background: linear-gradient(180deg, #f7f7f7, #e3e3e3);
     box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.9), inset 0 -3px 6px rgba(0, 0, 0, 0.18), 0 10px 24px rgba(0, 0, 0, 0.35);
@@ -478,7 +482,7 @@
     align-items: center;
     gap: 18px;
     min-height: 54px;
-    margin-left: auto;
+    flex-shrink: 0; /* Prevent actions from shrinking */
 }
 
 .searchbar-header__action {
@@ -580,17 +584,20 @@
     .searchbar-header__inner {
         flex-wrap: wrap;
         gap: 24px;
+        justify-content: center; /* Center items when wrapped */
     }
 
     .searchbar-header__search {
         order: 2;
         width: 100%;
+        max-width: 580px; /* Maintain medium length even when full width */
+        margin: 0 auto; /* Center the search bar */
     }
 
     .searchbar-header__actions {
         order: 3;
         width: 100%;
-        justify-content: flex-end;
+        justify-content: center; /* Center actions when wrapped */
     }
 }
 
