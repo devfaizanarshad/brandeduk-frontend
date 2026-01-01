@@ -294,6 +294,36 @@ function getProductPriceRange(product) {
     };
 }
 
+// ===== HELPER: DETECT COLOR IN SEARCH TEXT =====
+function detectColorInSearchText(searchText) {
+    if (!searchText || typeof searchText !== 'string') {
+        return null;
+    }
+    
+    const searchLower = searchText.toLowerCase().trim();
+    
+    // Common color names to detect in search
+    const colorKeywords = [
+        'black', 'white', 'red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink',
+        'brown', 'grey', 'gray', 'navy', 'beige', 'tan', 'cream', 'ivory', 'silver',
+        'gold', 'burgundy', 'maroon', 'teal', 'turquoise', 'cyan', 'lime', 'olive',
+        'khaki', 'coral', 'salmon', 'peach', 'mint', 'lavender', 'violet', 'indigo',
+        'charcoal', 'slate', 'steel', 'bronze', 'copper', 'amber', 'emerald', 'sapphire',
+        'ruby', 'crimson', 'scarlet', 'azure', 'cerulean', 'magenta', 'fuchsia'
+    ];
+    
+    // Check if any color keyword appears in the search text
+    for (const color of colorKeywords) {
+        // Use word boundary matching to avoid false positives (e.g., "red" in "bred")
+        const regex = new RegExp(`\\b${color}\\b`, 'i');
+        if (regex.test(searchLower)) {
+            return color;
+        }
+    }
+    
+    return null;
+}
+
 // ===== RENDER PRODUCTS =====
 function renderProducts(productsToRender = PRODUCTS_DB, showLoading = false) {
     console.log('Rendering products...', productsToRender.length, 'showLoading:', showLoading);
@@ -418,13 +448,22 @@ function renderProducts(productsToRender = PRODUCTS_DB, showLoading = false) {
             `<span class="badge ${c}">EMBROIDERY</span>`
         ).join('');
 
-        // Check if there's an active color filter
+        // Check if there's an active color filter OR color in search text
         const currentFilters = getCurrentFilters();
-        const colorFilter = currentFilters.primaryColours && currentFilters.primaryColours.length > 0 
+        let colorFilter = currentFilters.primaryColours && currentFilters.primaryColours.length > 0 
             ? currentFilters.primaryColours[0].toLowerCase() 
             : null;
         
-        // Find matching color variant if filter is active
+        // If no color filter but search text exists, try to detect color in search
+        if (!colorFilter && currentFilters.text) {
+            const detectedColor = detectColorInSearchText(currentFilters.text);
+            if (detectedColor) {
+                colorFilter = detectedColor.toLowerCase();
+                console.log('Color detected in search:', detectedColor);
+            }
+        }
+        
+        // Find matching color variant if filter is active or color detected in search
         let displayColor = null;
         let selectedColorIndex = -1;
         
@@ -432,9 +471,13 @@ function renderProducts(productsToRender = PRODUCTS_DB, showLoading = false) {
             // Try to find matching color variant
             const matchingColorIndex = product.colors.findIndex(c => {
                 const colorName = typeof c === 'object' ? (c.name || '').toLowerCase() : c.toLowerCase();
+                // Match exact color or if color name contains the filter (e.g., "navy" matches "navy blue")
                 return colorName === colorFilter || 
                        colorName.includes(colorFilter) || 
-                       colorFilter.includes(colorName);
+                       colorFilter.includes(colorName) ||
+                       // Also check for common color variations (e.g., "grey" matches "gray")
+                       (colorFilter === 'grey' && colorName === 'gray') ||
+                       (colorFilter === 'gray' && colorName === 'grey');
             });
             
             if (matchingColorIndex !== -1) {
@@ -857,11 +900,20 @@ function goToProduct(code, evt = null, selectedColor = null) {
         sessionStorage.setItem('selectedProduct', code);
         sessionStorage.setItem('selectedProductData', JSON.stringify(product));
         
-        // Check if there's an active color filter
+        // Check if there's an active color filter OR color in search text
         const currentFilters = getCurrentFilters();
-        const colorFilter = currentFilters.primaryColours && currentFilters.primaryColours.length > 0 
+        let colorFilter = currentFilters.primaryColours && currentFilters.primaryColours.length > 0 
             ? currentFilters.primaryColours[0] 
             : null;
+        
+        // If no color filter but search text exists, try to detect color in search
+        if (!colorFilter && currentFilters.text) {
+            const detectedColor = detectColorInSearchText(currentFilters.text);
+            if (detectedColor) {
+                colorFilter = detectedColor;
+                console.log('Color detected in search for navigation:', detectedColor);
+            }
+        }
         
         // Save selected color if any (from clicked color dot takes priority)
         const eventSource = evt?.currentTarget || evt?.target || event?.target;
@@ -872,7 +924,7 @@ function goToProduct(code, evt = null, selectedColor = null) {
             // Clear filter color since user explicitly selected a color
             sessionStorage.removeItem('filterColorName');
         } else if (colorFilter) {
-            // Save color filter for auto-selection on product detail page
+            // Save color filter (from filter or detected in search) for auto-selection on product detail page
             sessionStorage.setItem('filterColorName', colorFilter);
         } else {
             // Clear any previous filter color if no filter is active
