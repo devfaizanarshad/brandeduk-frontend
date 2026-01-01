@@ -773,12 +773,17 @@ function updateFilterCounts(filterAggregations) {
     // Batch DOM updates for performance - collect all updates first, then apply
     const updates = [];
     
-    // Helper to extract label text from span (removes count)
+    // Helper to extract label text from span (removes count if present)
     function getLabelText(span) {
         if (!span) return '';
         const text = span.textContent.trim();
+        // Check if count exists in format "Label (123)"
         const match = text.match(/^(.+?)\s*\(\d+\)\s*$/);
-        return match ? match[1].trim() : text.replace(/\s*\(\d+\)\s*$/, '').trim();
+        if (match) {
+            return match[1].trim();
+        }
+        // If no count, return the text as-is (for labels without counts)
+        return text;
     }
     
     // Helper to safely update filter count
