@@ -1452,12 +1452,16 @@ function updateHeaderHeight() {
     const header = document.querySelector('.site-header');
     if (header) {
         const headerHeight = header.offsetHeight;
-        document.documentElement.style.setProperty('--header-stack-height', `${headerHeight}px`);
-        console.log('Header height updated:', headerHeight, 'px');
+        // Only update if height changed significantly (avoid unnecessary updates)
+        const currentHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-stack-height')) || 216;
+        if (Math.abs(headerHeight - currentHeight) > 2) {
+            document.documentElement.style.setProperty('--header-stack-height', `${headerHeight}px`);
+            console.log('Header height updated:', headerHeight, 'px');
+        }
     }
 }
 
-// Update header height on load, resize, and after a short delay (for dynamic content)
+// Update header height on load and resize (debounced)
 window.addEventListener('load', () => {
     updateHeaderHeight();
     // Update again after a short delay to account for any dynamic content loading
@@ -1509,7 +1513,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const searchText = searchInput.value.trim();
             // Only search if user has typed at least 3 characters (reduces unnecessary API calls)
             if (searchText.length >= 3 || searchText.length === 0) {
-                applyFilters();
+            applyFilters();
             }
         }, 800); // 800ms - optimal balance between responsiveness and API efficiency
         

@@ -221,7 +221,7 @@
 
 /* Search Bar v1.0 header */
 .searchbar-header {
-    padding: 16px 0;
+    padding: 8px 0; /* Reduced from 16px to 8px */
     background: #ffffff;
     position: relative;
     z-index: 90;
@@ -233,7 +233,7 @@
         calc(var(--header-shell-width) + var(--header-surface-extra-width, 0px))
     );
     margin: 0 auto;
-    padding: 26px var(--searchbar-shell-padding, var(--header-shell-padding));
+    padding: 14px var(--searchbar-shell-padding, var(--header-shell-padding)); /* Reduced from 26px to 14px */
     border-radius: 36px;
     background: linear-gradient(180deg, #ffffff, #f4f6fb);
     box-shadow: 0 24px 48px rgba(15, 23, 42, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.6);
