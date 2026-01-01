@@ -392,12 +392,6 @@ body {
     margin-bottom: 6px;
 }
 
-    transition: transform 0.7s ease;
-    color: #1f2937;
-    text-decoration: none;
-    font-weight: 500;
-}
-
 .category-menu .megamenu.brand-grid li a:hover {
     color: #0d9488;
 }
@@ -1186,7 +1180,6 @@ body {
     max-width: 1800px;
     margin: 0 auto;
     padding: 20px 24px; /* Reduced top padding from 32px to 20px for more compact layout */
-    margin-top: calc(var(--header-stack-height, 188px) * 0.9); /* Reduced by 10% to match 90% zoom appearance */
     align-items: flex-start;
 }
 
@@ -2022,6 +2015,8 @@ body {
     max-width: 1240px;
     margin: 0;
     padding: 0;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .product-card {
