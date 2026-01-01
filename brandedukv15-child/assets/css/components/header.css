@@ -246,6 +246,7 @@
     justify-content: space-between;
     gap: 20px;
     position: relative;
+    min-height: 54px;
 }
 
 .searchbar-header__brand {
@@ -254,6 +255,9 @@
     gap: 14px;
     text-decoration: none;
     flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    min-width: 200px;
 }
 
 .searchbar-header__brand-badge {
@@ -302,6 +306,7 @@
     transform: translateX(-50%);
     overflow: visible;
     z-index: 1;
+    pointer-events: auto;
 }
 
 .searchbar-header__categories {
@@ -485,6 +490,9 @@
     gap: 18px;
     min-height: 54px;
     flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    min-width: 180px;
 }
 
 .searchbar-header__action {
