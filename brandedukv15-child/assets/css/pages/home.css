@@ -8,7 +8,7 @@
     --dark: #0f1729;
     --light: #f5f7fb;
     --gray: #d6deed;
-    --header-stack-height: 216px;
+    --header-stack-height: 188px; /* Reduced default to match compact header */
 
     /* Typography Scale */
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -1185,8 +1185,8 @@ body {
     gap: 24px;
     max-width: 1800px;
     margin: 0 auto;
-    padding: 32px 24px;
-    margin-top: var(--header-stack-height, 216px); /* Account for sticky header - no extra padding */
+    padding: 20px 24px; /* Reduced top padding from 32px to 20px for more compact layout */
+    margin-top: calc(var(--header-stack-height, 188px) * 0.9); /* Reduced by 10% to match 90% zoom appearance */
     align-items: flex-start;
 }
 
@@ -1259,10 +1259,10 @@ body {
     background: #e8e8e8;
     height: fit-content;
     position: sticky;
-    top: calc(var(--header-stack-height, 188px) + 32px);
+    top: calc(var(--header-stack-height, 188px) * 0.9 + 24px); /* Reduced spacing to match compact layout */
     align-self: flex-start;
     overflow-y: auto;
-    max-height: calc(100vh - (var(--header-stack-height, 188px) + 64px));
+    max-height: calc(100vh - (var(--header-stack-height, 188px) * 0.9 + 48px));
     padding-bottom: 24px;
 }
 

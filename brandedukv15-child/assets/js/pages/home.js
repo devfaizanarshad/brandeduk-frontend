@@ -1453,7 +1453,7 @@ function updateHeaderHeight() {
     if (header) {
         const headerHeight = header.offsetHeight;
         // Only update if height changed significantly (avoid unnecessary updates)
-        const currentHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-stack-height')) || 216;
+        const currentHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-stack-height')) || 188;
         if (Math.abs(headerHeight - currentHeight) > 2) {
             document.documentElement.style.setProperty('--header-stack-height', `${headerHeight}px`);
             console.log('Header height updated:', headerHeight, 'px');
