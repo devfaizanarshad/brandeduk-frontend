@@ -1108,12 +1108,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('Initial load complete');
 
     if (searchInput) {
-        searchInput.addEventListener('input', () => {
-            applyFilters();
-        });
+        // Add debouncing with minimum character threshold for better UX
+        // Industry standard: 500-800ms debounce + minimum 3 characters
+        const debouncedSearchInput = debounce(() => {
+            const searchText = searchInput.value.trim();
+            // Only search if user has typed at least 3 characters (reduces unnecessary API calls)
+            if (searchText.length >= 3 || searchText.length === 0) {
+                applyFilters();
+            }
+        }, 800); // 800ms - optimal balance between responsiveness and API efficiency
+        
+        searchInput.addEventListener('input', debouncedSearchInput);
 
         searchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
+                // Clear debounce timer and apply immediately on Enter
                 const q = searchInput.value.trim();
                 window.location.href = `search-results.html${q ? `?q=${encodeURIComponent(q)}` : ''}`;
             }
@@ -1213,13 +1222,16 @@ function initSearchbarHeader() {
     if (searchbarInput) {
         const debouncedSearch = debounce(() => {
             const searchText = searchbarInput.value.trim();
-            // Update the text search input if it exists
-            const textSearchInput = document.querySelector('.text-search-input');
-            if (textSearchInput) {
-                textSearchInput.value = searchText;
+            // Only search if user has typed at least 3 characters (reduces unnecessary API calls)
+            if (searchText.length >= 3 || searchText.length === 0) {
+                // Update the text search input if it exists
+                const textSearchInput = document.querySelector('.text-search-input');
+                if (textSearchInput) {
+                    textSearchInput.value = searchText;
+                }
+                applyFilters();
             }
-            applyFilters();
-        }, 600);
+        }, 800); // 800ms - optimal balance between responsiveness and API efficiency
         
         searchbarInput.addEventListener('input', debouncedSearch);
         
@@ -1497,8 +1509,12 @@ function initFilters() {
     const textSearch = document.querySelector('.text-search-input');
     if (textSearch) {
         const debouncedTextSearch = debounce(() => {
-            applyFilters();
-        }, 600);
+            const searchText = textSearch.value.trim();
+            // Only search if user has typed at least 3 characters (reduces unnecessary API calls)
+            if (searchText.length >= 3 || searchText.length === 0) {
+                applyFilters();
+            }
+        }, 800); // 800ms - optimal balance between responsiveness and API efficiency
         textSearch.addEventListener('input', debouncedTextSearch);
     }
 }
