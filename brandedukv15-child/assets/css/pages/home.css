@@ -1186,6 +1186,7 @@ body {
     max-width: 1800px;
     margin: 0 auto;
     padding: 32px 24px;
+    padding-top: calc(var(--header-stack-height, 216px) + 32px); /* Account for sticky header */
     align-items: flex-start;
 }
 

@@ -1446,7 +1446,29 @@ function initBrowseCategories() {
 }
 
 // ===== SEARCH & INIT =====
+// ===== DYNAMIC HEADER HEIGHT CALCULATION =====
+// Calculate and update header height to prevent content overlap at different zoom levels
+function updateHeaderHeight() {
+    const header = document.querySelector('.site-header');
+    if (header) {
+        const headerHeight = header.offsetHeight;
+        document.documentElement.style.setProperty('--header-stack-height', `${headerHeight}px`);
+        console.log('Header height updated:', headerHeight, 'px');
+    }
+}
+
+// Update header height on load, resize, and after a short delay (for dynamic content)
+window.addEventListener('load', () => {
+    updateHeaderHeight();
+    // Update again after a short delay to account for any dynamic content loading
+    setTimeout(updateHeaderHeight, 100);
+});
+
+window.addEventListener('resize', debounce(updateHeaderHeight, 150));
+
 document.addEventListener('DOMContentLoaded', async () => {
+    // Update header height immediately on DOM ready
+    updateHeaderHeight();
     console.log('DOM Content Loaded - Initializing...');
     const searchInput = document.getElementById('searchInput');
     const headerSearchForm = document.querySelector('.header-search');
