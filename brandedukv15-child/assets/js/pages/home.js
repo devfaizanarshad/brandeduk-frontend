@@ -100,71 +100,71 @@ function isCacheValid(entry) {
 
 // ===== QUERY STRING BUILDER (for both products and filters endpoints) =====
 function buildQueryString(filters, includePagination = false, page = 1, limit = 28) {
-    const params = new URLSearchParams();
+        const params = new URLSearchParams();
     
     // Pagination (only for products endpoint)
     if (includePagination) {
         params.append('page', page);
         params.append('limit', limit);
     }
-    
-    // Handle text search (map 'text' to 'q' for backend)
-    const searchText = filters.q || filters.text;
-    if (searchText) {
-        params.append('q', searchText);
-    }
-    
-    // Price filters - only send when user explicitly sets them
-    if (filters.priceMin !== null && filters.priceMin !== undefined && filters.priceMax !== null && filters.priceMax !== undefined) {
-        params.append('priceMin', filters.priceMin);
-        params.append('priceMax', filters.priceMax);
-    }
-    
-    // Handle special flags (sent as flag[] parameter)
-    if (filters.flags && Array.isArray(filters.flags) && filters.flags.length > 0) {
-        filters.flags.forEach(flag => {
-            params.append('flag[]', flag);
-        });
-    }
+        
+        // Handle text search (map 'text' to 'q' for backend)
+        const searchText = filters.q || filters.text;
+        if (searchText) {
+            params.append('q', searchText);
+        }
+        
+        // Price filters - only send when user explicitly sets them
+        if (filters.priceMin !== null && filters.priceMin !== undefined && filters.priceMax !== null && filters.priceMax !== undefined) {
+            params.append('priceMin', filters.priceMin);
+            params.append('priceMax', filters.priceMax);
+        }
+        
+        // Handle special flags (sent as flag[] parameter)
+        if (filters.flags && Array.isArray(filters.flags) && filters.flags.length > 0) {
+            filters.flags.forEach(flag => {
+                params.append('flag[]', flag);
+            });
+        }
     
     // Handle productType parameter (for category filtering)
     if (filters.productType) {
         params.append('productType', filters.productType);
     }
-    
-    // Map frontend plural names to backend singular names
-    const filterMap = {
-        'genders': 'gender',
-        'ageGroups': 'ageGroup',
-        'sleeves': 'sleeve',
-        'necklines': 'neckline',
-        'primaryColours': 'primaryColour',
-        'colourShades': 'colourShade',
-        'styles': 'style',
-        'features': 'feature',
-        'sizes': 'size',
-        'fabrics': 'fabric',
-        'weights': 'weight',
-        'fits': 'fit',
-        'sectors': 'sector',
-        'sports': 'sport',
-        'tags': 'tag',
-        'effects': 'effect',
-        'accreditations': 'accreditations',
-        'cmyk': 'cmyk',
-        'pantone': 'pantone'
-    };
-    
-    // Add array filters with correct mapping
-    Object.keys(filterMap).forEach(frontendKey => {
-        if (filters[frontendKey] && Array.isArray(filters[frontendKey]) && filters[frontendKey].length > 0) {
-            const backendKey = filterMap[frontendKey];
-            filters[frontendKey].forEach(val => {
-                params.append(`${backendKey}[]`, val);
-            });
-        }
-    });
-    
+        
+        // Map frontend plural names to backend singular names
+        const filterMap = {
+            'genders': 'gender',
+            'ageGroups': 'ageGroup',
+            'sleeves': 'sleeve',
+            'necklines': 'neckline',
+            'primaryColours': 'primaryColour',
+            'colourShades': 'colourShade',
+            'styles': 'style',
+            'features': 'feature',
+            'sizes': 'size',
+            'fabrics': 'fabric',
+            'weights': 'weight',
+            'fits': 'fit',
+            'sectors': 'sector',
+            'sports': 'sport',
+            'tags': 'tag',
+            'effects': 'effect',
+            'accreditations': 'accreditations',
+            'cmyk': 'cmyk',
+            'pantone': 'pantone'
+        };
+        
+        // Add array filters with correct mapping
+        Object.keys(filterMap).forEach(frontendKey => {
+            if (filters[frontendKey] && Array.isArray(filters[frontendKey]) && filters[frontendKey].length > 0) {
+                const backendKey = filterMap[frontendKey];
+                filters[frontendKey].forEach(val => {
+                    params.append(`${backendKey}[]`, val);
+                });
+            }
+        });
+        
     return params.toString();
 }
 
@@ -1754,6 +1754,15 @@ function initSearchbarHeader() {
                     selectedCategory = categoryMap[categorySlug] || null;
                 }
                 
+                // When applying category filter, clear search text from both inputs
+                if (searchbarInput) {
+                    searchbarInput.value = '';
+                }
+                const textSearchInput = document.querySelector('.text-search-input');
+                if (textSearchInput) {
+                    textSearchInput.value = '';
+                }
+                
                 // Update button label
                 categoryLabel.textContent = categoryName;
                 
@@ -1767,10 +1776,12 @@ function initSearchbarHeader() {
                     }
                 }
                 
-                // Apply category filter
-                // Note: Don't pass productType explicitly - let applyFilters use selectedCategory state
-                // This ensures all other filters are preserved
-                applyFilters();
+                // Apply category filter with cleared search text
+                // Pass the category filter explicitly and ensure search text is empty
+                applyFilters({ 
+                    productType: selectedCategory?.productType || null,
+                    clearSearch: true 
+                });
             });
         });
     }
@@ -1781,12 +1792,20 @@ function initSearchbarHeader() {
             const searchText = searchbarInput.value.trim();
             // Only search if user has typed at least 3 characters (reduces unnecessary API calls)
             if (searchText.length >= 3 || searchText.length === 0) {
+                // When searching from search bar, clear category selection
+                selectedCategory = null;
+                // Reset category label to "Categories"
+                if (categoryLabel) {
+                    categoryLabel.textContent = 'Categories';
+                }
+                
                 // Update the text search input if it exists
                 const textSearchInput = document.querySelector('.text-search-input');
                 if (textSearchInput) {
                     textSearchInput.value = searchText;
                 }
-                applyFilters();
+                // Apply filters with productType explicitly set to null (no category)
+                applyFilters({ productType: null });
             }
         }, 800); // 800ms - optimal balance between responsiveness and API efficiency
         
@@ -1796,12 +1815,21 @@ function initSearchbarHeader() {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 const searchText = searchbarInput.value.trim();
+                
+                // When searching from search bar, clear category selection
+                selectedCategory = null;
+                // Reset category label to "Categories"
+                if (categoryLabel) {
+                    categoryLabel.textContent = 'Categories';
+                }
+                
                 // Update the text search input if it exists
                 const textSearchInput = document.querySelector('.text-search-input');
                 if (textSearchInput) {
                     textSearchInput.value = searchText;
                 }
-                applyFilters();
+                // Apply filters with productType explicitly set to null (no category)
+                applyFilters({ productType: null });
             }
         });
     }
@@ -1812,15 +1840,21 @@ function initSearchbarHeader() {
             e.preventDefault();
             const searchText = searchbarInput?.value.trim() || '';
             
+            // When searching from search bar, clear category selection
+            selectedCategory = null;
+            // Reset category label to "Categories"
+            if (categoryLabel) {
+                categoryLabel.textContent = 'Categories';
+            }
+            
             // Update the text search input if it exists
             const textSearchInput = document.querySelector('.text-search-input');
             if (textSearchInput) {
                 textSearchInput.value = searchText;
             }
             
-            // Apply filters - preserve all current filters including category
-            // Don't pass productType explicitly - let applyFilters use selectedCategory state
-            applyFilters();
+            // Apply filters with productType explicitly set to null (no category)
+            applyFilters({ productType: null });
         });
     }
 }
@@ -2069,7 +2103,20 @@ function initFilters() {
             const searchText = textSearch.value.trim();
             // Only search if user has typed at least 3 characters (reduces unnecessary API calls)
             if (searchText.length >= 3 || searchText.length === 0) {
-                applyFilters();
+                // When searching from sidebar text input, clear category selection
+                selectedCategory = null;
+                // Reset category label to "Categories"
+                const categoryLabel = document.querySelector('.searchbar-header__categories-label');
+                if (categoryLabel) {
+                    categoryLabel.textContent = 'Categories';
+                }
+                // Also clear header search bar to keep them in sync
+                const searchbarInput = document.getElementById('searchbarHeaderInput');
+                if (searchbarInput) {
+                    searchbarInput.value = searchText;
+                }
+                // Apply filters with productType explicitly set to null (no category)
+                applyFilters({ productType: null });
             }
         }, 800); // 800ms - optimal balance between responsiveness and API efficiency
         textSearch.addEventListener('input', debouncedTextSearch);
@@ -2083,7 +2130,7 @@ let priceSliderDebounceTimer = null;
 const PRICE_SLIDER_DEBOUNCE_MS = 500; // Wait 500ms after user stops dragging
 
 async function applyFilters(options = {}) {
-    const { fromSlider = false, initialLoad = false, categoryFilter = null, productType = undefined } = options;
+    const { fromSlider = false, initialLoad = false, categoryFilter = null, productType = undefined, clearSearch = false } = options;
     
     // Show loading state IMMEDIATELY when filter is applied
     renderProducts([], true);
@@ -2114,14 +2161,29 @@ async function applyFilters(options = {}) {
         productType: productType !== undefined 
             ? productType 
             : (selectedCategory && selectedCategory.productType ? selectedCategory.productType : null),
-        // Always collect search text from both possible input fields
-        // This ensures search is preserved when other filters change
+        // Collect search text - but clear it if clearSearch flag is set
+        // This ensures search and category are mutually exclusive
         text: (() => {
+            // If clearSearch is true, return empty string (category filter was applied)
+            if (clearSearch) {
+                return '';
+            }
+            // Otherwise collect search text from both possible input fields
             const textSearchInput = document.querySelector('.text-search-input');
             const searchbarInput = document.getElementById('searchbarHeaderInput');
             return (textSearchInput?.value?.trim() || searchbarInput?.value?.trim() || '').trim();
         })()
     };
+    
+    // CRITICAL: Enforce mutual exclusivity between search and category
+    // If productType is set, ensure search text is empty
+    if (filters.productType) {
+        filters.text = '';
+    }
+    // If search text is set, ensure productType is null
+    if (filters.text && filters.text.length > 0) {
+        filters.productType = null;
+    }
     
     // If category filter is provided, apply it (this overrides the productType logic above)
     if (categoryFilter) {
