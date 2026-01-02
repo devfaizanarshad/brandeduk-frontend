@@ -47,6 +47,127 @@ let totalPages = 1;
 let totalProducts = 0;
 const PRODUCTS_PER_PAGE = 28;
 
+// ===== FRONTEND CACHE =====
+const cache = {
+    products: new Map(), // Cache for products
+    filters: new Map()   // Cache for filter counts
+};
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes in milliseconds
+
+// Helper to generate cache key from filters (without pagination for filters)
+function generateCacheKey(filters, includePagination = false, page = 1, limit = 28) {
+    // Create a normalized filter object for consistent cache keys
+    const normalized = {
+        q: filters.q || filters.text || '',
+        productType: filters.productType || null,
+        priceMin: filters.priceMin || null,
+        priceMax: filters.priceMax || null,
+        flags: (filters.flags || []).sort().join(','),
+        gender: (filters.genders || []).sort().join(','),
+        ageGroup: (filters.ageGroups || []).sort().join(','),
+        sleeve: (filters.sleeves || []).sort().join(','),
+        neckline: (filters.necklines || []).sort().join(','),
+        primaryColour: (filters.primaryColours || []).sort().join(','),
+        colourShade: (filters.colourShades || []).sort().join(','),
+        style: (filters.styles || []).sort().join(','),
+        feature: (filters.features || []).sort().join(','),
+        size: (filters.sizes || []).sort().join(','),
+        fabric: (filters.fabrics || []).sort().join(','),
+        weight: (filters.weights || []).sort().join(','),
+        fit: (filters.fits || []).sort().join(','),
+        sector: (filters.sectors || []).sort().join(','),
+        sport: (filters.sports || []).sort().join(','),
+        tag: (filters.tags || []).sort().join(','),
+        effect: (filters.effects || []).sort().join(','),
+        accreditations: (filters.accreditations || []).sort().join(','),
+        cmyk: (filters.cmyk || []).sort().join(','),
+        pantone: (filters.pantone || []).sort().join(',')
+    };
+    
+    if (includePagination) {
+        normalized.page = page;
+        normalized.limit = limit;
+    }
+    
+    return JSON.stringify(normalized);
+}
+
+// Helper to check if cache entry is still valid
+function isCacheValid(entry) {
+    if (!entry) return false;
+    return Date.now() - entry.timestamp < CACHE_TTL;
+}
+
+// ===== QUERY STRING BUILDER (for both products and filters endpoints) =====
+function buildQueryString(filters, includePagination = false, page = 1, limit = 28) {
+    const params = new URLSearchParams();
+    
+    // Pagination (only for products endpoint)
+    if (includePagination) {
+        params.append('page', page);
+        params.append('limit', limit);
+    }
+    
+    // Handle text search (map 'text' to 'q' for backend)
+    const searchText = filters.q || filters.text;
+    if (searchText) {
+        params.append('q', searchText);
+    }
+    
+    // Price filters - only send when user explicitly sets them
+    if (filters.priceMin !== null && filters.priceMin !== undefined && filters.priceMax !== null && filters.priceMax !== undefined) {
+        params.append('priceMin', filters.priceMin);
+        params.append('priceMax', filters.priceMax);
+    }
+    
+    // Handle special flags (sent as flag[] parameter)
+    if (filters.flags && Array.isArray(filters.flags) && filters.flags.length > 0) {
+        filters.flags.forEach(flag => {
+            params.append('flag[]', flag);
+        });
+    }
+    
+    // Handle productType parameter (for category filtering)
+    if (filters.productType) {
+        params.append('productType', filters.productType);
+    }
+    
+    // Map frontend plural names to backend singular names
+    const filterMap = {
+        'genders': 'gender',
+        'ageGroups': 'ageGroup',
+        'sleeves': 'sleeve',
+        'necklines': 'neckline',
+        'primaryColours': 'primaryColour',
+        'colourShades': 'colourShade',
+        'styles': 'style',
+        'features': 'feature',
+        'sizes': 'size',
+        'fabrics': 'fabric',
+        'weights': 'weight',
+        'fits': 'fit',
+        'sectors': 'sector',
+        'sports': 'sport',
+        'tags': 'tag',
+        'effects': 'effect',
+        'accreditations': 'accreditations',
+        'cmyk': 'cmyk',
+        'pantone': 'pantone'
+    };
+    
+    // Add array filters with correct mapping
+    Object.keys(filterMap).forEach(frontendKey => {
+        if (filters[frontendKey] && Array.isArray(filters[frontendKey]) && filters[frontendKey].length > 0) {
+            const backendKey = filterMap[frontendKey];
+            filters[frontendKey].forEach(val => {
+                params.append(`${backendKey}[]`, val);
+            });
+        }
+    });
+    
+    return params.toString();
+}
+
 // ===== API FUNCTIONS =====
 async function fetchProducts(filters = {}, page = 1, limit = 28) {
     if (isLoadingProducts) {
@@ -58,71 +179,28 @@ async function fetchProducts(filters = {}, page = 1, limit = 28) {
     console.log('Fetching products from API...', { filters, page, limit });
     
     try {
-        const params = new URLSearchParams();
-        params.append('page', page);
-        params.append('limit', limit);
+        // Check cache first
+        const cacheKey = generateCacheKey(filters, true, page, limit);
+        const cached = cache.products.get(cacheKey);
         
-        // Handle text search (map 'text' to 'q' for backend)
-        const searchText = filters.q || filters.text;
-        if (searchText) {
-            params.append('q', searchText);
-        }
-        
-        // Price filters - only send when user explicitly sets them
-        if (filters.priceMin !== null && filters.priceMin !== undefined && filters.priceMax !== null && filters.priceMax !== undefined) {
-            params.append('priceMin', filters.priceMin);
-            params.append('priceMax', filters.priceMax);
-        }
-        
-        // Handle special flags (sent as flag[] parameter)
-        if (filters.flags && Array.isArray(filters.flags) && filters.flags.length > 0) {
-            console.log("flags", filters.flags);
+        if (isCacheValid(cached)) {
+            console.log('✅ Products loaded from cache');
+            const data = cached.data;
             
-            filters.flags.forEach(flag => {
-                params.append('flag[]', flag);
-            });
+            // Store pagination data
+            totalProducts = data.total || 0;
+            totalPages = Math.ceil(totalProducts / limit);
+            currentPage = page;
+            
+            PRODUCTS_DB = data.items || [];
+            CURRENT_PRODUCTS = data.items || [];
+            
+            return data;
         }
         
-        // Handle productType parameter (for category filtering)
-        if (filters.productType) {
-            params.append('productType', filters.productType);
-            console.log("productType", filters.productType);
-        }
-        
-        // Map frontend plural names to backend singular names
-        const filterMap = {
-            'genders': 'gender',
-            'ageGroups': 'ageGroup',
-            'sleeves': 'sleeve',
-            'necklines': 'neckline',
-            'primaryColours': 'primaryColour',
-            'colourShades': 'colourShade',
-            'styles': 'style',
-            'features': 'feature',
-            'sizes': 'size',
-            'fabrics': 'fabric',
-            'weights': 'weight',
-            'fits': 'fit',
-            'sectors': 'sector',
-            'sports': 'sport',
-            'tags': 'tag',
-            'effects': 'effect',
-            'accreditations': 'accreditations',
-            'cmyk': 'cmyk',
-            'pantone': 'pantone'
-        };
-        
-        // Add array filters with correct mapping
-        Object.keys(filterMap).forEach(frontendKey => {
-            if (filters[frontendKey] && Array.isArray(filters[frontendKey]) && filters[frontendKey].length > 0) {
-                const backendKey = filterMap[frontendKey];
-                filters[frontendKey].forEach(val => {
-                    params.append(`${backendKey}[]`, val);
-                });
-            }
-        });
-        
-        const url = `${API_BASE_URL}/products?${params.toString()}`;
+        // Build query string using shared helper
+        const queryString = buildQueryString(filters, true, page, limit);
+        const url = `${API_BASE_URL}/products?${queryString}`;
         console.log('API URL:', url);
         console.log('Request params - page:', page, 'limit:', limit);
         
@@ -138,7 +216,6 @@ async function fetchProducts(filters = {}, page = 1, limit = 28) {
             });
             console.log('✅ Fetch completed!');
             console.log('API Response status:', response.status, response.statusText);
-            console.log('Response headers:', response.headers);
         } catch (fetchError) {
             console.error('❌ Fetch failed:', fetchError);
             console.error('Error name:', fetchError.name);
@@ -170,7 +247,89 @@ async function fetchProducts(filters = {}, page = 1, limit = 28) {
         PRODUCTS_DB = data.items || [];
         CURRENT_PRODUCTS = data.items || [];
         
-        // Store filter aggregations for dynamic count updates
+        // Cache the response
+        cache.products.set(cacheKey, {
+            data: data,
+            timestamp: Date.now()
+        });
+        console.log('✅ Products cached');
+        
+        // NOTE: Filters are no longer returned from products endpoint
+        // They are fetched separately via fetchFilterCounts()
+        
+        return data;
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        console.error('Error details:', error.message);
+        PRODUCTS_DB = [];
+        CURRENT_PRODUCTS = [];
+        return null;
+    } finally {
+        isLoadingProducts = false;
+    }
+}
+
+// ===== FILTER COUNTS API FUNCTION =====
+let isLoadingFilters = false;
+let lastFilterQueryString = null;
+
+async function fetchFilterCounts(filters = {}) {
+    // Use the same filter params as products (without pagination) to ensure sync
+    const queryString = buildQueryString(filters, false);
+    
+    // Check cache first (use same filter key as products, but without pagination)
+    const cacheKey = generateCacheKey(filters, false);
+    const cached = cache.filters.get(cacheKey);
+    
+    if (isCacheValid(cached)) {
+        console.log('✅ Filter counts loaded from cache');
+        try {
+            updateFilterCounts(cached.data.filters);
+            console.log('✅ Filter counts updated from cache');
+        } catch (error) {
+            console.error('Error updating filter counts from cache:', error);
+        }
+        return cached.data;
+    }
+    
+    // Prevent duplicate requests with same filters
+    if (isLoadingFilters && lastFilterQueryString === queryString) {
+        console.log('Filter counts already loading for these filters, skipping...');
+        return null;
+    }
+    
+    isLoadingFilters = true;
+    lastFilterQueryString = queryString;
+    console.log('Fetching filter counts from API...', { filters });
+    
+    try {
+        const url = `${API_BASE_URL}/products/filters?${queryString}`;
+        console.log('Filters API URL:', url);
+        
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            const errorText = await response.text().catch(() => 'Unable to read error');
+            console.error('❌ Filters API Error Response:', response.status, errorText);
+            throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
+        }
+        
+        const data = await response.json();
+        console.log('✅ Filter counts received:', data);
+        
+        // Cache the response
+        cache.filters.set(cacheKey, {
+            data: data,
+            timestamp: Date.now()
+        });
+        console.log('✅ Filter counts cached');
+        
         if (data.filters) {
             try {
                 updateFilterCounts(data.filters);
@@ -183,13 +342,12 @@ async function fetchProducts(filters = {}, page = 1, limit = 28) {
         
         return data;
     } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching filter counts:', error);
         console.error('Error details:', error.message);
-        PRODUCTS_DB = [];
-        CURRENT_PRODUCTS = [];
+        // Don't throw - filter counts are not critical for product display
         return null;
     } finally {
-        isLoadingProducts = false;
+        isLoadingFilters = false;
     }
 }
 
@@ -2118,6 +2276,7 @@ async function applyFilters(options = {}) {
     // Reset to page 1 when filters change
     currentPage = 1;
     
+    // Load products first (show immediately)
     const data = await fetchProducts(filters, currentPage, PRODUCTS_PER_PAGE);
     
     if (data) {
@@ -2128,6 +2287,20 @@ async function applyFilters(options = {}) {
         
         // Render pagination
         renderPagination();
+        
+        // Load filter counts in background (non-blocking)
+        // IMPORTANT: Use the EXACT same filters object to ensure sync
+        // This ensures filters match the products, even if products came from cache
+        fetchFilterCounts(filters)
+            .then(filtersData => {
+                if (filtersData) {
+                    console.log('✅ Filter counts loaded in background and synced with products');
+                }
+            })
+            .catch(err => {
+                console.error('Failed to load filter counts:', err);
+                // Filters will work without counts - not critical
+            });
     } else {
         // fetchProducts returns null if another request is in progress
         // In that case, don't show "No products" - keep skeleton visible
